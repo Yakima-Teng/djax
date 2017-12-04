@@ -1,0 +1,48 @@
+@import '../tools/utils';
+
+.site-header {
+  position: relative;
+  padding: 10px 0;
+  @include clearfix();
+  .logo {
+    float: left;
+    width: 128px;
+    height: 128px;
+  }
+  .title {
+    float: left;
+    margin-left: 20px;
+    .title-main {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .title-sub {
+      font-size: 12px;
+      color: #555;
+      margin: 10px 0;
+    }
+  }
+  .aside {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    .btn-star {
+      display: block;
+      width: 64px;
+      height: 28px;
+      line-height: 28px;
+      background-color: #eff3f6;
+      background-image: linear-gradient(to bottom, #fafbfc, #e4ebf0);
+      border-radius: 4px;
+      @include textAlign();
+      @include cursor();
+    }
+    .icon-star {
+      @include verticalAlign();
+    }
+    .text {
+      @include verticalAlign();
+    }
+  }
+}

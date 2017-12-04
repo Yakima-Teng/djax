@@ -1,0 +1,39 @@
+extends ../templates/template-post.pug
+
+include ../components/mixin-head.pug
+include ../components/mixin-menu.pug
+
+block site-head
+  -var title = ''
+  -var desc = '滕运锋,英文名Yakima Teng,2013年毕业于沈阳药科大学·药学(食品药学方向)专业。博客主要记录了一些生活琐碎、思考感悟,以及药学和IT方面的一些技术文章。'
+  +mixinHead(title, desc)
+  link(rel="stylesheet", href="../../styles/pages/home.min.css")
+
+block site-menu
+  +mixinMenu('home')
+
+block site-foot
+  script(src="../../scripts/pages/home.min.js")
+
+block site-content
+  .page-home
+    section.content
+      h2.title Seven times I have despised my soul
+      h3.byline ― Kahlil Gibran, Sand and Foam
+      p.p The first time when I saw her being meek that she might attain height.
+      p.p The second time when I saw her limping before the crippled.
+      p.p The third time when she was given to choose between the hard and the easy, and she chose the easy.
+      p.p The fourth time when she committed a wrong, and comforted herself that others also commit wrong.
+      p.p The fifth time when she forbode for weakness, and attributed her patience to strength.
+      p.p The sixth time when she despised the ugliness of a face, and knew not that it was one of her own masks.
+      p.p And the seventh time when she sang a song of praise, and deemed it a virtue.
+    section.content
+      h2.title 我的心曾悲伤七次
+      h3.byline ——卡里·纪伯伦《沙与沫》
+      p.p 第一次，是当我看到她本可进取，却故作谦卑时。
+      p.p 第二次，是当我看到她在瘸子面前跛行而过时。
+      p.p 第三次，是当她在难易之间，却选择了容易时。
+      p.p 第四次，是当她犯了错，却借由别人也会犯错来宽慰自己时。
+      p.p 第五次，是当她因为软弱而忍让，却声称为自己的坚韧时。
+      p.p 第六次，是当她鄙夷一张丑恶的嘴脸，却不知那正是自己面具中的一副时。
+      p.p 第七次，是当她吟唱赞歌，却自诩为一种美德时。

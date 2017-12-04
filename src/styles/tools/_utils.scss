@@ -1,0 +1,40 @@
+@import './constants';
+@import './borderOnePx';
+
+@mixin customWidth() {
+  width: $site-width;
+  max-width: $site-width_max;
+  min-width: $site-width_min;
+}
+
+@mixin clearfix($position: relative) {
+  position: $position;
+  &:after {
+    content: '';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@mixin ellipsis($overflow: hidden) {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: $overflow;
+}
+
+@mixin verticalAlign($align: middle) {
+  display: inline-block;
+  vertical-align: $align;
+}
+
+@mixin textAlign($align: center) {
+  text-align: $align;
+}
+
+@mixin cursor() {
+  user-select: none;
+  cursor: pointer;
+}

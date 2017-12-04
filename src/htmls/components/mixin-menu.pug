@@ -1,0 +1,17 @@
+mixin mixinMenu(activeMenuAlias)
+  - var menuHome = { alias: 'home', text: '首页', url: './home.html' }
+  - var menuArticles = { alias: 'articles', text: '文章', url: './articles.html' }
+  - var menuWorks = { alias: 'works', text: '作品', url: './works.html' }
+  - var menuAbout = { alias: 'about', text: '关于', url: './about.html' }
+  - var menuBooks = { alias: 'books', text: '读书', url: 'https://book.douban.com/people/cleveryun/collect?sort=time&start=0&filter=all&mode=list&tags_sort=count' }
+  - var menuCV = { alias: 'cv', text: '简历', url: 'http://www.yxeye.com/cv/index.html' }
+  - var menuGuestbook = { alias: 'guestbook', text: '留言板', url: 'https://github.com/Yakima-Teng/home/issues' }
+  - var menus = [menuHome, menuArticles, menuWorks, menuBooks, menuCV, menuGuestbook, menuAbout]
+  link(rel="stylesheet", href="../../styles/components/menu.min.css")
+  nav.site-menu
+    ul.items
+      each menu in menus
+        li.item(class = menu.alias === activeMenuAlias ? "active" : "")
+            a.link(href= menu.url, target= menu.url.indexOf('http') === 0 ? '_blank' : '_self')= menu.text
+              if menu.url.indexOf('http') === 0
+                i.fa.fa-external-link.external-link

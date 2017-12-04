@@ -1,0 +1,31 @@
+@import '../tools/utils';
+
+.page-home {
+  @include clearfix();
+  .content {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  .title {
+    font-size: 16px;
+    color: #333;
+    line-height: 2;
+    text-align: center;
+  }
+  .byline {
+    font-size: 14px;
+    color: #666;
+    line-height: 2;
+    text-align: right;
+  }
+  .p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+    height: 50px;
+    margin: 15px 0;
+    text-align: justify;
+  }
+}

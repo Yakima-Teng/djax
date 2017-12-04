@@ -1,0 +1,74 @@
+extends ../templates/template-post.pug
+
+include ../components/mixin-head.pug
+include ../components/mixin-menu.pug
+
+block site-head
+  -var title = 'Works'
+  -var desc = '滕运锋,英文名Yakima Teng,2013年毕业于沈阳药科大学·药学(食品药学方向)专业。博客主要记录了一些生活琐碎、思考感悟,以及药学和IT方面的一些技术文章。'
+  +mixinHead(title, desc)
+  link(rel="stylesheet", href="../../styles/pages/works.min.css")
+
+block site-menu
+  +mixinMenu('works')
+
+block site-foot
+  script(src="../../scripts/pages/works.min.js")
+
+block site-content
+  .page-works
+    header.main-title 这里没有列举工作中开发的项目，如果想看其他工作中开发的项目，可以点击菜单栏里的【简历】进行查看。
+    ul.items
+      li.item
+        header.item-header
+          .title jQuery多页面项目脚手架（PC端项目）
+          a.btn-read(href="https://github.com/Yakima-Teng/home")
+            i.fa.fa-book
+            span.text Read me
+        ul.details
+          li.detail 传统的jQuery多页项目，对SEO友好。多种插件开箱即用。样式方面使用sass避免大量无意义的书写成本。借助pug解决html片段复用问题。自带了layui、swiper、fastclick、md5、html5shiv、respond等常见插件/库。
+          li.detail 未使用Angular, React, Vue等前端MVWhateveryoulike框架。可以用ES6也可以用ES5语法。上手难度不高。适合团队成员前端水平跨度较大的团队。
+          li.detail 采用约定优于配置（convention over configuration）的思想，通过一些文件名命名的约定，可以免于手动调整开发配置文件。
+          li.detail 提供了一套项目优化和代码风格指南供借鉴，可根据需要进行修改后在内部使用。
+          li.detail 内置了一套本人自己封装的常用js方法，会不定期更新、优化。
+          li.detail 自己实现了一个简单的前端html模板引擎，当然你仍可以使用handlebars之类的前端（客户端）模板引擎。
+
+      li.item
+        header.item-header
+          .title Vue全家桶+Typescript项目脚手架（移动端项目）
+          a.btn-read(href="")
+            i.fa.fa-book
+            span.text Read me
+        ul.details
+          li.detail Vue相比较其他前端框架来说，比较轻，在移动端上特别适合（PC上当然也是毫无压力）。
+          li.detail 网上Vue全家桶项目实在太多了，所以写了个结合Typescript的项目脚手架，这块内容在github上还不是很多，或者都比较“浅”。实用性上参考价值略低了点。
+          li.detail 集成饿了么前端团队出品的element UI库。
+          li.detail 将一些常用功能封装成了Vue插件供使用。
+
+      li.item
+        header.item-header
+          .title Angular+Typescript项目脚手架（PC端项目）
+          a.btn-read(href="")
+            i.fa.fa-book
+            span.text Read me
+        ul.details
+          li.detail 从使用的角度来说，Angular相比其他前端框架的区别最大的地方就是一揽子服务，不需要另外去弄路由和数据管理状态机。这也是很多团队选用Angular的原因之一。
+          li.detail 因为碰巧网上发现了一个刚刚起步没多久在找人一起贡献代码的项目，所以这个项目不是由我发起的，我在这里是作为一个contributor，也是想借此机会看看别人的代码，随便自己可以把主要的精力放在其他项目上。
+
+      li.item
+        header.item-header
+          .title React全家桶+FlowJS项目脚手架（移动端项目）
+          a.btn-read(href="")
+            i.fa.fa-book
+            span.text Read me
+        ul.details
+          li.detail React对我的最大诱惑在于有比较成熟的React Native这样的周边的存在。
+      
+      li.item
+        header.item-header
+          .title Mock Server
+          a.btn-read(href="")
+            i.fa.fa-book
+            span.text Read me
+        ul.details
+          li.detail Mock服务器。

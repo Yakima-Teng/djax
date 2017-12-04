@@ -1,0 +1,33 @@
+mixin mixinHead(title, desc)
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    - var siteTitle = 'Yakima Teng | 滕运锋'
+    if title
+      title #{title} | #{siteTitle}
+    else
+      title= siteTitle
+    meta(name="description", content=desc)
+    //- 样式重置
+    link(rel="stylesheet", href="../../styles/global/reset.min.css")
+    //- 网站全局样式
+    link(rel="stylesheet", href="../../styles/global/global.min.css")
+    //- favicon，浏览器标签栏处显示的图标
+    link(rel="shortcut icon", href="../../assets/images/favicon.ico", type="image/x-icon")
+
+    //- 第三方css文件开始
+    link(rel="stylesheet", href="../../assets/layui/css/layui.css")
+    link(rel="stylesheet", href="../../assets/swiper/css/swiper.min.css")
+    link(rel="stylesheet", href="../../assets/font-awesome-4.7.0 2/css/font-awesome.min.css")
+    //- 第三方css文件结束
+
+    //- 对第三方css文件样式进行修改
+    link(rel="stylesheet", href="../../styles/global/fix.min.css")
+    //- script(src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js")
+    //- script(src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js")
+    //- libs-before.min.js是一些对网站样式可能有较大影响的脚本
+    script(src="../../scripts/libs/libs-before.min.js")
+    if block
+      block
+    else
+      //- show nothing here
