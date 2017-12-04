@@ -7,13 +7,13 @@ block site-head
   -var title = ''
   -var desc = '滕运锋,英文名Yakima Teng,2013年毕业于沈阳药科大学·药学(食品药学方向)专业。博客主要记录了一些生活琐碎、思考感悟,以及药学和IT方面的一些技术文章。'
   +mixinHead(title, desc)
-  link(rel="stylesheet", href="../../styles/pages/home.min.css")
+  link(rel="stylesheet", href="../../styles/pages/index.min.css")
 
 block site-menu
   +mixinMenu('home')
 
 block site-foot
-  script(src="../../scripts/pages/home.min.js")
+  script(src="../../scripts/pages/index.min.js")
 
 block site-content
   .page-home

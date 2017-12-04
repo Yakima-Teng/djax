@@ -11,7 +11,7 @@ const pug = require('gulp-pug')
 const gulpif = require('gulp-if')
 const scp = require('gulp-scp2')
 const config = require('./config')
-const appName = 'home'
+const appName = config.appName;
 
 gulp.task('pug-pages', () => {
   return gulp.src('./src/htmls/pages/*.pug')
@@ -87,7 +87,7 @@ gulp.task('dev', ['pug-pages', 'sass', 'js-pages', 'js-libs-before', 'js-libs-af
       }
     },
     port: '18080',
-    startPath: `/${appName}/htmls/pages/home.html`,
+    startPath: `/${appName}/htmls/pages/index.html`,
     meddleware: []
   })
 
