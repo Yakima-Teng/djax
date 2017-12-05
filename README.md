@@ -2,7 +2,7 @@
 
 [在找中文文档？点此查看。](./README_CN.md)
 
-For more documentation, please refer to the official website: [Djax](http://www.yxeye.com/djax)
+For more documentation, please refer to the official website: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
 
 Djax is short for Dom & Ajax. It's a simple boilerplate for scaffolding traditionally websites where you are supposed to operate dom, where you more control over your code.
 

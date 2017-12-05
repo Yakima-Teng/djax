@@ -2,7 +2,7 @@
 
 [Looking for English documentation? Please click here.](./README.md)
 
-更多详细文档，请访问官方网站: [Djax](http://www.yxeye.com/djax)
+更多详细文档，请访问官方网站: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
 
 Djax是我对Dom & Ajax的简写。Djax是一个简单易上手的网站脚手架，通过它，你可以方便地进行传统的网页开发，自己操作DOM，对你的代码有更多的控制权，你也更知道自己在干什么。
 
