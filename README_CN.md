@@ -1,6 +1,6 @@
 # Djax
 
-[Looking for English documentation? Please click here.](./README.md)
+[Looking for English documentation? Please click here.](./README_EN.md)
 
 更多详细文档，请访问官方网站: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
 

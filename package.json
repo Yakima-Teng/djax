@@ -4,11 +4,14 @@
   "description": "dom and ajax",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "gulp dev",
-    "build": "gulp build",
+    "dev": "npm-run-all --serial clean gulpDev",
+    "build": "npm-run-all --serial clean gulpBuild",
     "deploy": "gulp deploy",
     "buildAndDeploy": "npm-run-all --serial build deploy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "gulp clean",
+    "gulpDev": "gulp dev",
+    "gulpBuild": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.1",

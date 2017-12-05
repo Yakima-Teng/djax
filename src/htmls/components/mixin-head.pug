@@ -2,11 +2,12 @@ mixin mixinHead(title, desc)
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    - var siteTitle = 'Yakima Teng | 滕运锋'
+    - var siteTitle = 'Djax'
+    - var siteDesc = 'DOM & AJAX，简单、自由的前端开发套件'
     if title
       title #{title} | #{siteTitle}
     else
-      title= siteTitle
+      title= siteTitle + ' | ' + siteDesc
     meta(name="description", content=desc)
     //- 样式重置
     link(rel="stylesheet", href="../../styles/global/reset.min.css")

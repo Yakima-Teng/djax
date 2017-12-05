@@ -5,7 +5,7 @@ include ../components/mixin-menu.pug
 
 block site-head
   -var title = ''
-  -var desc = '滕运锋,英文名Yakima Teng,2013年毕业于沈阳药科大学·药学(食品药学方向)专业。博客主要记录了一些生活琐碎、思考感悟,以及药学和IT方面的一些技术文章。'
+  -var desc = 'Djax: DOM & AJAX，简单、自由的前端开发套件'
   +mixinHead(title, desc)
   link(rel="stylesheet", href="../../styles/pages/index.min.css")
 
@@ -17,23 +17,23 @@ block site-foot
 
 block site-content
   .page-home
-    section.content
-      h2.title Seven times I have despised my soul
-      h3.byline ― Kahlil Gibran, Sand and Foam
-      p.p The first time when I saw her being meek that she might attain height.
-      p.p The second time when I saw her limping before the crippled.
-      p.p The third time when she was given to choose between the hard and the easy, and she chose the easy.
-      p.p The fourth time when she committed a wrong, and comforted herself that others also commit wrong.
-      p.p The fifth time when she forbode for weakness, and attributed her patience to strength.
-      p.p The sixth time when she despised the ugliness of a face, and knew not that it was one of her own masks.
-      p.p And the seventh time when she sang a song of praise, and deemed it a virtue.
-    section.content
-      h2.title 我的心曾悲伤七次
-      h3.byline ——卡里·纪伯伦《沙与沫》
-      p.p 第一次，是当我看到她本可进取，却故作谦卑时。
-      p.p 第二次，是当我看到她在瘸子面前跛行而过时。
-      p.p 第三次，是当她在难易之间，却选择了容易时。
-      p.p 第四次，是当她犯了错，却借由别人也会犯错来宽慰自己时。
-      p.p 第五次，是当她因为软弱而忍让，却声称为自己的坚韧时。
-      p.p 第六次，是当她鄙夷一张丑恶的嘴脸，却不知那正是自己面具中的一副时。
-      p.p 第七次，是当她吟唱赞歌，却自诩为一种美德时。
+    section.box
+      h2.title 一套UI库&nbsp;&nbsp;|&nbsp;&nbsp;Layui、Bootstrap✔️
+      article.article
+        p.p 前端可谓遍地开发，但是UI库没有必要遍地学一遍，熟练掌握一套即可。Layui是一个门槛极低、开箱即用的前端UI框架，在PC端项目尤其是一些后台管理系统里比较适用。Layui提供了按钮、表单、导航、选项卡、进度条、面板、表格、徽章、时间线、弹出层、日期控件、分页、模板引擎等常见的buff。
+        p.p 除了Layui之外，Bootstrap也是一套非常好用的UI库，从其受众之多便可窥见一斑，因此本套件也包含了它，如果你的项目是需要移动端适配的，建议使用Bootstrap。
+        p.p 我们建议一个项目里不要同时使用多套UI库，选一个你习惯/喜欢的即可。
+
+    section.box
+      h2.title 一些库/插件&nbsp;&nbsp;|&nbsp;&nbsp;jQuery、zepto✔️
+      article.article
+        p.p 不知道有多少人听到ajax习惯的就会想起$.ajax这个方法呢！jQuery曾今如日中天，并且现如今用户量依旧庞大，为啥？因为好用，因为我们用习惯了。zepto是一个类似jQuery的js库，拥有与jQuery相似的api，没有后者那么健壮但是文件体积小了很多，而且很多js插件都是依赖jQuery的，所以两者之间选择哪一个是一个你自己需要做的选择，如果你没有什么主意，那就用jQuery。
+        p.p 有了jQuery之类的js库，我们还需要一些其他东西，毕竟有句话叫：术业有专攻。你会发现swiper插件用来写跑马灯（幻灯）就是特别好用，jqGrid用来处理表格数据就是特别顺手……所以，当你发现UI库里没有你想要的效果或者没达到你满意的程度的话，你很可能是饿了，哦不，你很可能是需要找一个能实现类似功能的插件了。
+
+    section.box
+      h2.title 一些优良实践&nbsp;&nbsp;|&nbsp;&nbsp;时间钩子、代码风格一致性✔️
+      article.article
+        p.p 有些实践他觉得好她觉得好他也觉得好但是她觉得不好，但是有一些实践则是比较受到大众认可的，比如把那些对页面影响比较大的js放在页面head里进行加载，把一些不需要马上生效的比如日期插件放在网站加载结束后用document.write生成script的方式来进行加载，但是这么一个个处理起来也是有点麻烦，因此我们引入了”时间钩子“这个概念。
+        p.p 目前提供的时间钩子有：onHead, onDocumentReady(不常用), onMediaReady（不常用）, onLazy。
+        p.p 代码风格的一致性有助于减少一些不必要的潜在bug，而且代码更好看了不是？因为萝卜青菜各有所爱，我们预置了几套代码风格配置，一定会有一套适合你的。
+        p.p 不知道你有没有见过那种if花括号里嵌套if花括号嵌套了好几层的，然后因为花括号是没对齐的，所以你都不知道哪个右花括号是跟哪个左花括号对应的了，甚至与是不是多写了个花括号一眼都看不出来，反正我是见过，而且这个现象很可能是因为有人用eclipse写前端js，eclipse对前端js文件的缩进调整真的是——放弃吧。

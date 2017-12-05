@@ -10,8 +10,15 @@ const babel = require('gulp-babel')
 const pug = require('gulp-pug')
 const gulpif = require('gulp-if')
 const scp = require('gulp-scp2')
+const del = require('del')
 const config = require('./config')
 const appName = config.appName;
+
+gulp.task('clean', () => {
+  return del([
+    'dist/**/*'
+  ])
+})
 
 gulp.task('pug-pages', () => {
   return gulp.src('./src/htmls/pages/*.pug')
@@ -100,7 +107,7 @@ gulp.task('dev', ['pug-pages', 'sass', 'js-pages', 'js-libs-before', 'js-libs-af
   gulp.watch(['./src/styles/**/*.scss'], ['sass'])
 })
 
-gulp.task('build', ['pug-pages', 'sass', 'js-pages', 'js-libs-before', 'js-libs-after', 'js-common', 'assets'], () => {
+gulp.task('build', ['clean', 'pug-pages', 'sass', 'js-pages', 'js-libs-before', 'js-libs-after', 'js-common', 'assets'], () => {
   console.log(`[${new Date()}]: Finish building!`)
 })
 
