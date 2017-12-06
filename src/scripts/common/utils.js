@@ -350,7 +350,7 @@
       nonceStr: opts.nonceStr || '',
       package: opts.package || '',
       signType: 'MD5',
-      paySign: opts.paySign
+      paySign: opts.paySign,
     };
     if (typeof window.WeixinJSBridge === 'undefined') {
       if (window.document.addEventListener) {

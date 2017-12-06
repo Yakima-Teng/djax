@@ -20,7 +20,7 @@ block site-content
     h2.page-title 代码风格
     article.content
       p.p 添加代码风格虽然有可能让从没有如此操作过的你在一开始的时候感觉不太适应，但响应我，等你习惯后你会发现这么做带来的好处是很多的，有些本身难以发现的bug借助代码风格检测可以及时地被发现，比如“a = b;”被写成了“a === b;”，或者你多声明了一个实际上并没有用到的变量，或者你重复声明了一个已经存在的变量，这些问题，可能跑程序的时候是发现不了的，因为它们本身在浏览器里跑的时候是不会报错的，但是借助代码风格检测，你可以很容易避免出现这样低级但是不易查找的bug。
-      p.p 本套件提供了一套默认的代码风格（使用eslint进行检测），你可以直接使用，也可以根据需要自行修改，下面给出了一些常见规则的自定义办法——更详细的文档请翻阅eslint的官网：https://eslint.org/。本套件会对src/scripts路径下的js文件进行检测（若该目录下有某些文件或文件夹是你不希望进行风格检测的，请在.eslintignore文件中进行制定，本套件已经指定了src/scripts/libs目录下的js文件，因为这里基本都是一些第三方js文件）。代码风格配置文件为项目根目录下的.eslintrc.js文件。
+      p.p 本套件提供了一套默认的代码风格（使用eslint进行检测），你可以直接使用，也可以根据需要自行修改，下面给出了一些常见规则的自定义办法——更详细的文档请翻阅：<a href="https://eslint.org/" target="_blank">eslint的官网</a>。本套件会对src/scripts路径下的js文件进行检测（若该目录下有某些文件或文件夹是你不希望进行风格检测的，请在.eslintignore文件中进行制定，本套件已经指定了src/scripts/libs目录下的js文件，因为这里基本都是一些第三方js文件）。代码风格配置文件为项目根目录下的.eslintrc.js文件。
 
     ul.lines
       li.line
@@ -62,3 +62,11 @@ block site-content
           .inner
             p.p 若需要将某个变量设置为允许作为全局变量直接使用，请在globals下配置 '变量名': true/false
             p.p true表示允许对这个变量进行重写，false表示不允许对这个变量进行重写，如无特别需要，建议设为true
+      
+      li.line
+        span.line-title 末尾的逗号
+        span.line-circle
+        .line-desc
+          .inner
+            p.p 若禁止在对象、数组等字面量定义中最后一个key:value对/元素后加逗号，请在rules下配置 'comma-dangle': [2, 'never']（默认）
+            p.p 若要求在对象、数组定字面量定义中最后一个key:value对/元素后加逗号，请在rules下配置 'comma-dangle': [2, 'always']
