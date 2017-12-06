@@ -4,6 +4,16 @@
   .page-title {}
   .page-article {
   }
+  .content {
+    .p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #999;
+      min-height: 40px;
+      margin: 15px 0;
+      text-indent: 2em;
+    }
+  }
   .lines {
     margin-left: 120px;
     // padding-left: 30px;
@@ -74,6 +84,12 @@
         right: 100%;
         margin-top: -15px;
       }
+    }
+    .p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #999;
+      margin: 5px 0;
     }
   }
 }

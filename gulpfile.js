@@ -10,6 +10,7 @@ const babel = require('gulp-babel')
 const pug = require('gulp-pug')
 const gulpif = require('gulp-if')
 const scp = require('gulp-scp2')
+const eslint = require('gulp-eslint')
 const del = require('del')
 const config = require('./config')
 const appName = config.appName;
@@ -83,6 +84,13 @@ gulp.task('assets', () => {
     .pipe(gulp.dest('./dist/assets'))
 })
 
+gulp.task('lint', () => {
+  return gulp.src(['./src/scripts/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+})
+
 gulp.task('dev', ['pug-pages', 'sass', 'js-pages', 'js-libs-before', 'js-libs-after', 'js-common', 'assets'], () => {
   console.log(`[${new Date()}]: ready to develop!`)
   browserSync.init({
@@ -100,7 +108,8 @@ gulp.task('dev', ['pug-pages', 'sass', 'js-pages', 'js-libs-before', 'js-libs-af
 
   gulp.watch(['./src/assets/**/*.*'], ['assets'])
   gulp.watch(['./src/htmls/**/*.pug'], ['pug-pages'])
-  gulp.watch(['./src/scripts/common/**/*.js'], ['js-common'])
+  gulp.watch(['./src/scripts/common/**/*.js'], ['js-common', 'lint'])
+  gulp.watch(['./src/scripts/pages/**/*.js'], ['lint'])
   gulp.watch(['./src/scripts/libs/**/*.before.js'], ['js-libs-before'])
   gulp.watch(['./src/scripts/libs/**/*.after.js'], ['js-libs-after'])
   gulp.watch(['./src/scripts/pages/**/*.js'], ['js-pages'])

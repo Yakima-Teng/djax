@@ -2,11 +2,13 @@
 
 .page-home {
   @include clearfix();
-  .content {
-    float: left;
-    width: 50%;
-    box-sizing: border-box;
+  .box {
     padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    &:nth-of-type(n+2) {
+      margin-top: 20px;
+    }
   }
   .title {
     font-size: 16px;
@@ -14,7 +16,7 @@
     line-height: 2;
     text-align: center;
   }
-  .byline {
+  .article {
     font-size: 14px;
     color: #666;
     line-height: 2;
@@ -26,5 +28,21 @@
     line-height: 1.8;
     margin: 15px 0;
     text-align: justify;
+  }
+  .items {
+    padding: 0 20px;
+    @include clearfix();
+  }
+  .item {
+    float: left;
+    width: 50%;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 10px 0;
+    text-align: justify;
+    &:before {
+      content: '* ';
+    }
   }
 }

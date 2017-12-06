@@ -3,7 +3,7 @@
 
   utils.ready = function (cb) {
     $(document).ready(function () {
-      cb && cb ();
+      cb && cb();
     });
   };
 
@@ -12,7 +12,7 @@
       var str = '';
       for (var p in params) {
         if (params.hasOwnProperty(p)) {
-          str += '&' + p + '=' + params[p]
+          str += '&' + p + '=' + params[p];
         }
       }
       return str.replace(/^&/, '');
@@ -44,7 +44,7 @@
         });
         return obj;
       })()
-    }
+    };
   };
 
   // typeOf, return 'array', 'object', 'function', 'null', 'undefined', 'string', 'number'
@@ -61,7 +61,7 @@
           if (typeOf(obj1[p]) === 'object' && typeOf(obj2[p]) === 'object') {
             merge(obj1[p], obj2[p]);
           } else {
-            obj1[p] === obj2[p];
+            obj1[p] = obj2[p];
           }
         }
       }
@@ -103,7 +103,7 @@
   };
 
   // 提示组件，默认3秒后自动关系
-  utils.msg = function (msg, options, end) {
+  utils.msg = function (content, options, end) {
     options = options || {};
     end = end || function () {};
     layui.use('layer', function () {
@@ -140,6 +140,7 @@
   };
 
   utils.swiper = function (elem) {
+    // eslint-disable-next-line no-new
     new window.Swiper(elem, {
       direction: 'horizontal',
       loop: true,
@@ -183,8 +184,8 @@
           requestTime: d,
           sessionToken: hexMd5((d + '').substring((d + '').length - 8)),
           requestBody: JSON.stringify(requestData)
-        }
-      })(),
+        };
+      })()
     }, options || {})).done(function (data) {
       if (data.status === '200' && !data.errorCode) {
         //
@@ -200,7 +201,7 @@
           utils.load(false);
         }
       }
-    })
+    });
   };
 
   // 获取url中查询参数的值
@@ -213,7 +214,7 @@
   // 移除文本中的空白
   utils.trimSpaces = function (val) {
     val = '' + val;
-    return  val.replace(/\s/g, '');
+    return val.replace(/\s/g, '');
   };
 
   // 判断是否有值：全部都是空格或其他诸如tab的话，也作为无值看待
@@ -302,7 +303,7 @@
 
   function stringToDate (dateString) {
     if (dateString && dateString.length === 10) {
-      var tempArr = dateString.split(/[-]/)
+      var tempArr = dateString.split(/[-]/);
       // 部分IOS设备中new Date('yyyy-mm-dd hh:mm:ss')不会生成日期对象，如下这般处理适用于所有设备
       return new Date(tempArr[0], tempArr[1] - 1, tempArr[2]);
     }
@@ -313,7 +314,7 @@
   function fullStringToDate (dateString) {
     if (dateString && dateString.length === 19) {
       // Attention: there is a space between regular expression
-      var tempArr = dateString.split(/[- :]/)
+      var tempArr = dateString.split(/[- :]/);
       // 部分IOS设备中new Date('yyyy-mm-dd hh:mm:ss')不会生成日期对象，如下这般处理适用于所有设备
       return new Date(tempArr[0], tempArr[1] - 1, tempArr[2], tempArr[3], tempArr[4], tempArr[5]);
     }
@@ -343,7 +344,7 @@
   };
 
   utils.payByWechat = function (opts, yes) {
-    var opts = {
+    opts = {
       appId: opts.appId || '',
       timeStamp: opts.timeStamp || '',
       nonceStr: opts.nonceStr || '',
@@ -353,13 +354,13 @@
     };
     if (typeof window.WeixinJSBridge === 'undefined') {
       if (window.document.addEventListener) {
-        window.document.addEventListener('WeixinJSBridgeReady', onBridgeReady.bind(null, opts), false)
+        window.document.addEventListener('WeixinJSBridgeReady', onBridgeReady.bind(null, opts), false);
       } else if (window.document.attachEvent) {
-        window.document.attachEvent('WeixinJSBridgeReady', onBridgeReady.bind(null, opts))
-        window.document.attachEvent('onWeixinJSBridgeReady', onBridgeReady.bind(null, opts))
+        window.document.attachEvent('WeixinJSBridgeReady', onBridgeReady.bind(null, opts));
+        window.document.attachEvent('onWeixinJSBridgeReady', onBridgeReady.bind(null, opts));
       }
     } else {
-      onBridgeReady(opts)
+      onBridgeReady(opts);
     }
 
     function onBridgeReady (options, yes) {
@@ -383,9 +384,9 @@
             utils.alert('支付失败');
           }
         }
-      )
+      );
     }
   };
 
-  win.utils = utils;
+  win.$utils = utils;
 })(document, window);

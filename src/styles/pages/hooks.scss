@@ -1,11 +1,12 @@
 @import '../tools/utils';
 
-.page-works {
-  .main-title {
+.page-hooks {
+  .main-profile {
     font-size: 14px;
     line-height: 2;
   }
   .items {
+    margin-top: 20px;
     padding: 10px;
     @include borderHorizontal();
   }
@@ -17,30 +18,11 @@
   }
   .item-header {
     font-size: 0;
-    .title {
-      height: 30px;
-      line-height: 30px;
-      @include verticalAlign();
-      font-size: 13px;
-      color: $bg-color;
-    }
-    .btn-read {
-      @include verticalAlign();
-      font-size: 13px;
-      color: #333;
-      margin-left: 20px;
-      .fa {
-        @include verticalAlign();
-        font-size: 13px;
-        color: #333;
-      }
-      .text {
-        @include verticalAlign();
-        font-size: 13px;
-        color: #333;
-        margin-left: 3px;
-      }
-    }
+    height: 30px;
+    line-height: 30px;
+    @include verticalAlign();
+    font-size: 13px;
+    color: $bg-color;
   }
   .details {
     padding: 6px 0;

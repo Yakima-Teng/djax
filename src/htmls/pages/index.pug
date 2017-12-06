@@ -29,11 +29,31 @@ block site-content
       article.article
         p.p 不知道有多少人听到ajax习惯的就会想起$.ajax这个方法呢！jQuery曾今如日中天，并且现如今用户量依旧庞大，为啥？因为好用，因为我们用习惯了。zepto是一个类似jQuery的js库，拥有与jQuery相似的api，没有后者那么健壮但是文件体积小了很多，而且很多js插件都是依赖jQuery的，所以两者之间选择哪一个是一个你自己需要做的选择，如果你没有什么主意，那就用jQuery。
         p.p 有了jQuery之类的js库，我们还需要一些其他东西，毕竟有句话叫：术业有专攻。你会发现swiper插件用来写跑马灯（幻灯）就是特别好用，jqGrid用来处理表格数据就是特别顺手……所以，当你发现UI库里没有你想要的效果或者没达到你满意的程度的话，你很可能是饿了，哦不，你很可能是需要找一个能实现类似功能的插件了。
+        p.p 在这个套件中我们引入的js插件包括但不限于：
+        ul.items
+          li.item 表单验证插件 validate.js
+          li.item 表格插件 dataTables.js、jqGrid.js
+          li.item 弹层插件 layer.js
+          li.item 分页插件 layPage.js
+          li.item 下拉框选择插件 select2.js、chosen.js
+          li.item 图片全屏显示 supersized.js
+          li.item 表单美化插件 uniform.js、复选框单选按钮美化插件 iCheck.js
+          li.item 全屏滚动插件 fullPage.js
+          li.item 上传插件 zyUpload.js
+          li.item 树插件 zTree.js
+          li.item 表单提交插件 ajaxForm.js
+          li.item 输入格式化插件 inputmask.js、maskedinput.js
+          li.item 向导插件 formToWizard.js
+          li.item 日历插件 fullcalendar.js
+          li.item 手机端滚动插件 iscroll.js
+          li.item 图标插件 fonticonpicker.js
+          li.item 元素固定插件 fixtop.js
+          li.item 跑马灯、幻灯片插件 swiper.js
 
     section.box
       h2.title 一些优良实践&nbsp;&nbsp;|&nbsp;&nbsp;时间钩子、代码风格一致性✔️
       article.article
         p.p 有些实践他觉得好她觉得好他也觉得好但是她觉得不好，但是有一些实践则是比较受到大众认可的，比如把那些对页面影响比较大的js放在页面head里进行加载，把一些不需要马上生效的比如日期插件放在网站加载结束后用document.write生成script的方式来进行加载，但是这么一个个处理起来也是有点麻烦，因此我们引入了”时间钩子“这个概念。
-        p.p 目前提供的时间钩子有：onHead, onDocumentReady(不常用), onMediaReady（不常用）, onLazy。
+        p.p 目前提供的时间钩子有：onHead, onDocumentReady, onMediaReady（不常用）, onLazy。
         p.p 代码风格的一致性有助于减少一些不必要的潜在bug，而且代码更好看了不是？因为萝卜青菜各有所爱，我们预置了几套代码风格配置，一定会有一套适合你的。
         p.p 不知道你有没有见过那种if花括号里嵌套if花括号嵌套了好几层的，然后因为花括号是没对齐的，所以你都不知道哪个右花括号是跟哪个左花括号对应的了，甚至与是不是多写了个花括号一眼都看不出来，反正我是见过，而且这个现象很可能是因为有人用eclipse写前端js，eclipse对前端js文件的缩进调整真的是——放弃吧。
