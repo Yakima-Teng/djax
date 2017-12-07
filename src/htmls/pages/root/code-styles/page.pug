@@ -1,19 +1,19 @@
-extends ../templates/template-post.pug
+extends ../../../templates/post/template.pug
 
-include ../components/mixin-head.pug
-include ../components/mixin-menu.pug
+include ../../../components/mixin-head/component.pug
+include ../../../components/mixin-menu/component.pug
 
 block site-head
   -var title = 'About'
   -var desc = 'Djax: DOM & AJAX，简单、自由的前端开发套件'
   +mixinHead(title, desc)
-  link(rel="stylesheet", href="../../styles/pages/code-style.min.css")
+  link(rel="stylesheet", href="../page.min.css")
 
 block site-menu
   +mixinMenu('code-style')
 
 block site-foot
-  script(src="../../scripts/pages/code-style.min.js")
+  script(src="./page.min.js")
 
 block site-content
   .page-about

@@ -19,7 +19,9 @@ module.exports = {
     '$': false,
     'layui': false,
     'hexMd5': true,
-    '$utils': true
+    '$utils': true,
+    'path': true,
+    'fs': true
   },
   // add your custom rules here
   rules: {
