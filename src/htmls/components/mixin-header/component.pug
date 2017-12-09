@@ -1,0 +1,44 @@
+mixin mixinHeader(activeMenuAlias)
+  link(rel="stylesheet", href="../../../../styles/components/header/component.min.css")
+  //- Fixed navbar
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed(data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href="../home/page.html") Djax - 方便的前端开发套件
+      #navbar.navbar-collapse.collapse
+        ul.nav.navbar-nav.navbar-right
+          li(class = activeMenuAlias === 'home' ? 'active' : '')
+            a(href="../home/page.html") 首页
+          li(class = activeMenuAlias === 'plugins' ? 'active' : '')
+            a(href="../plugins/page.html") JS插件
+          li(class = activeMenuAlias === 'code-style' ? 'active' : '')
+            a(href="../code-style/page.html") 代码风格
+          li.dropdown(class = activeMenuAlias.indexOf('structure') === 0 ? 'active' : '')
+            a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+              | 项目架构
+              span.caret
+            ul.dropdown-menu
+              li(class = activeMenuAlias === 'structure-htmls' ? 'active' : '')
+                a(href="../htmls/page.html") htmls目录
+              li(class = activeMenuAlias === 'structure-styles' ? 'active' : '')
+                a(href="../styles/page.html") styles目录
+              li(class = activeMenuAlias === 'structure-scripts' ? 'active' : '')
+                a(href="../scripts/page.html") scripts目录
+              li(class = activeMenuAlias === 'structure-assets' ? 'active' : '')
+                a(href="../assets/page.html") assets目录
+              li.divider(role="seperator")
+              li.dropdown-header 相关链接
+              li
+                a(href="https://github.com/Yakima-Teng/djax/issues") 讨论版
+              li
+                a(href="http://www.yxeye.com/cv") 关于作者
+          li
+            a(href="https://github.com/Yakima-Teng/djax")
+              svg.icon-star(aria-hidden="true", height="16", version="1.1", viewBox="0 0 14 16", width="14")
+                path(fill-rule="evenodd", d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z")
+              span.text Star

@@ -1,7 +1,7 @@
 extends ../../../templates/post/template.pug
 
 include ../../../components/mixin-head/component.pug
-include ../../../components/mixin-menu/component.pug
+include ../../../components/mixin-header/component.pug
 
 block site-head
   -var title = 'scripts目录'
@@ -9,8 +9,8 @@ block site-head
   +mixinHead(title, desc)
   link(rel="stylesheet", href="./page.min.css")
 
-block site-menu
-  +mixinMenu('scripts')
+block site-header
+  +mixinHeader('scripts')
 
 block site-foot
   script(src="./page.min.js")

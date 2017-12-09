@@ -1,59 +1,72 @@
 extends ../../../templates/post/template.pug
 
 include ../../../components/mixin-head/component.pug
-include ../../../components/mixin-menu/component.pug
+include ../../../components/mixin-header/component.pug
 
 block site-head
   -var title = ''
-  -var desc = 'Djax: DOM & AJAX，简单、自由的前端开发套件'
+  -var desc = ''
   +mixinHead(title, desc)
   link(rel="stylesheet", href="./page.min.css")
 
-block site-menu
-  +mixinMenu('home')
+block site-header
+  +mixinHeader('home')
 
 block site-foot
   script(src="./page.min.js")
 
 block site-content
-  .page-home
-    section.box
-      h2.title 一套UI库&nbsp;&nbsp;|&nbsp;&nbsp;Layui、Bootstrap✔️
-      article.article
-        p.p 前端可谓遍地开发，但是UI库没有必要遍地学一遍，熟练掌握一套即可。Layui是一个门槛极低、开箱即用的前端UI框架，在PC端项目尤其是一些后台管理系统里比较适用。Layui提供了按钮、表单、导航、选项卡、进度条、面板、表格、徽章、时间线、弹出层、日期控件、分页、模板引擎等常见的buff。
-        p.p 除了Layui之外，Bootstrap也是一套非常好用的UI库，从其受众之多便可窥见一斑，因此本套件也包含了它，如果你的项目是需要移动端适配的，建议使用Bootstrap。
-        p.p 我们建议一个项目里不要同时使用多套UI库，选一个你习惯/喜欢的即可。
+  .container
+    .jumbotron
+      h1 Djax
+      p
+      p Djax使用gulp搭建了比较通用的前端开发环境，支持pug、sass，具有自动刷新、转发请求、命令行发布等常见功能。
+      p Djax还自带了许多主流的、好用的第三方UI库、JS库/插件，免去了自行下载、搜索第三方文件的麻烦。
+      p Djax是简单的、自由的前端开发套件，你可以Fork我们的github仓库后定制一个属于你自己的Djax套件。
+      p
+      p
+        a.btn.btn-lg.btn-primary(href="https://github.com/Yakima-Teng/djax", role="button") 下载 &raquo;
+        | &nbsp;
+        a.btn.btn-lg.btn-default(href="https://github.com/Yakima-Teng/djax", role="button") Github &raquo;
 
-    section.box
-      h2.title 一些库/插件&nbsp;&nbsp;|&nbsp;&nbsp;jQuery、zepto✔️
-      article.article
-        p.p 不知道有多少人听到ajax习惯的就会想起$.ajax这个方法呢！jQuery曾今如日中天，并且现如今用户量依旧庞大，为啥？因为好用，因为我们用习惯了。zepto是一个类似jQuery的js库，拥有与jQuery相似的api，没有后者那么健壮但是文件体积小了很多，而且很多js插件都是依赖jQuery的，所以两者之间选择哪一个是一个你自己需要做的选择，如果你没有什么主意，那就用jQuery。
-        p.p 有了jQuery之类的js库，我们还需要一些其他东西，毕竟有句话叫：术业有专攻。你会发现swiper插件用来写跑马灯（幻灯）就是特别好用，jqGrid用来处理表格数据就是特别顺手……所以，当你发现UI库里没有你想要的效果或者没达到你满意的程度的话，你很可能是饿了，哦不，你很可能是需要找一个能实现类似功能的插件了。
-        p.p 在这个套件中我们引入的js插件包括但不限于：
-        ul.items
-          li.item 表单验证插件 validate.js
-          li.item 表格插件 dataTables.js、jqGrid.js
-          li.item 弹层插件 layer.js
-          li.item 分页插件 layPage.js
-          li.item 下拉框选择插件 select2.js、chosen.js
-          li.item 图片全屏显示 supersized.js
-          li.item 表单美化插件 uniform.js、复选框单选按钮美化插件 iCheck.js
-          li.item 全屏滚动插件 fullPage.js
-          li.item 上传插件 zyUpload.js
-          li.item 树插件 zTree.js
-          li.item 表单提交插件 ajaxForm.js
-          li.item 输入格式化插件 inputmask.js、maskedinput.js
-          li.item 向导插件 formToWizard.js
-          li.item 日历插件 fullcalendar.js
-          li.item 手机端滚动插件 iscroll.js
-          li.item 图标插件 fonticonpicker.js
-          li.item 元素固定插件 fixtop.js
-          li.item 跑马灯、幻灯片插件 swiper.js
-
-    section.box
-      h2.title 一些优良实践&nbsp;&nbsp;|&nbsp;&nbsp;时间钩子、代码风格一致性✔️
-      article.article
-        p.p 有些实践他觉得好她觉得好他也觉得好但是她觉得不好，但是有一些实践则是比较受到大众认可的，比如把那些对页面影响比较大的js放在页面head里进行加载，把一些不需要马上生效的比如日期插件放在网站加载结束后用document.write生成script的方式来进行加载，但是这么一个个处理起来也是有点麻烦，因此我们引入了”时间钩子“这个概念。
-        p.p 目前提供的时间钩子有：onHead, onDocumentReady, onMediaReady（不常用）, onLazy。
-        p.p 代码风格的一致性有助于减少一些不必要的潜在bug，而且代码更好看了不是？因为萝卜青菜各有所爱，我们预置了几套代码风格配置，一定会有一套适合你的。
-        p.p 不知道你有没有见过那种if花括号里嵌套if花括号嵌套了好几层的，然后因为花括号是没对齐的，所以你都不知道哪个右花括号是跟哪个左花括号对应的了，甚至与是不是多写了个花括号一眼都看不出来，反正我是见过，而且这个现象很可能是因为有人用eclipse写前端js，eclipse对前端js文件的缩进调整真的是——放弃吧。
+  .container
+    .row
+      - var bootstrap = { title: 'Bootstrap', homePage: '#', desc: 'UI库适合强调开发速度的项目。' }
+      - var jQuery = { title: 'jQuery', homePage: '#', desc: 'DOM操作最经典的js库非jQuery莫属。' }
+      - var gulp = { title: 'Gulp', homePage: '#', desc: '我们使用gulp，自动刷新页面。' }
+      - var sass = { title: 'sass', homePage: '#', desc: '我们使用gulp，自动刷新页面。' }
+      - var less = { title: 'less', homePage: '#', desc: 'less' }
+      - var Pug = { title: 'pug', homePage: '#', desc: 'pug' }
+      - var validate = { title: 'validate.js', homePage: '#', desc: '表单验证插件' }
+      - var dataTables = { title: 'dataTables.js', homePage: '#', desc: '表格插件' }
+      - var jqGrid = { title: 'jqGrid.js', homePage: '#', desc: '表格插件' }
+      - var layer = { title: 'layer.js', homePage: '#', desc: '弹层插件' }
+      - var layPage = { title: 'layPage.js', homePage: '#', desc: '分页插件' }
+      - var select2 = { title: 'select2.js', homePage: '#', desc: '下拉框选择插件' }
+      - var chosen = { title: 'chosen.js', homePage: '#', desc: '下拉框选择插件' }
+      - var supersized = { title: 'supersized.js', homePage: '#', desc: '图片全屏显示' }
+      - var uniform = { title: 'uniform.js', homePage: '#', desc: '表单美化插件' }
+      - var iCheck = { title: 'iCheck.js', homePage: '#', desc: '复选框单选按钮美化插件' }
+      - var fullPage = { title: 'fullPage.js', homePage: '#', desc: '全屏滚动插件' }
+      - var zyUpload = { title: 'zyUpload.js', homePage: '#', desc: '上传插件' }
+      - var zTree = { title: 'zTree.js', homePage: '#', desc: '树插件' }
+      - var ajaxForm = { title: 'ajaxForm.js', homePage: '#', desc: '表单提交插件' }
+      - var inputmask = { title: 'inputmask.js', homePage: '#', desc: '输入格式化插件' }
+      - var maskedinput = { title: 'maskedinput.js', homePage: '#', desc: '输入格式化插件' }
+      - var formToWizard = { title: 'formToWizard.js', homePage: '#', desc: '向导插件' }
+      - var fullcalendar = { title: 'fullcalendar.js', homePage: '#', desc: '日历插件' }
+      - var iscroll = { title: 'iscroll.js', homePage: '#', desc: '手机端滚动插件' }
+      - var fonticonpicker = { title: 'fonticonpicker.js', homePage: '#', desc: '图标插件' }
+      - var fixtop = { title: 'fixtop.js', homePage: '#', desc: '元素固定插件' }
+      - var swiper = { title: 'swiper.js', homePage: '#', desc: '跑马灯、幻灯片插件' }
+      - var items1 = [bootstrap, jQuery, gulp, sass, less, Pug, validate, dataTables, jqGrid, layer, layPage]
+      - var items2 = [select2, chosen, supersized, uniform, iCheck, fullPage, zyUpload, zTree, ajaxForm]
+      - var items3 = [inputmask, maskedinput, formToWizard, fullcalendar, iscroll, fonticonpicker, fixtop, swiper]
+      each item in items1.concat(items2, items3)
+        .col-sm-6.col-md-4
+          .thumbnail
+            .caption
+              h3= item.title
+              p= item.desc
+              p
+                a.btn.btn-default(href=item.homePage, role="button") 访问官网

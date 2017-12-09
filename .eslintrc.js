@@ -16,8 +16,8 @@ module.exports = {
     'html'
   ],
   globals: {
-    '$': false,
-    'layui': false,
+    '$': true,
+    'layui': true,
     'hexMd5': true,
     '$utils': true,
     'path': true,

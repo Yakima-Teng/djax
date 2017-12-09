@@ -2,10 +2,7 @@ doctype html
 html(lang="zh-CN")
   block site-head
   body
-    div.site-wrapper
-      include ../../components/header/component.pug
-      block site-menu
-      div.site-content
-        block site-content
-      include ../../components/footer/component.pug
-      block site-foot
+    block site-header
+    block site-content
+    include ../../components/footer/component.pug
+    block site-foot

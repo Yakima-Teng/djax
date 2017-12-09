@@ -71,6 +71,10 @@ gulp.task('sass:pages', () => {
     .pipe(browserSync.stream());
 });
 
+gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:global'], () => {
+  // do nothing here
+});
+
 gulp.task('js:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.js'])
     .pipe(babel({ presets: ['env'] }))
@@ -81,12 +85,22 @@ gulp.task('js:pages', () => {
 });
 
 gulp.task('js:utils', () => {
-  return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/*.js', './src/scripts/common/utils-*.js'])
+  return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/object.js', './src/scripts/utils/modal.js', './src/scripts/utils/storage.js', './src/scripts/utils/string.js', './src/scripts/utils/*.js', './src/scripts/common/utils-*.js'])
     .pipe(babel({ presets: ['env'] }))
     .pipe(uglify())
     .pipe(concat('utils.js'))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/scripts/utils'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('js:common', () => {
+  return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
+    .pipe(babel({ presets: ['env'] }))
+    .pipe(uglify())
+    .pipe(concat('common.js'))
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('./dist/scripts/common'))
     .pipe(browserSync.stream());
 });
 
@@ -143,6 +157,13 @@ gulp.task('lint:utils', () => {
     .pipe(eslint.failAfterError());
 });
 
+gulp.task('lint:common', () => {
+  return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
 gulp.task('lint:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.js'])
     .pipe(eslint())
@@ -150,7 +171,7 @@ gulp.task('lint:pages', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('dev', ['assets', 'pug:pages', 'sass:global', 'sass:templates', 'sass:components', 'sass:pages', 'js:pages', 'js:utils', 'js:libs'], () => {
+gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
   console.log(`[${new Date()}]: ready to develop!`);
   browserSync.init({
     server: {
@@ -168,6 +189,7 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass:global', 'sass:templates', 'sass:
   gulp.watch(['./src/assets/**/*.*'], ['assets']);
   gulp.watch(['./src/htmls/**/*.pug'], ['pug:pages']);
   gulp.watch(['./src/scripts/utils/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils']);
+  gulp.watch(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common']);
   gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady']);
   gulp.watch(['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady']);
   gulp.watch(['./src/scripts/libs/auto.lazy.*.js'], ['js:libs:onLazy']);
@@ -176,9 +198,10 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass:global', 'sass:templates', 'sass:
   gulp.watch(['./src/htmls/templates/**/*.scss'], ['sass:templates']);
   gulp.watch(['./src/htmls/components/**/*.scss'], ['sass:components']);
   gulp.watch(['./src/htmls/pages/**/*.scss'], ['sass:pages']);
+  gulp.watch(['./src/styles/tools/**/*.scss'], ['sass']);
 });
 
-gulp.task('build', ['assets', 'pug:pages', 'sass:global', 'sass:templates', 'sass:components', 'sass:pages', 'js:pages', 'js:utils', 'js:libs'], () => {
+gulp.task('build', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
   console.log(`[${new Date()}]: Finish building!`);
 });
 

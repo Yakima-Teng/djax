@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  line-height: 1;
+  line-height: 1.5;
   color: #333;
   font-family: "华文细黑", "微软雅黑", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
 }
@@ -42,7 +42,7 @@ li {
 }
 a {
   text-decoration: none;
-  font-size: #333;
+  color: #333;
 }
 p {
   margin-top: 0;
@@ -52,7 +52,7 @@ input, select, button {
   border: 0;
   padding: 0;
   box-sizing: border-box;
-  appearance: none;
+  -webkit-appearance: none;
   font-size: inherit;
   max-width: 100%;
   line-height: normal;

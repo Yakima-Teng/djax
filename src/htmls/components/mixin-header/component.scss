@@ -1,7 +1,6 @@
 @import '../../../styles/tools/utils';
 
 .site-header {
-  position: relative;
   padding: 10px 0;
   @include clearfix();
   .logo {
