@@ -5,42 +5,42 @@ include ../../../components/mixin-header/component.pug
 
 block site-head
   -var title = 'scripts目录'
-  -var desc = 'Djax: DOM & AJAX，简单、自由的前端开发套件'
+  -var desc = ''
   +mixinHead(title, desc)
   link(rel="stylesheet", href="./page.min.css")
 
 block site-header
-  +mixinHeader('scripts')
+  +mixinHeader('structure-scripts')
 
 block site-foot
   script(src="./page.min.js")
 
 block site-content
-  .page-hooks
-    fieldset.layui-elem-field.layui-field-title
-      legend 我们对src/scripts路径下的js文件进行了一些命名规则的约定，如下所示：
-    pre.layui-code(lay-title="Javascript", lay-skin="notepad")
-      | [是否被应用].[时间钩子].[合并文件时的优先级].[文件名].[是否为压缩文件].js 
-    ul.items
-      li.item
-        header.item-header onHeadReady、onDocumentReady、onMediaReady、onLazyReady
-        ul.details
-          li.detail 在html的head里，一般我们会通过link标签来引入外部的css样式文件，一些对页面样式和dom的潜在影响比较大的js文件我们也会尽量在head里就进行引入。最常见的就是html5shiv.js和respond.js文件了，如果是移动端项目并且使用rem单位来进行响应式涉及的话，对应的调整html fontsize属性的js代码也应当放到head里就进行加载，否则容易出现页面刚显示时文字很大，然后突然变小到正常大小的问题。这些需要在页面head中就进行加载的脚本和样式文件，直接在head里添加script、link这些标签来引用相关资源即可。
-          li.detail 但是如果该js文件是存放在src/scripts/libs路径下的，将文件名按如下规则重命名即可。
-          prev
-            | html5shiv.min.before
+  .container
+    .jumbotron
+      h1 scripts目录
+      p
+      p 在scripts目录下有common、libs和utils三个子目录，本文将分别解释这它们的作用。
+      p
+  
+  .container
+    .panel.panel-default
+      .panel-heading utils目录和common目录
+      .panel-body
+        p src/scripts/utils下是Djax封装的一些通用方法，可全站使用。下面是一些具体说明和注意事项：
+      ul.list-group
+        li.list-group-item 1、src/scripts/utils下是Djax套件封装的一些通用方法，是项目无关的，可以通过window.$utils进行调用。
+        li.list-group-item 2、src/scripts/common/下以utils-开头的js文件是项目相关的js文件，utils-apis.js用于统一存放api相关的方法，utils-config.js是对$utils封装方法的配置文件，utils-custom.js文件是用户自己对$utils的其他拓展。
+        li.list-group-item 3、src/scripts/utils下的js文件和src/scripts/common下以utils-开头的js文件会在打包时被合并成dist/scripts/utils/utils.min.js文件。
+        li.list-group-item 4、src/scripts/common下的global.js文件是用户自己的全局js，应该是强项目相关的，打包时会被合并成dist/scripts/common/common.min.js文件。
 
-      li.item
-        header.item-header 
-        ul.details
-          li.detail test
-
-      li.item
-        header.item-header （不常用）
-        ul.details
-          li.detail test
-
-      li.item
-        header.item-header 
-        ul.details
-          li.detail test
+    .panel.panel-default
+      .panel-heading libs目录
+      .panel-body
+        p src/scripts/libs目录下<strong>原则上</strong>用于存放一些地方方js文件，我们对该文件夹下的js文件进行了一些命名上的约定：[是否被处理].[时间钩子].[合并优先级].[文件名].[是否为压缩文件].js，详细解释如下：
+      ul.list-group
+        li.list-group-item 1、[是否被处理]：添加了auto、hand标记的文件表示需要在打包时被处理，其他文件不会被拷贝到dist目录；hand标记的文件会被打包成一个dist/scripts/libs/libs-byhand.min.js文件。
+        li.list-group-item 2、[时间钩子]：仅适用于添加了auto标记的文件，枚举值有head、doc和lazy，在打包时分别会被打包进dist/scripts/libs目录下的libs-onheadready.min.js、libs-ondocumentready.min.js和libs-onlazy.min.js文件中。
+        li.list-group-item 3、[合并优先级]：通过添加00-99（闭区间）这100个数字来标记文件被合并时的优先顺序，数字越小的表示优先级越高，没添加优先级标记的会在最后被合并。
+        li.list-group-item 4、[文件名]：就是第三方js文件自己的文件名。
+        li.list-group-item 5、[是否为压缩文件]：若为压缩文件，请添加min标记。添加了min标记的文件，Djax套件将不会在打包时对其进行混淆、压缩处理。

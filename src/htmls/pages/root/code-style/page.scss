@@ -1,27 +1,25 @@
 @import '../../../../styles/tools/utils';
 
-.page-about {
-  .page-title {}
-  .page-article {
-  }
-  .content {
-    .p {
-      font-size: 13px;
-      line-height: 1.8;
-      color: #999;
-      min-height: 40px;
-      margin: 15px 0;
-      text-indent: 2em;
+.page-code-style {
+  .lines {
+    position: relative;
+    padding-left: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      left: 120px;
+      top: 0;
+      height: 100%;
+      border-left: 8px solid #eee9dc;
+      transform: translate(-50%, 0);
     }
   }
-  .lines {
-    margin-left: 120px;
-    // padding-left: 30px;
-    border-left: 8px solid #eee9dc;
-  }
   .line {
+    position: relative;
+    z-index: 1;
     font-size: 0;
-    margin: 20px 0 20px -124px;
+    margin: 20px 0;
     &:nth-of-type(1) {
       .line-circle {
         background-color: #f98262;
@@ -39,24 +37,25 @@
   }
   .line-circle {
     @include verticalAlign(middle);
+    background-color: $bg-color;
     width: 10px;
     height: 10px;
-    background-color: $bg-color;
     border: 5px solid $border-color;
     border-radius: 50%;
+    box-sizing: content-box;
   }
   .line-desc {
     @include verticalAlign(middle);
     width: 100%;
     box-sizing: border-box;
-    padding-left: 166px;
+    padding-left: 180px;
     margin-left: -130px;
     .inner {
       position: relative;
       padding: 10px;
       border: 1px solid darken($border-color, 30%);
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.5;
       color: #999;
       min-height: 40px;
@@ -86,7 +85,7 @@
       }
     }
     .p {
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.8;
       color: #999;
       margin: 5px 0;

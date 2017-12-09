@@ -1,0 +1,61 @@
+extends ../../../templates/post/template.pug
+
+include ../../../components/mixin-head/component.pug
+include ../../../components/mixin-header/component.pug
+
+block site-head
+  -var title = 'JS插件'
+  -var desc = ''
+  +mixinHead(title, desc)
+  link(rel="stylesheet", href="./page.min.css")
+
+block site-header
+  +mixinHeader('plugins')
+
+block site-foot
+  script(src="./page.min.js")
+
+block site-content
+  .container
+    .jumbotron
+      h1 JS插件
+      p
+      p Djax自带了许多主流的、好用的第三方JS库/插件，免去了自行下载、搜索第三方文件的麻烦。下面是详细清单，点击“访问官网”可以去相应官网查看插件/库的具体用法。
+      p
+
+  .container
+    .row
+      - var jQuery = { title: 'jQuery', homePage: '#', desc: 'DOM操作最经典的js库非jQuery莫属。' }
+      - var validate = { title: 'validate.js', homePage: '#', desc: '表单验证插件' }
+      - var dataTables = { title: 'dataTables.js', homePage: '#', desc: '表格插件' }
+      - var jqGrid = { title: 'jqGrid.js', homePage: '#', desc: '表格插件' }
+      - var layer = { title: 'layer.js', homePage: '#', desc: '弹层插件' }
+      - var layPage = { title: 'layPage.js', homePage: '#', desc: '分页插件' }
+      - var select2 = { title: 'select2.js', homePage: '#', desc: '下拉框选择插件' }
+      - var chosen = { title: 'chosen.js', homePage: '#', desc: '下拉框选择插件' }
+      - var supersized = { title: 'supersized.js', homePage: '#', desc: '图片全屏显示' }
+      - var uniform = { title: 'uniform.js', homePage: '#', desc: '表单美化插件' }
+      - var iCheck = { title: 'iCheck.js', homePage: '#', desc: '复选框单选按钮美化插件' }
+      - var fullPage = { title: 'fullPage.js', homePage: '#', desc: '全屏滚动插件' }
+      - var zyUpload = { title: 'zyUpload.js', homePage: '#', desc: '上传插件' }
+      - var zTree = { title: 'zTree.js', homePage: '#', desc: '树插件' }
+      - var ajaxForm = { title: 'ajaxForm.js', homePage: '#', desc: '表单提交插件' }
+      - var inputmask = { title: 'inputmask.js', homePage: '#', desc: '输入格式化插件' }
+      - var maskedinput = { title: 'maskedinput.js', homePage: '#', desc: '输入格式化插件' }
+      - var formToWizard = { title: 'formToWizard.js', homePage: '#', desc: '向导插件' }
+      - var fullcalendar = { title: 'fullcalendar.js', homePage: '#', desc: '日历插件' }
+      - var iscroll = { title: 'iscroll.js', homePage: '#', desc: '手机端滚动插件' }
+      - var fonticonpicker = { title: 'fonticonpicker.js', homePage: '#', desc: '图标插件' }
+      - var fixtop = { title: 'fixtop.js', homePage: '#', desc: '元素固定插件' }
+      - var swiper = { title: 'swiper.js', homePage: '#', desc: '跑马灯、幻灯片插件' }
+      - var items1 = [jQuery, validate, dataTables, jqGrid, layer, layPage, select2, chosen, supersized]
+      - var items2 = [uniform, iCheck, fullPage, zyUpload, zTree, ajaxForm, inputmask, maskedinput]
+      - var items3 = [formToWizard, fullcalendar, iscroll, fonticonpicker, fixtop, swiper]
+      each item in items1.concat(items2, items3)
+        .col-sm-6.col-md-4
+          .thumbnail
+            .caption
+              h3= item.title
+              p= item.desc
+              p
+                a.btn.btn-default(href=item.homePage, role="button") 访问官网

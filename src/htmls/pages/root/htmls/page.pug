@@ -1,0 +1,60 @@
+extends ../../../templates/post/template.pug
+
+include ../../../components/mixin-head/component.pug
+include ../../../components/mixin-header/component.pug
+
+block site-head
+  -var title = 'htmls目录'
+  -var desc = ''
+  +mixinHead(title, desc)
+  link(rel="stylesheet", href="./page.min.css")
+
+block site-header
+  +mixinHeader('structure-htmls')
+
+block site-foot
+  script(src="./page.min.js")
+
+block site-content
+  .container
+    .jumbotron
+      h1 htmls目录
+      p
+      p 在htmls目录下有components、pages和templates三个子目录，本文将分别解释这三个目录的作用。
+      p
+  
+  .container
+    .panel.panel-default
+      .panel-heading components目录
+      .panel-body
+        p src/htmls/components目录里存放的是一些<strong>公用组件</strong>。下面是一些具体说明和注意事项：
+      ul.list-group
+        li.list-group-item 1、每一个组件对应一个文件夹，文件夹的名字即为组件名。
+        li.list-group-item 2、一个组件文件夹至少包含一个component.pug文件，并且通常还会包含一个对应的样式文件component.scss。
+        li.list-group-item 3、component.pug文件在编译后不会在dist目录中生成对应的组件html片段，component.pug文件只会出现在引用它的页面html里。
+        li.list-group-item 4、component.scss文件在编译后生成的对应文件为dist/styles/components/[组件名]/component.min.css。
+        li.list-group-item 5、所谓“<strong>公用组件</strong>”，指的是那些会在不止一个页面或者预期会在不止一个页面里被用到的组件。
+        li.list-group-item 6、对于那些只在具体的单个页面里才会用到的<strong>非</strong>公用组件，应当在src/htmls/pages/[路径名]/[页面名]/components/下进行创建。
+
+    .panel.panel-default
+      .panel-heading templates目录
+      .panel-body
+        p src/htmls/templates目录下存放的是一些页面模版文件。下面是一些具体说明和注意事项：
+      ul.list-group
+        li.list-group-item 1、每一个模板对应一个文件夹，文件夹的名字即为模版名。
+        li.list-group-item 2、一个模版文件夹至少包含一个template.pug文件，并且通常还会包含一个对应的样式文件template.scss。
+        li.list-group-item 3、template.pug文件在编译后不会在dist目录中生成对应的组件html片段，template.pug文件只会出现在拓展它的页面html里。
+        li.list-group-item 4、template.scss文件在编译后生成的对应文件为dist/styles/templates/[模板名]/template.min.css。
+
+    
+    .panel.panel-default
+      .panel-heading pages目录
+      .panel-body
+        p src/htmls/pages目录下存放的是一些页面文件，考虑到有些网站页面很多，有些网站页面很少，我们在pages下加了一层[作用域名]来将页面进行分类存放。下面是一些具体说明和注意事项：
+      ul.list-group
+        li.list-group-item 1、pages下第一级目录为[作用域名]，它可以跟你的项目的一级菜单名（如果有的话）对应。
+        li.list-group-item 2、[作用域名]文件夹下一级为页面文件夹，文件夹名即为[页面名]。
+        li.list-group-item 3、[页面名]page.pug文件，并且通常还会包含一个对应的样式文件page.scss和脚本文件page.js。
+        li.list-group-item 4、如果该页面较为复杂，为方便项目的维护和重构，建议在[页面名]文件夹下新建一个页面级components目录。
+        li.list-group-item 5、page.pug、page.scss、page.js文件在编译后生成的对应文件分别为dist/htmls/pages/[作用域名]/[页面名]/目录下page.html、page.min.css、page.min.js。
+        li.list-group-item 6、如果有页面级components目录，其下的components.pug不会生成专门的实体文件，其下的components.scss文件在编译后生成的对应文件为dist/htmls/pages/[作用域名]/[页面名]/components/[页面级组件名]/component.min.css。

@@ -20,9 +20,7 @@ block site-content
     .jumbotron
       h1 Djax
       p
-      p Djax使用gulp搭建了比较通用的前端开发环境，支持pug、sass，具有自动刷新、转发请求、命令行发布等常见功能。
-      p Djax还自带了许多主流的、好用的第三方UI库、JS库/插件，免去了自行下载、搜索第三方文件的麻烦。
-      p Djax是简单的、自由的前端开发套件，你可以Fork我们的github仓库后定制一个属于你自己的Djax套件。
+      p Djax集成了一个本地开发环境，并自带了许多好用的第三方JS库/插件、UI库，是一个开箱即用的前端开发套件，简化了项目搭建工作。由于众口难调，你可以提issues或者Fork我们的github仓库后定制一个属于你自己的Djax套件。
       p
       p
         a.btn.btn-lg.btn-primary(href="https://github.com/Yakima-Teng/djax", role="button") 下载 &raquo;
@@ -30,43 +28,22 @@ block site-content
         a.btn.btn-lg.btn-default(href="https://github.com/Yakima-Teng/djax", role="button") Github &raquo;
 
   .container
-    .row
-      - var bootstrap = { title: 'Bootstrap', homePage: '#', desc: 'UI库适合强调开发速度的项目。' }
-      - var jQuery = { title: 'jQuery', homePage: '#', desc: 'DOM操作最经典的js库非jQuery莫属。' }
-      - var gulp = { title: 'Gulp', homePage: '#', desc: '我们使用gulp，自动刷新页面。' }
-      - var sass = { title: 'sass', homePage: '#', desc: '我们使用gulp，自动刷新页面。' }
-      - var less = { title: 'less', homePage: '#', desc: 'less' }
-      - var Pug = { title: 'pug', homePage: '#', desc: 'pug' }
-      - var validate = { title: 'validate.js', homePage: '#', desc: '表单验证插件' }
-      - var dataTables = { title: 'dataTables.js', homePage: '#', desc: '表格插件' }
-      - var jqGrid = { title: 'jqGrid.js', homePage: '#', desc: '表格插件' }
-      - var layer = { title: 'layer.js', homePage: '#', desc: '弹层插件' }
-      - var layPage = { title: 'layPage.js', homePage: '#', desc: '分页插件' }
-      - var select2 = { title: 'select2.js', homePage: '#', desc: '下拉框选择插件' }
-      - var chosen = { title: 'chosen.js', homePage: '#', desc: '下拉框选择插件' }
-      - var supersized = { title: 'supersized.js', homePage: '#', desc: '图片全屏显示' }
-      - var uniform = { title: 'uniform.js', homePage: '#', desc: '表单美化插件' }
-      - var iCheck = { title: 'iCheck.js', homePage: '#', desc: '复选框单选按钮美化插件' }
-      - var fullPage = { title: 'fullPage.js', homePage: '#', desc: '全屏滚动插件' }
-      - var zyUpload = { title: 'zyUpload.js', homePage: '#', desc: '上传插件' }
-      - var zTree = { title: 'zTree.js', homePage: '#', desc: '树插件' }
-      - var ajaxForm = { title: 'ajaxForm.js', homePage: '#', desc: '表单提交插件' }
-      - var inputmask = { title: 'inputmask.js', homePage: '#', desc: '输入格式化插件' }
-      - var maskedinput = { title: 'maskedinput.js', homePage: '#', desc: '输入格式化插件' }
-      - var formToWizard = { title: 'formToWizard.js', homePage: '#', desc: '向导插件' }
-      - var fullcalendar = { title: 'fullcalendar.js', homePage: '#', desc: '日历插件' }
-      - var iscroll = { title: 'iscroll.js', homePage: '#', desc: '手机端滚动插件' }
-      - var fonticonpicker = { title: 'fonticonpicker.js', homePage: '#', desc: '图标插件' }
-      - var fixtop = { title: 'fixtop.js', homePage: '#', desc: '元素固定插件' }
-      - var swiper = { title: 'swiper.js', homePage: '#', desc: '跑马灯、幻灯片插件' }
-      - var items1 = [bootstrap, jQuery, gulp, sass, less, Pug, validate, dataTables, jqGrid, layer, layPage]
-      - var items2 = [select2, chosen, supersized, uniform, iCheck, fullPage, zyUpload, zTree, ajaxForm]
-      - var items3 = [inputmask, maskedinput, formToWizard, fullcalendar, iscroll, fonticonpicker, fixtop, swiper]
-      each item in items1.concat(items2, items3)
-        .col-sm-6.col-md-4
-          .thumbnail
-            .caption
-              h3= item.title
-              p= item.desc
-              p
-                a.btn.btn-default(href=item.homePage, role="button") 访问官网
+    .panel.panel-default
+      .panel-heading 本地开发环境
+      .panel-body
+        p Djax集成了一套本地开发环境，它支持但不限于以下功能：
+      ul.list-group
+        li.list-group-item sass自动编译并对css自动添加浏览器厂商前缀；
+        li.list-group-item 解析pug模版引擎；
+        li.list-group-item 根据JS文件命名规则将js文件分别打包用于不同的加载时机：在head标签中引入加载、在body结束标签前引入加载、延迟加载；
+        li.list-group-item 转发请求：便于与服务端端进行接口的联调测试；
+        li.list-group-item 自动刷新页面：开发过程做了修改后无需手动刷新浏览器。
+
+    .panel.panel-default
+      .panel-heading 第三方JS库/插件、UI库
+      .panel-body
+        p Djax自带了许多好用的第三方JS库/插件、UI库，大部分情况下你甚至无需再自行去搜索下载第三方文件了，目前自带的第三方库/插件有：
+      ul.list-group
+        li.list-group-item jQuery：这个是DOM操作库中最经典的了；
+        li.list-group-item Bootstrap：非常经典的UI库，需与jQuery搭配使用；
+        li.list-group-item 第三方JS插件，数量较多，总有一些适合你，详见菜单“JS插件”。

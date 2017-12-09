@@ -4,7 +4,7 @@ mixin mixinHead(title, desc)
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     - var siteTitle = 'Djax'
-    - var siteDesc = '方便的前端开发套件'
+    - var siteDesc = '开箱即用的前端开发套件'
     if title
       title #{title} | #{siteTitle}
     else
@@ -16,7 +16,7 @@ mixin mixinHead(title, desc)
 
     //- 第三方css文件开始
     link(rel="stylesheet", href="../../../../assets/bootstrap-3.3.7-dist/css/bootstrap.min.css")
-    link(rel="stylesheet", href="../../../../assets/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.css")
+    link(rel="stylesheet", href="../../../../assets/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css")
     //- IE10 viewport hack for Surface/desktop Windows 8 bug
     link(rel="stylesheet", href="../../../../assets/ie10-viewport-bug-workaround.css")
     link(rel="stylesheet", href="../../../../assets/swiper/css/swiper.min.css")
