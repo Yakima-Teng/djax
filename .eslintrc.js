@@ -21,7 +21,9 @@ module.exports = {
     'hexMd5': true,
     '$utils': true,
     'path': true,
-    'fs': true
+    'fs': true,
+    'location': true,
+    'history': true
   },
   // add your custom rules here
   rules: {

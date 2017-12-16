@@ -1,16 +1,16 @@
 (function (doc, win) {
-  var common = win.$utils.common;
-  var merge = win.$utils.object.merge;
-  var modalLoad = win.$utils.modal.load;
-  var modalAlert = win.$utils.modal.alert;
-  var getIdxForLoad = win.$utils.modal.getIdxForLoad;
+  const common = win.$utils.common;
+  const merge = win.$utils.object.merge;
+  const modalLoad = win.$utils.modal.load;
+  const modalAlert = win.$utils.modal.alert;
+  const getIdxForLoad = win.$utils.modal.getIdxForLoad;
   if (!common) {
     throw new Error('请先加载utils/common.js文件，再加载utils目录下的其他文件');
   }
 
-  var apiPrefix = '';
-  var apiSuffix = '';
-  var countForAjaxWait = 0;
+  let apiPrefix = '';
+  let apiSuffix = '';
+  let countForAjaxWait = 0;
 
   function setApiPrefix (val) {
     apiPrefix = val;
@@ -23,8 +23,8 @@
   function post (endPoint, requestData, options, config) {
     requestData = requestData || {};
     config = config || { handleErrorAutomatically: true, silent: false };
-    var handleErrorAutomatically = config.handleErrorAutomatically || false;
-    var silent = config.silent || false;
+    const handleErrorAutomatically = config.handleErrorAutomatically || false;
+    const silent = config.silent || false;
     if (!silent) {
       countForAjaxWait++;
       if (countForAjaxWait === 1 && !getIdxForLoad()) {
@@ -67,10 +67,10 @@
     });
   };
 
-  var output = {
-    setApiPrefix: setApiPrefix,
-    setApiSuffix: setApiSuffix,
-    post: post
+  const output = {
+    setApiPrefix,
+    setApiSuffix,
+    post
   };
 
   if (win.$utils) {

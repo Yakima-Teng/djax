@@ -1,17 +1,17 @@
 (function (doc, win) {
-  var common = win.$utils.common;
+  const common = win.$utils.common;
   if (!common) {
     throw new Error('请先加载utils/common.js文件，再加载utils目录下的其他文件');
   }
 
-  function onReady (cb) {
+  function ready (cb) {
     $(document).ready(function () {
       cb && cb();
     });
   };
 
-  var output = {
-    onReady: onReady
+  const output = {
+    ready
   };
 
   if (win.$utils) {

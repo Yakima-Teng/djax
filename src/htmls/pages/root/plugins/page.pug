@@ -18,7 +18,7 @@ block site-foot
 block site-content
   .container
     .jumbotron
-      h1 JS插件
+      h1 JS插件/库
       p
       p Djax自带了许多主流的、好用的第三方JS库/插件，免去了自行下载、搜索第三方文件的麻烦。下面是详细清单，点击“访问官网”可以去相应官网查看插件/库的具体用法。
       p
@@ -26,6 +26,7 @@ block site-content
   .container
     .row
       - var jQuery = { title: 'jQuery', url: 'http://jquery.com/', desc: 'DOM操作最经典的js库非jQuery莫属。' }
+      - var requireJS = { title: 'RequireJS', url: 'http://requirejs.org/', desc: 'js文件和模块加载器' }
       - var validate = { title: 'jQuery Validation Plugin', url: 'https://jqueryvalidation.org/', desc: '表单验证插件' }
       - var dataTables = { title: 'DataTables', url: 'https://www.datatables.net/', desc: '表格插件' }
       - var jqGrid = { title: 'jqgrid', url: 'http://www.trirand.com/blog/', desc: '表格插件' }
@@ -47,8 +48,8 @@ block site-content
       - var fonticonpicker = { title: 'fonticonpicker.js', url: 'https://github.com/micc83/fontIconPicker', desc: '图标插件' }
       - var fixtop = { title: 'fixtop.js', url: 'https://github.com/nnattawat/fixtop', desc: '元素固定插件' }
       - var swiper = { title: 'swiper.js', url: 'http://idangero.us/swiper/', desc: '跑马灯、幻灯片插件' }
-      - var items1 = [jQuery, validate, dataTables, jqGrid, layer, select2, bootstrapDuallistbox, chosen, supersized]
-      - var items2 = [uniform, icheck, fullPage, zTree, jqueryForm, inputmask, maskedinput]
+      - var items1 = [jQuery, requireJS, validate, dataTables, jqGrid, layer, select2, bootstrapDuallistbox]
+      - var items2 = [chosen, supersized, uniform, icheck, fullPage, zTree, jqueryForm, inputmask, maskedinput]
       - var items3 = [formToWizard, fullcalendar, iscroll, fonticonpicker, fixtop, swiper]
       each item in items1.concat(items2, items3)
         .col-sm-6.col-md-4

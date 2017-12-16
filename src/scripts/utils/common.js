@@ -9,9 +9,9 @@
     return val !== '' && val !== null && val !== undefined && !/^\s+$/.test(val);
   };
 
-  var output = {
-    typeOf: typeOf,
-    hasValue: hasValue
+  const output = {
+    typeOf,
+    hasValue
   };
 
   if (win.$utils) {

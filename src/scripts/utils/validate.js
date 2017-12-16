@@ -1,5 +1,5 @@
 (function (doc, win) {
-  var common = win.$utils.common;
+  const common = win.$utils.common;
   if (!common) {
     throw new Error('请先加载utils/common.js文件，再加载utils目录下的其他文件');
   }
@@ -12,9 +12,9 @@
     return /^1[3-8]\d{9}$/.test(val);
   }
 
-  var output = {
-    validateEmail: validateEmail,
-    validatePhone: validatePhone
+  const output = {
+    validateEmail,
+    validatePhone
   };
 
   if (win.$utils) {

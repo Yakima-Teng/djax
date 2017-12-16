@@ -3,7 +3,7 @@
     if (!window.Swiper) {
       throw new Error('请先引入Swiper插件');
     }
-    // eslint-disable-next-line no-new
+    /* eslint-disable no-new */
     new window.Swiper(elem, {
       direction: 'horizontal',
       loop: true,
@@ -17,8 +17,8 @@
     });
   };
 
-  var output = {
-    swiper: swiper
+  const output = {
+    swiper
   };
 
   if (win.$utils) {

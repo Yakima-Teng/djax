@@ -1,5 +1,5 @@
 (function (doc, win) {
-  var common = win.$utils.common;
+  const common = win.$utils.common;
   if (!common) {
     throw new Error('请先加载utils/common.js文件，再加载utils目录下的其他文件');
   }
@@ -8,8 +8,8 @@
     return val ? parseInt(val, 10) : 0;
   }
 
-  var output = {
-    getInteger: getInteger
+  const output = {
+    getInteger
   };
 
   if (win.$utils) {

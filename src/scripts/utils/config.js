@@ -1,7 +1,7 @@
 (function (doc, win) {
-  var setAppName = win.$utils.storage.setAppName;
-  var setApiPrefix = win.$utils.ajax.setApiPrefix;
-  var setApiSuffix = win.$utils.ajax.setApiSuffix;
+  const setAppName = win.$utils.storage.setAppName;
+  const setApiPrefix = win.$utils.ajax.setApiPrefix;
+  const setApiSuffix = win.$utils.ajax.setApiSuffix;
 
   function updateConfig (opts) {
     setAppName(opts.appName || 'app');
@@ -9,8 +9,8 @@
     setApiSuffix(opts.apiSuffix || '');
   }
 
-  var output = {
-    updateConfig: updateConfig
+  const output = {
+    updateConfig
   };
 
   if (win.$utils) {

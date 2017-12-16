@@ -1,5 +1,5 @@
 (function (doc, win) {
-  var common = win.$utils.common;
+  const common = win.$utils.common;
   if (!common) {
     throw new Error('请先加载utils/common.js文件，再加载utils目录下的其他文件');
   }
@@ -8,7 +8,7 @@
     options = options || {};
     yes = yes || function () {};
     layui.use('layer', function () {
-      var layer = layui.layer;
+      const layer = layui.layer;
       layer.ready(function () {
         layer.alert(content, options, function (idx) {
           yes();
@@ -23,7 +23,7 @@
     yes = yes || function () {};
     cancel = cancel || function () {};
     layui.use('layer', function () {
-      var layer = layui.layer;
+      const layer = layui.layer;
       layer.ready(function () {
         layer.confirm(content, options, function (idx) {
           yes();
@@ -41,14 +41,14 @@
     options = options || {};
     end = end || function () {};
     layui.use('layer', function () {
-      var layer = layui.layer;
+      const layer = layui.layer;
       layer.ready(function () {
         layer.msg(content, options, end);
       });
     });
   };
 
-  var idxForLoad = null;
+  let idxForLoad = null;
 
   // 供ajax模块使用
   function getIdxForload () {
@@ -59,7 +59,7 @@
     boolean = boolean || false;
     if (boolean) {
       layui.use('layer', function () {
-        var layer = layui.layer;
+        const layer = layui.layer;
         layer.ready(function () {
           if (idxForLoad) {
             layer.close(idxForLoad);
@@ -69,7 +69,7 @@
       });
     } else {
       layui.use('layer', function () {
-        var layer = layui.layer;
+        const layer = layui.layer;
         layer.ready(function () {
           if (idxForLoad) {
             layer.close(idxForLoad);
@@ -79,11 +79,11 @@
     }
   };
 
-  var output = {
+  const output = {
     alert: customAlert,
     confirm: customConfirm,
-    msg: msg,
-    load: load,
+    msg,
+    load,
     getIdxForload
   };
 
