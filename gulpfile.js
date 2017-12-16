@@ -15,6 +15,8 @@ const del = require('del');
 const config = require('./config');
 const appName = config.appName;
 
+const isDev = process.env.npm_lifecycle_script === 'gulp dev';
+
 gulp.task('clean', () => {
   return del([
     'dist/**/*'
@@ -78,7 +80,7 @@ gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:glob
 gulp.task('js:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.js'])
     .pipe(babel({ presets: ['env'] }))
-    .pipe(uglify())
+    .pipe(gulpif(!isDev, uglify()))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream());
@@ -87,7 +89,7 @@ gulp.task('js:pages', () => {
 gulp.task('js:utils', () => {
   return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/object.js', './src/scripts/utils/modal.js', './src/scripts/utils/storage.js', './src/scripts/utils/string.js', './src/scripts/utils/*.js', './src/scripts/common/utils-*.js'])
     .pipe(babel({ presets: ['env'] }))
-    .pipe(uglify())
+    .pipe(gulpif(!isDev, uglify()))
     .pipe(concat('utils.js'))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/scripts/utils'))
@@ -97,7 +99,7 @@ gulp.task('js:utils', () => {
 gulp.task('js:common', () => {
   return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
     .pipe(babel({ presets: ['env'] }))
-    .pipe(uglify())
+    .pipe(gulpif(!isDev, uglify()))
     .pipe(concat('common.js'))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/scripts/common'))
@@ -123,7 +125,7 @@ function handleJSLibs (srcPath, concatingFileName) {
   srcPathArr.push(srcPath);
   return gulp.src(srcPathArr)
     .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1, babel({ presets: ['env'] })))
-    .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1, uglify()))
+    .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1 && !isDev, uglify()))
     .pipe(concat(concatingFileName))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/scripts/libs'))
