@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const browserSync = require('browser-sync').create();
+const proxy = require('http-proxy-middleware');
 const rename = require('gulp-rename');
 const changed = require('gulp-changed');
 const uglify = require('gulp-uglify');
@@ -12,6 +13,7 @@ const gulpif = require('gulp-if');
 const scp = require('gulp-scp2');
 const eslint = require('gulp-eslint');
 const del = require('del');
+const autoprefixer = require('gulp-autoprefixer');
 const config = require('./config');
 const appName = config.appName;
 
@@ -39,6 +41,10 @@ gulp.task('pug:pages', () => {
 gulp.task('sass:global', () => {
   return gulp.src(['./src/styles/global/reset.scss', './src/styles/global/global.scss', './src/styles/global/fix.scss'])
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 20 versions'],
+      cascade: false
+    }))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(concat('global.css'))
     .pipe(rename({ suffix: '.min' }))
@@ -49,6 +55,10 @@ gulp.task('sass:global', () => {
 gulp.task('sass:templates', () => {
   return gulp.src(['./src/htmls/templates/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 20 versions'],
+      cascade: false
+    }))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/styles/templates'))
@@ -58,6 +68,10 @@ gulp.task('sass:templates', () => {
 gulp.task('sass:components', () => {
   return gulp.src(['./src/htmls/components/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 20 versions'],
+      cascade: false
+    }))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/styles/components'))
@@ -67,6 +81,10 @@ gulp.task('sass:components', () => {
 gulp.task('sass:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 20 versions'],
+      cascade: false
+    }))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/htmls/pages'))
@@ -185,7 +203,9 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:com
     },
     port: '18080',
     startPath: `/${appName}/htmls/pages/root/home/page.html`,
-    meddleware: []
+    middleware: [
+      proxy('/path/api', { target: 'http://111.22.333.4', changeOrigin: true })
+    ]
   });
 
   gulp.watch(['./src/assets/**/*.*'], ['assets']);
