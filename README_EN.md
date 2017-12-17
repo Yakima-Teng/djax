@@ -4,7 +4,7 @@
 
 For more documentation, please refer to the official website: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
 
-Djax is short for Dom & Ajax. It's a simple boilerplate for scaffolding traditionally websites where you are supposed to operate dom, where you more control over your code.
+Djax is short for Dom & Ajax. It's a simple boilerplate for scaffolding traditionally websites (Multi-Page Application) where you are supposed to operate dom, where you more control over your code.
 
 Vue is good, Angular is good, React is good, em... but who ever said that all websites should be made by these frontend frames? Anyway, Djax is simple and flexible, with almost no study cost -- what you should know is what you almost already know.
 

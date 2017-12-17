@@ -1,7 +1,7 @@
 mixin mixinHeader(activeMenuAlias)
   link(rel="stylesheet", href="../../../../styles/components/mixin-header/component.min.css")
   //- Fixed navbar
-  nav.navbar.navbar-default.navbar-fixed-top
+  nav.navbar.navbar-inverse.navbar-fixed-top
     .container
       .navbar-header
         button.navbar-toggle.collapsed(data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
@@ -9,13 +9,15 @@ mixin mixinHeader(activeMenuAlias)
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="../home/page.html") Djax - 开箱即用的前端开发套件
+        a.navbar-brand(href="../home/page.html") Djax - 开箱即用的多页应用脚手架
       #navbar.navbar-collapse.collapse
         ul.nav.navbar-nav.navbar-right
           li(class = activeMenuAlias === 'home' ? 'active' : '')
             a(href="../home/page.html") 首页
-          li(class = activeMenuAlias === 'plugins' ? 'active' : '')
-            a(href="../plugins/page.html") JS插件
+          li(class = activeMenuAlias === 'start' ? 'active' : '')
+            a(href="../start/page.html") 开始
+          //- li(class = activeMenuAlias === 'plugins' ? 'active' : '')
+          //-   a(href="../plugins/page.html") JS插件
           li(class = activeMenuAlias === 'code-style' ? 'active' : '')
             a(href="../code-style/page.html") 代码风格
           li.dropdown(class = activeMenuAlias.indexOf('structure') === 0 ? 'active' : '')
@@ -39,4 +41,4 @@ mixin mixinHeader(activeMenuAlias)
               li(class = activeMenuAlias === 'structure-assets' ? 'active' : '')
                 a(href="../assets/page.html") assets目录
           li
-            a(href="https://github.com/Yakima-Teng/djax", target="_blank") 开源
+            a(href="https://github.com/Yakima-Teng/djax", target="_blank") Github

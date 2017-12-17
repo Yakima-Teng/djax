@@ -1,0 +1,19 @@
+@import '../../../../styles/tools/utils';
+
+.page-start {
+  h1 {
+    font-weight: normal;
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 18px;
+    font-weight: normal;
+    margin: 20px 0 15px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+  }
+  pre {
+    border: none;
+    padding: 5px;
+  }
+}

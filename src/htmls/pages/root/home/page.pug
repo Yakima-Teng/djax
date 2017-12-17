@@ -16,34 +16,27 @@ block site-foot
   script(src="./page.min.js")
 
 block site-content
-  .container
+  .container.page-home
     .jumbotron
       h1 Djax
       p
-      p Djax集成了一个本地开发环境，并自带了许多好用的第三方JS库/插件、UI库，是一个开箱即用的前端开发套件，简化了项目搭建工作。由于众口难调，你可以提issues或者Fork我们的github仓库后定制一个属于你自己的Djax套件。
+      p 开箱即用的多页应用脚手架!
       p
       p
-        a.btn.btn-lg.btn-primary(href="https://github.com/Yakima-Teng/djax", role="button") 下载 &raquo;
-        | &nbsp;
-        a.btn.btn-lg.btn-default(href="https://github.com/Yakima-Teng/djax", role="button") Github &raquo;
+        a.btn.btn-lg.btn-default(href="../start/page.html", role="button") 开始你的表演
 
-  .container
-    .panel.panel-default
-      .panel-heading 本地开发环境
-      .panel-body
-        p Djax集成了一套本地开发环境，它支持但不限于以下功能：
-      ul.list-group
-        li.list-group-item sass自动编译并对css自动添加浏览器厂商前缀；
-        li.list-group-item 解析pug模版引擎；
-        li.list-group-item 根据JS文件命名规则将js文件分别打包用于不同的加载时机：在head标签中引入加载、在body结束标签前引入加载、延迟加载；
-        li.list-group-item 转发请求：便于与服务端端进行接口的联调测试；
-        li.list-group-item 自动刷新页面：开发过程做了修改后无需手动刷新浏览器。
-
-    .panel.panel-default
-      .panel-heading 第三方JS库/插件、UI库
-      .panel-body
-        p Djax自带了许多好用的第三方JS库/插件、UI库，大部分情况下你甚至无需再自行去搜索下载第三方文件了，目前自带的第三方库/插件有：
-      ul.list-group
-        li.list-group-item jQuery：这个是DOM操作库中最经典的了；
-        li.list-group-item Bootstrap：非常经典的UI库，需与jQuery搭配使用；
-        li.list-group-item 第三方JS插件，数量较多，总有一些适合你，详见菜单“JS插件”。
+    .features
+      .row
+        .col-md-6
+          h2 易于使用
+          p 项目架构易于理解，项目拷贝下来后就可以直接开写。
+        .col-md-6
+          h2 开发方便
+          p 使用Gulp构建本地开发环境环境，支持命令行直接部署文件到服务器上。
+      .row
+        .col-md-6
+          h2 插件丰富
+          p 附带了许多主流的第三方JS库/插件，直接可以用。
+        .col-md-6
+          h2 节省时间
+          p 使用pug和sass，免去手写纯html和css的麻烦。

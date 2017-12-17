@@ -7,14 +7,9 @@
   function customAlert (content, options, yes) {
     options = options || {};
     yes = yes || function () {};
-    layui.use('layer', function () {
-      const layer = layui.layer;
-      layer.ready(function () {
-        layer.alert(content, options, function (idx) {
-          yes();
-          layer.close(idx);
-        });
-      });
+    layer.alert(content, options, function (idx) {
+      yes();
+      layer.close(idx);
     });
   };
 
@@ -22,17 +17,12 @@
     options = options || {};
     yes = yes || function () {};
     cancel = cancel || function () {};
-    layui.use('layer', function () {
-      const layer = layui.layer;
-      layer.ready(function () {
-        layer.confirm(content, options, function (idx) {
-          yes();
-          layer.close(idx);
-        }, function (idx) {
-          cancel();
-          layer.close(idx);
-        });
-      });
+    layer.confirm(content, options, function (idx) {
+      yes();
+      layer.close(idx);
+    }, function (idx) {
+      cancel();
+      layer.close(idx);
     });
   };
 
@@ -40,12 +30,7 @@
   function msg (content, options, end) {
     options = options || {};
     end = end || function () {};
-    layui.use('layer', function () {
-      const layer = layui.layer;
-      layer.ready(function () {
-        layer.msg(content, options, end);
-      });
-    });
+    layer.msg(content, options, end);
   };
 
   let idxForLoad = null;
@@ -58,24 +43,14 @@
   function load (boolean) {
     boolean = boolean || false;
     if (boolean) {
-      layui.use('layer', function () {
-        const layer = layui.layer;
-        layer.ready(function () {
-          if (idxForLoad) {
-            layer.close(idxForLoad);
-          }
-          idxForLoad = layer.load(0);
-        });
-      });
+      if (idxForLoad) {
+        layer.close(idxForLoad);
+      }
+      idxForLoad = layer.load(0);
     } else {
-      layui.use('layer', function () {
-        const layer = layui.layer;
-        layer.ready(function () {
-          if (idxForLoad) {
-            layer.close(idxForLoad);
-          }
-        });
-      });
+      if (idxForLoad) {
+        layer.close(idxForLoad);
+      }
     }
   };
 

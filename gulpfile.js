@@ -195,7 +195,7 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:com
   gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady']);
   gulp.watch(['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady']);
   gulp.watch(['./src/scripts/libs/auto.lazy.*.js'], ['js:libs:onLazy']);
-  gulp.watch(['./src/scripts/pages/**/*.js'], ['js:pages', 'lint:pages']);
+  gulp.watch(['./src/htmls/pages/**/*.js'], ['js:pages', 'lint:pages']);
   gulp.watch(['./src/styles/global/**/*.scss'], ['sass:global']);
   gulp.watch(['./src/htmls/templates/**/*.scss'], ['sass:templates']);
   gulp.watch(['./src/htmls/components/**/*.scss'], ['sass:components']);

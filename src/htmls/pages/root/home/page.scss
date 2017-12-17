@@ -1,5 +1,11 @@
+@import '../../../../styles/tools/utils';
+
 .page-home {
-  .mt-40 {
-    margin-top: 40px;
+  .jumbotron {
+    text-align: center;
+  }
+  h2 {
+    font-weight: normal;
+    font-size: 20px;
   }
 }

@@ -4,7 +4,7 @@ mixin mixinHead(title, desc)
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     - var siteTitle = 'Djax'
-    - var siteDesc = '开箱即用的前端开发套件'
+    - var siteDesc = '开箱即用的多页应用脚手架'
     if title
       title #{title} | #{siteTitle}
     else
@@ -15,19 +15,16 @@ mixin mixinHead(title, desc)
     link(rel="icon", href="../../../../assets/images/favicon.ico")
 
     //- 第三方css文件开始
-    link(rel="stylesheet", href="../../../../assets/bootstrap/css/bootstrap.min.css")
-    //- link(rel="stylesheet", href="../../../../assets/bootstrap/css/bootstrap-theme.min.css")
+    link(rel="stylesheet", href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css")
     //- IE10 viewport hack for Surface/desktop Windows 8 bug
     link(rel="stylesheet", href="../../../../assets/ie10-viewport-bug-workaround.css")
-    link(rel="stylesheet", href="../../../../assets/swiper/css/swiper.min.css")
-    link(rel="stylesheet", href="../../../../assets/font-awesome/css/font-awesome.min.css")
     //- 第三方css文件结束
 
     //- 网站全局样式
     link(rel="stylesheet", href="../../../../styles/global/global.min.css")
 
-    //- script(src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js")
-    //- script(src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js")
+    script(src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js")
+    script(src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js")
     //- libs-before.min.js是一些对网站样式可能有较大影响的脚本
     script(src="../../../../scripts/libs/libs-onheadready.min.js")
     if block

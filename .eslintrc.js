@@ -17,13 +17,15 @@ module.exports = {
   ],
   globals: {
     '$': true,
-    'layui': true,
     'hexMd5': true,
     '$utils': true,
     'path': true,
     'fs': true,
     'location': true,
-    'history': true
+    'history': true,
+    'localStorage': true,
+    'sessionStorage': true,
+    'layer': true
   },
   // add your custom rules here
   rules: {
