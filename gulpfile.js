@@ -108,7 +108,7 @@ gulp.task('js:pages', () => {
 });
 
 gulp.task('js:utils', () => {
-  return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/object.js', './src/scripts/utils/modal.js', './src/scripts/utils/storage.js', './src/scripts/utils/string.js', './src/scripts/utils/*.js', './src/scripts/common/utils-*.js'])
+  return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/object.js', './src/scripts/utils/modal.js', './src/scripts/utils/storage.js', './src/scripts/utils/string.js', './src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'])
     .pipe(babel({
       presets: ['env'],
       plugins: ['transform-es2015-modules-umd']
@@ -180,7 +180,7 @@ gulp.task('js:libs', ['js:libs:onHeadReady', 'js:libs:onDocumentReady', 'js:libs
 });
 
 gulp.task('lint:utils', () => {
-  return gulp.src(['./src/scripts/utils/*.js', './src/scripts/common/utils-*.js'])
+  return gulp.src(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -219,7 +219,7 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:com
 
   gulp.watch(['./src/assets/**/*.*'], ['assets']);
   gulp.watch(['./src/htmls/**/*.pug'], ['pug:pages']);
-  gulp.watch(['./src/scripts/utils/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils']);
+  gulp.watch(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils']);
   gulp.watch(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common']);
   gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady']);
   gulp.watch(['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady']);

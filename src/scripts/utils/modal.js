@@ -1,21 +1,18 @@
-
 export function alert ({ title = '', content = '', callback = function () {} }) {
   const html = `
     <div class="djax-alert" id="djaxAlertHtml">
       <div class="djax-alert-wrapper">
         <div class="djax-alert-title">
-          {{title}}
+          ${title || '信息'}
           <div class="djax-alert-btn-close">X</div>
         </div>
-        <div class="djax-alert-content">{{content}}</div>
+        <div class="djax-alert-content">${content}</div>
         <div class="djax-alert-footer">
           <button class="djax-alert-btn-ok">确定</button>
         </div>
       </div>
     </div>
-  `
-    .replace('{{title}}', title || '信息')
-    .replace('{{content}}', content);
+  `;
   const style = `
     <style id="djaxAlertStyle">
       .djax-alert {
