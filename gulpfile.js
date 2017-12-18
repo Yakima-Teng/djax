@@ -97,7 +97,10 @@ gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:glob
 
 gulp.task('js:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.js'])
-    .pipe(babel({ presets: ['env'] }))
+    .pipe(babel({
+      presets: ['env'],
+      plugins: ['transform-es2015-modules-umd']
+    }))
     .pipe(gulpif(!isDev, uglify()))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/htmls/pages'))
@@ -106,7 +109,10 @@ gulp.task('js:pages', () => {
 
 gulp.task('js:utils', () => {
   return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/object.js', './src/scripts/utils/modal.js', './src/scripts/utils/storage.js', './src/scripts/utils/string.js', './src/scripts/utils/*.js', './src/scripts/common/utils-*.js'])
-    .pipe(babel({ presets: ['env'] }))
+    .pipe(babel({
+      presets: ['env'],
+      plugins: ['transform-es2015-modules-umd']
+    }))
     .pipe(gulpif(!isDev, uglify()))
     .pipe(concat('utils.js'))
     .pipe(rename({ extname: '.min.js' }))
@@ -116,7 +122,10 @@ gulp.task('js:utils', () => {
 
 gulp.task('js:common', () => {
   return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
-    .pipe(babel({ presets: ['env'] }))
+    .pipe(babel({
+      presets: ['env'],
+      plugins: ['transform-es2015-modules-umd']
+    }))
     .pipe(gulpif(!isDev, uglify()))
     .pipe(concat('common.js'))
     .pipe(rename({ extname: '.min.js' }))

@@ -4,9 +4,5 @@
     // api: function
   };
 
-  if (win.$utils) {
-    win.$utils.apis = output;
-  } else {
-    win.$utils = { apis: output };
-  }
+  win.$utils.apis = output;
 })(document, window);
