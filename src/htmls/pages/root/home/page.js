@@ -1,8 +1,12 @@
 $utils.hook.ready(() => {
-  // $utils.modal.alert({
+  // $utils.modal.confirm({
+  //   title: 'title',
   //   content: '欢迎访问',
-  //   callback () {
-  //     console.log('callback');
+  //   yes () {
+  //     console.log('confirmed');
+  //   },
+  //   cancel () {
+  //     console.log('canceled');
   //   }
   // });
 });
