@@ -1,5 +1,5 @@
 import { merge } from './object';
-import { load as modalLoad, alert as modalAlert, getIdxForLoad } from './modal';
+import { load as modalLoad, alert as modalAlert, getLoadStatus } from './modal';
 
 let apiPrefix = '';
 let apiSuffix = '';
@@ -20,7 +20,7 @@ export function post (endPoint, requestData, options, config) {
   const silent = config.silent || false;
   if (!silent) {
     countForAjaxWait++;
-    if (countForAjaxWait === 1 && getIdxForLoad() === null) {
+    if (countForAjaxWait === 1 && getLoadStatus() === false) {
       modalLoad(true);
     }
   }
@@ -53,7 +53,7 @@ export function post (endPoint, requestData, options, config) {
   }).always(function () {
     if (!silent) {
       countForAjaxWait--;
-      if (countForAjaxWait === 0 && getIdxForLoad() !== null) {
+      if (countForAjaxWait === 0 && getLoadStatus() === true) {
         modalLoad(false);
       }
     }

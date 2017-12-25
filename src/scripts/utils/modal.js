@@ -305,23 +305,105 @@ export function msg ({ content = '', callback = function () {} }) {
   });
 };
 
-let idxForLoad = null;
-
 // 供ajax模块使用
-export function getIdxForload () {
-  return idxForLoad;
+export function getLoadStatus () {
+  return $('#djaxLoadHtml').length === 1;
 };
 
-export function load (boolean) {
-  boolean = boolean || false;
-  if (boolean) {
-    if (idxForLoad !== null) {
-      layer.close(idxForLoad);
+// 提示组件，默认3秒后自动关系
+export function load (bool = false) {
+  if (bool) {
+    if ($('#djaxLoadHtml').length === 0) {
+      const html = `
+        <div class="djax-load" id="djaxLoadHtml">
+          <div class="djax-load-wrapper">
+            <div class="djax-load-box"></div>
+            <div class="djax-load-box"></div>
+          </div>
+        </div>
+      `;
+      const style = `
+        <style id="djaxLoadStyle">
+          .djax-load {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .6);
+          }
+          .djax-load-wrapper {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+          .djax-load-box {
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            border: 2px solid #fff;
+            border-bottom-color: transparent;
+            border-top-color: transparent;
+            border-radius: 100%;
+            height: 35px;
+            width: 35px;
+            -webkit-animation: djaxRotate 1s 0s ease-in-out infinite;
+            animation: djaxRotate 1s 0s ease-in-out infinite;
+          }
+          .djax-load-box:last-child {
+            display: inline-block;
+            top: 10px;
+            left: 10px;
+            width: 15px;
+            height: 15px;
+            -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+            border-color: #fff transparent #fff transparent;
+            -webkit-animation-direction: reverse;
+            animation-direction: reverse;
+          }
+          @-webkit-keyframes djaxRotate {
+            0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+            50% {
+              -webkit-transform: rotate(180deg);
+              transform: rotate(180deg);
+            }
+            100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes djaxRotate {
+            0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+            50% {
+              -webkit-transform: rotate(180deg);
+              transform: rotate(180deg);
+            }
+            100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+      `;
+      const $html = $(html);
+      const $style = $(style);
+      const $body = $('body');
+      $body.append($style);
+      $body.append($html);
     }
-    idxForLoad = layer.load(0);
   } else {
-    if (idxForLoad === null) {
-      layer.close(idxForLoad);
-    }
+    $('#djaxLoadHtml').remove();
+    $('#djaxLoadStyle').remove();
   }
 };
