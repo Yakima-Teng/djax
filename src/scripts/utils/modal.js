@@ -261,10 +261,48 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
 };
 
 // 提示组件，默认3秒后自动关系
-export function msg (content, options, end) {
-  options = options || {};
-  end = end || function () {};
-  layer.msg(content, options, end);
+export function msg ({ content = '', callback = function () {} }) {
+  const html = `
+    <div class="djax-msg" id="djaxMsgHtml">${content}</div>
+  `;
+  const style = `
+    <style id="djaxMsgStyle">
+      .djax-msg {
+        position: fixed;
+        z-index: 100;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 12px 25px;
+        text-align: center;
+        line-height: 24px;
+        word-break: break-all;
+        overflow: hidden;
+        font-size: 14px;
+        color: #fff;
+        min-width: 260px;
+        background-color: rgba(0, 0, 0, .6);
+        border-radius: 3px;
+      }
+    </style>
+  `;
+  const $html = $(html);
+  const $style = $(style);
+  const $body = $('body');
+  $body.append($style);
+  $body.append($html);
+  setTimeout(() => {
+    $html.remove();
+    $style.remove();
+    callback && callback();
+  }, 3000);
+  $html.click((e) => {
+    e.stopPropagation();
+  });
+  $body.one('click', () => {
+    $html.remove();
+    $style.remove();
+  });
 };
 
 let idxForLoad = null;
