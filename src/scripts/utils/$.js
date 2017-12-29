@@ -25,6 +25,52 @@ $$.prototype.Init.prototype = $$.prototype;
 // ajax静态方法
 $$.ajax = () => {};
 
+$$.hasClass = (cls) => {
+  const reg = new RegExp(`(\\s|^)${cls}(\\s|$)`);
+  for (let i = 0, len = this.length; i < length; i++) {
+    if (this[i].className.match(reg)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+$$.addClass = (cls) => {
+  const reg = new RegExp(`(\\s|&)${cls}(\\s|$)`);
+  for (let i = 0, len = this.length; i < len; i++) {
+    if (!this[i].className.match(reg)) {
+      this[i].className += ' ' + cls;
+    }
+  }
+  return this;
+};
+
+$$.removeClass = (cls) => {
+  const reg = new RegExp(`(\\s|^)${cls}(\\s|$)`);
+  for (let i = 0, len = this.length; i < len; i++) {
+    if (this[i].className.match(reg)) {
+      this[i].className = this[i].className.replace(reg, '');
+    }
+  }
+  return this;
+};
+
+$$.css = (attr, val) => {
+  for (let i = 0, len = this.length; i < len; i++) {
+    if (arguments.length === 1) {
+      return window.getComputedStyle(this[i], null)[attr];
+    }
+    this[i].style[attr] = val;
+  }
+  return this;
+};
+
+function sibling (cur, dir) {
+  // 如果节点是元素节点，则nodeType属性将返回1；如果节点是属性节点，则nodeType
+  while ((cur = cur[dir]) && cur.nodeType !== 1) {}
+  return cur;
+}
+
 const output = window.$ || $$;
 window.$ = output;
 // 若本地已加载有jQuery或zepto，则使用这些工具库提供的$
