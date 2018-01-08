@@ -1,5 +1,4 @@
 export function ready (optionalScriptsDependencies, cb) {
-  console.log(arguments.length);
   if (arguments.length === 1) {
     // 只有一个入参时，用户传的参数为cb，而非optionalScriptsDependencies
     cb = optionalScriptsDependencies;
