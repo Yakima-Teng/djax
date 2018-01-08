@@ -142,6 +142,6 @@ $$.prop = (key, val) => {
 };
 
 const output = window.$ || $$;
-window.$ = output;
+// window.$ = output;
 // 若本地已加载有jQuery或zepto，则使用这些工具库提供的$
 export default output;

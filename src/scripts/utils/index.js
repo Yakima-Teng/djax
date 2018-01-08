@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import * as ajax from './ajax';
 import * as array from './array';
 import * as common from './common';

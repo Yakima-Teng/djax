@@ -13,32 +13,10 @@ mixin mixinHeader(activeMenuAlias)
       #navbar.navbar-collapse.collapse
         ul.nav.navbar-nav.navbar-right
           li(class = activeMenuAlias === 'home' ? 'active' : '')
-            a(href="../home/page.html") 首页
-          li(class = activeMenuAlias === 'start' ? 'active' : '')
-            a(href="../start/page.html") 开始
-          //- li(class = activeMenuAlias === 'plugins' ? 'active' : '')
-          //-   a(href="../plugins/page.html") JS插件
-          li(class = activeMenuAlias === 'code-style' ? 'active' : '')
-            a(href="../code-style/page.html") 代码风格
-          li.dropdown(class = activeMenuAlias.indexOf('structure') === 0 ? 'active' : '')
-            a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
-              | 项目架构
-              span.caret
-            ul.dropdown-menu
-              li.dropdown-header 页面
-              li(class = activeMenuAlias === 'structure-htmls' ? 'active' : '')
-                a(href="../htmls/page.html") htmls目录
-              li.divider(role="seperator")
-              li.dropdown-header 样式
-              li(class = activeMenuAlias === 'structure-styles' ? 'active' : '')
-                a(href="../styles/page.html") styles目录
-              li.divider(role="seperator")
-              li.dropdown-header 脚本
-              li(class = activeMenuAlias === 'structure-scripts' ? 'active' : '')
-                a(href="../scripts/page.html") scripts目录
-              li.divider(role="seperator")
-              li.dropdown-header 静态资源
-              li(class = activeMenuAlias === 'structure-assets' ? 'active' : '')
-                a(href="../assets/page.html") assets目录
+            a(href="../home/page.html") 菜单1
+          li(class = activeMenuAlias === 'menu2' ? 'active' : '')
+            a(href="javascript:void(0);") 菜单2
+          li(class = activeMenuAlias === 'menu3' ? 'active' : '')
+            a(href="javascript:void(0);") 菜单3
           li
             a(href="https://github.com/Yakima-Teng/djax", target="_blank") Github

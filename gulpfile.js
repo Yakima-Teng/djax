@@ -14,6 +14,7 @@ const scp = require('gulp-scp2');
 const eslint = require('gulp-eslint');
 const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
+const browserify = require('gulp-browserify');
 const config = require('./config');
 const appName = config.appName;
 
@@ -97,10 +98,8 @@ gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:glob
 
 gulp.task('js:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.js'])
-    .pipe(babel({
-      presets: ['env'],
-      plugins: ['transform-es2015-modules-umd']
-    }))
+    // 页面文件不要通过import引入外部文件增加文件体积，外部共用的东西都封装到utils里，所以这里用gulp-babel就行
+    .pipe(babel())
     .pipe(gulpif(!isDev, uglify()))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('./dist/htmls/pages'))
@@ -108,24 +107,23 @@ gulp.task('js:pages', () => {
 });
 
 gulp.task('js:utils', () => {
-  return gulp.src(['./src/scripts/utils/common.js', './src/scripts/utils/object.js', './src/scripts/utils/modal.js', './src/scripts/utils/storage.js', './src/scripts/utils/string.js', './src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'])
-    .pipe(babel({
-      presets: ['env'],
-      plugins: ['transform-es2015-modules-umd']
-    }))
+  return gulp.src(['./src/scripts/utils/index.js'])
+    // utils相关文件会用import, export互相引用，需要用browserify的transform: ['babelify']，故无需再用gulp-babel
+    // .pipe(babel())
+    .pipe(browserify({ transform: ['babelify'] }))
+    .on('error', console.log)
     .pipe(gulpif(!isDev, uglify()))
-    .pipe(concat('utils.js'))
-    .pipe(rename({ extname: '.min.js' }))
+    .pipe(rename({
+      basename: 'utils',
+      extname: '.min.js'
+    }))
     .pipe(gulp.dest('./dist/scripts/utils'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('js:common', () => {
-  return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
-    .pipe(babel({
-      presets: ['env'],
-      plugins: ['transform-es2015-modules-umd']
-    }))
+  return gulp.src(['./src/scripts/common/*.js'])
+    .pipe(babel())
     .pipe(gulpif(!isDev, uglify()))
     .pipe(concat('common.js'))
     .pipe(rename({ extname: '.min.js' }))
