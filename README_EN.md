@@ -74,6 +74,8 @@ The development server will run on port 18080 by default.
 
   - When you want to run `npm run build`, and run `npm run deploy` after completion of the former command, you can just run `npm run buildAndDeploy` instead. It's just a sugar command.
 
+- For more, please refer to package.json.
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)

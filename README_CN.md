@@ -63,6 +63,8 @@ $ npm run dev
 
   - 当你想要先执行`npm run build`，然后等前面这个命令执行结束后再执行`npm run deploy`的时候， 你可以直接用一个`npm run buildAndDeploy`命令替代。它们的作用效果是一样的，后者可以让你不用一直呆在屏幕面前傻等。
 
+- 更多命令详见package.json。
+
 ## 许可协议
 
 [MIT](http://opensource.org/licenses/MIT)
