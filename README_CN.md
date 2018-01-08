@@ -2,11 +2,23 @@
 
 [Looking for English documentation? Please click here.](./README_EN.md)
 
-更多详细文档，请访问官方网站: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
+在线Demo: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
 
 Djax是我对Dom & Ajax的简写。Djax是一个简单易上手的网站（多页应用）脚手架，通过它，你可以方便地进行传统的网页开发，自己操作DOM，对你的代码有更多的控制权，你也更知道自己在干什么。
 
 Vue不错，Angualr挺好，React也很好。但是，它们的流行并不意味着所有的网站都需要用它们中的一个来进行开发。经典的用jQuery等js库操作DOM的“DOM流开发风格”也并不差。Djax就是这样一个适合“DOM流开发风格”的网站脚手架，它简单、轻盈，几乎没有什么二次学习成本——你需要知道的，基本上都是你已经知道了的。
+
+## 支持
+
+支持书写Pug、Sass、ES6。
+
+## 自带的utils封装库
+
+src/scripts/utils目录下封装了许多常用的小代码，可以直接拿来复用。这块直接内嵌到项目里而不是单独作为一个第三方js库引入，是为了让你可以直接根据需要自定义这块代码，你可以删掉不用的代码，添加你自己封装的代码。如果你有一套自己的js库，可以直接拿过来替换掉这里的内容。
+
+## 项目架构设计
+
+直接跑一下项目，阅读下项目根目录下的gulpfile.js代码，就能知道这个项目架构是如何的了。核心重点内容是，页面相关js、css、html都放在一起-_-。
 
 ## 安装
 
@@ -19,20 +31,9 @@ $ npm install
 $ npm run dev
 ```
 
-这会将本仓库的master分支代码拉到你本地。如果你希望用用最新的版本来尝尝鲜，可以按下面这样进行操作：
+这会将本仓库的master分支代码拉到你本地。
 
-``` bash
-$ git clone https://github.com/Yakima-Teng/djax.git
-$ cd djax
-## replace [localbranchname] with what your like
-$ git checkout -b [localbranchname] origin/dev
-$ npm install
-$ npm run dev
-```
-
-:warning: **dev分支的代码是不稳定的、含有bug的可能性也比较高，甚至可能都是不可用的。不建议在生产环境使用，请自行评估风险。**
-
-本地服务默认会使用18080端口，服务启动成功后会自动打开您的浏览器访问前端页面。
+:warning: **本地服务默认会使用18080端口，服务启动成功后会自动打开您的浏览器访问前端页面。**
 
 ## 包含的命令
 

@@ -1,12 +1,24 @@
 # Djax
 
-[在找中文文档？点此查看。](./README.md)
+[在找中文文档？点此查看。](./README_CN.md)
 
-For more documentation, please refer to the official website: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
+For online demo, please refer to: [Djax](http://www.yxeye.com/djax/htmls/pages/index.html)
 
 Djax is short for Dom & Ajax. It's a simple boilerplate for scaffolding traditionally websites (Multi-Page Application) where you are supposed to operate dom, where you more control over your code.
 
 Vue is good, Angular is good, React is good, em... but who ever said that all websites should be made by these frontend frames? Anyway, Djax is simple and flexible, with almost no study cost -- what you should know is what you almost already know.
+
+## Support
+
+Pug, Sass, ES6 are supported.
+
+## built-in utils javascript lib
+
+A tiny javascript library is built in the project in src/scripts/utils folder, you can use it directly. It's included as source code instead of a third single-file .js file, in order for you to customize those code, you can delete useless code and add your own. Or you can replace the entire directory if you already have your own js library.
+
+## Project structure design
+
+You are strongly recommended to run this project by your self and then read the source code in gulpfile.js under the project root. The main care is that you should write page-related js, css, html together in one page folder.
 
 ## Installation
 
