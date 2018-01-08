@@ -31,20 +31,9 @@ $ npm install
 $ npm run dev
 ```
 
-This will scaffold the project using the `master` branch. If you wish to use the lastst version of the template, do the following instead:
+This will scaffold the project using the `master` branch.
 
-``` bash
-$ git clone https://github.com/Yakima-Teng/djax.git
-$ cd djax
-## replace [localbranchname] with what your like
-$ git checkout -b [localbranchname] origin/dev
-$ npm install
-$ npm run dev
-```
-
-:warning: **The dev branch is not considered stable and can contain bugs or not available at all, so use at your own risk.**
-
-The development server will run on port 18080 by default.
+:warning: **The development server will run on port 18080 by default.**
 
 ## What's Included
 
