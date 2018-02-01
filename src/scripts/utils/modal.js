@@ -17,7 +17,7 @@ export function alert ({ title = '信息', content = '', callback = function () 
     <style id="djaxAlertStyle">
       .djax-alert {
         position: fixed;
-        z-index: 100;
+        z-index: 2000;
         top: 0;
         left: 0;
         width: 100%;
@@ -136,7 +136,7 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
     <style id="djaxConfirmStyle">
       .djax-confirm {
         position: fixed;
-        z-index: 100;
+        z-index: 2000;
         top: 0;
         left: 0;
         width: 100%;
@@ -269,7 +269,7 @@ export function msg ({ content = '', callback = function () {} }) {
     <style id="djaxMsgStyle">
       .djax-msg {
         position: fixed;
-        z-index: 100;
+        z-index: 2000;
         top: 55%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -326,7 +326,7 @@ export function load (bool = false) {
         <style id="djaxLoadStyle">
           .djax-load {
             position: fixed;
-            z-index: 100;
+            z-index: 2000;
             top: 0;
             left: 0;
             width: 100%;
