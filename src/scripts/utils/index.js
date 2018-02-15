@@ -14,6 +14,7 @@ import * as storage from './storage';
 import * as string from './string';
 import * as validate from './validate';
 import * as wechat from './wechat';
+import * as compress from './compress';
 
 const output = {
   ajax,
@@ -30,7 +31,8 @@ const output = {
   storage,
   string,
   validate,
-  wechat
+  wechat,
+  compress
 };
 
 export default output;
