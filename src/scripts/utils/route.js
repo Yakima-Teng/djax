@@ -28,14 +28,14 @@ export function getQueryObj () {
     obj[arr[0]] = arr[1];
   });
   return obj;
-};
+}
 
 // 获取url中查询参数的值
 export function getQueryKeyVal (key) {
   const reg = new RegExp('(\\?|&)' + key + '=([^&]*)(&|$)');
   const r = window.location.search.match(reg);
   return r ? window.decodeURI(r[2]) : '';
-};
+}
 
 // 获取当前路由对象的属性
 export function getRoute () {

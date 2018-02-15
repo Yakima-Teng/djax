@@ -14,18 +14,18 @@ module.exports = {
   plugins: [],
   globals: {
     '$': true,
-    'hexMd5': true,
     '$utils': true,
     'path': true,
     'fs': true,
     'location': true,
     'history': true,
     'localStorage': true,
-    'sessionStorage': true,
-    'layer': true
+    'sessionStorage': true
   },
   // add your custom rules here
   rules: {
+    'no-extra-semi': 2,
+    'no-var': 2,
     'semi': ['error', 'always'],
     // allow paren-less arrow functions
     'arrow-parens': 0,

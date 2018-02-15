@@ -266,7 +266,7 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
     $html.remove();
     $style.remove();
   });
-};
+}
 
 // 提示组件，默认3秒后自动关系
 export function msg ({ content = '', callback = function () {} }) {
@@ -315,12 +315,12 @@ export function msg ({ content = '', callback = function () {} }) {
     $html.remove();
     $style.remove();
   });
-};
+}
 
 // 供ajax模块使用
 export function getLoadStatus () {
   return $('#djaxLoadHtml').length === 1;
-};
+}
 
 // 提示组件，默认3秒后自动关系
 export function load (bool = false) {
@@ -418,4 +418,4 @@ export function load (bool = false) {
     $('#djaxLoadHtml').remove();
     $('#djaxLoadStyle').remove();
   }
-};
+}

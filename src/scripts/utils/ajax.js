@@ -7,11 +7,11 @@ let countForAjaxWait = 0;
 
 export function setApiPrefix (val) {
   apiPrefix = val;
-};
+}
 
 export function setApiSuffix (val) {
   apiSuffix = val;
-};
+}
 
 export function post (endPoint, requestData, options, config) {
   requestData = requestData || {};
@@ -27,21 +27,11 @@ export function post (endPoint, requestData, options, config) {
   return $.ajax(merge({
     type: 'POST',
     accept: 'application/json',
-    contentType: requestData instanceof FormData ? false : 'application/x-www-form-urlencoded;charset=utf-8',
+    contentType: requestData instanceof FormData ? false : (typeof requestData === 'string' ? 'application/json;charset=utf-8' : 'application/x-www-form-urlencoded;charset=utf-8'),
     url: apiPrefix + (endPoint || '') + apiSuffix,
     dataType: 'json',
     processData: !(requestData instanceof FormData),
-    data: (function () {
-      if (requestData instanceof FormData) {
-        return requestData;
-      }
-      const d = new Date().getTime();
-      return {
-        requestTime: d,
-        sessionToken: hexMd5((d + '').substring((d + '').length - 8)),
-        requestBody: JSON.stringify(requestData)
-      };
-    })()
+    data: typeof requestData === 'string' ? JSON.stringify(requestData) : requestData
   }, options || {})).done(function (data) {
     if (data.status === '200' && !data.errorCode) {
       //
@@ -58,4 +48,4 @@ export function post (endPoint, requestData, options, config) {
       }
     }
   });
-};
+}

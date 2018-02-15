@@ -12,6 +12,7 @@ const pug = require('gulp-pug');
 const gulpif = require('gulp-if');
 const scp = require('gulp-scp2');
 const eslint = require('gulp-eslint');
+const friendlyFormatter = require('eslint-friendly-formatter');
 const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
 const browserify = require('gulp-browserify');
@@ -179,15 +180,15 @@ gulp.task('js:libs', ['js:libs:onHeadReady', 'js:libs:onDocumentReady', 'js:libs
 
 gulp.task('lint:utils', () => {
   return gulp.src(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
+    .pipe(eslint('.eslintrc.js'))
+    .pipe(eslint.format(friendlyFormatter))
     .pipe(eslint.failAfterError());
 });
 
 gulp.task('lint:common', () => {
   return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
+    .pipe(eslint('.eslintrc.js'))
+    .pipe(eslint.format(friendlyFormatter))
     .pipe(eslint.failAfterError());
 });
 
@@ -198,7 +199,11 @@ gulp.task('lint:pages', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
+gulp.task('lint', ['lint:utils', 'lint:common', 'lint:pages'], () => {
+  console.log('finished task: lint');
+});
+
+gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
   console.log(`[${new Date()}]: ready to develop!`);
   browserSync.init({
     server: {
@@ -230,7 +235,7 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:com
   gulp.watch(['./src/styles/tools/**/*.scss'], ['sass']);
 });
 
-gulp.task('build', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
+gulp.task('build', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
   console.log(`[${new Date()}]: Finish building!`);
 });
 

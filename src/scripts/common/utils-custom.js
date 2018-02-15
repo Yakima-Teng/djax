@@ -15,7 +15,7 @@
         el: '.swiper-pagination'
       }
     });
-  };
+  }
 
   const output = {
     swiper

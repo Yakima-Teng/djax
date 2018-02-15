@@ -1,10 +1,10 @@
 export function isIphone () {
   return (/iphone/i).test(navigator.userAgent.toLowerCase());
-};
+}
 
 export function isIpad () {
   return (/ipad/i).test(navigator.userAgent.toLowerCase());
-};
+}
 
 export function isIOS () {
   return (isIphone() || isIpad());

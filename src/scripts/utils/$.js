@@ -2,7 +2,7 @@ const doc = document;
 
 function $$ (selector) {
   return new $$.prototype.Init(selector);
-};
+}
 
 $$.prototype = {
   constructor: $$,
@@ -97,9 +97,9 @@ $$.css = (attr, val) => {
 
 function sibling (cur, dir) {
   // 如果节点是元素节点，则nodeType属性将返回1（注意node节点不存在时值为null，直接null.nodeType会报错）
-  while ((cur = cur[dir]) && cur && cur.nodeType !== 1) {};
+  while ((cur = cur[dir]) && cur && cur.nodeType !== 1) {}
   return cur;
-};
+}
 
 // nextSibling 属性返回指定节点之后紧跟的节点，在相同的树层级中。被返回的节点以 Node 对象返回。如果没有 nextSibling 节点，则返回值为 null。
 $$.next = () => sibling(this[0], 'nextElementSibling');
