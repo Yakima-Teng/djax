@@ -12,7 +12,7 @@ export function alert ({ title = '信息', content = '', callback = function () 
         </div>
       </div>
     </div>
-  `;
+  `
   const style = `
     <style id="djaxAlertStyle">
       .djax-alert {
@@ -82,7 +82,7 @@ export function alert ({ title = '信息', content = '', callback = function () 
         line-height: 28px;
         margin: 5px 5px 0;
         padding: 0 15px;
-        border: 1px solid #1E9FFF;;
+        border: 1px solid #1E9FFF;
         background-color: #1E9FFF;
         color: #fff;
         border-radius: 2px;
@@ -99,25 +99,25 @@ export function alert ({ title = '信息', content = '', callback = function () 
         background-color: #0079d6;
       }
     </style>
-  `;
-  const $html = $(html);
-  const $style = $(style);
-  const $body = $('body');
+  `
+  const $html = $(html)
+  const $style = $(style)
+  const $body = $('body')
   if ($('#djaxAlertStyle').length === 0) {
-    $body.append($style);
+    $body.append($style)
   }
   if ($('#djaxAlertHtml').length === 0) {
-    $body.append($html);
+    $body.append($html)
   }
   $body.one('click', '.djax-alert-btn-ok', function (e) {
-    $html.remove();
-    $style.remove();
-    callback && callback();
-  });
+    $html.remove()
+    $style.remove()
+    callback && callback()
+  })
   $body.one('click', '.djax-alert-btn-close', function (e) {
-    $html.remove();
-    $style.remove();
-  });
+    $html.remove()
+    $style.remove()
+  })
 }
 
 export function confirm ({ title = '信息', content = '', yes = function () {}, cancel = function () {} }) {
@@ -135,7 +135,7 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
         </div>
       </div>
     </div>
-  `;
+  `
   const style = `
     <style id="djaxConfirmStyle">
       .djax-confirm {
@@ -188,7 +188,6 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
         padding: 20px;
         line-height: 24px;
         word-break: break-all;
-        overflow: hidden;
         font-size: 14px;
         overflow-x: hidden;
         overflow-y: auto;
@@ -205,7 +204,7 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
         line-height: 28px;
         margin: 5px 5px 0;
         padding: 0 15px;
-        border: 1px solid #1E9FFF;;
+        border: 1px solid #1E9FFF;
         background-color: #1E9FFF;
         color: #fff;
         border-radius: 2px;
@@ -226,7 +225,7 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
         line-height: 28px;
         margin: 5px 5px 0;
         padding: 0 15px;
-        border: 1px solid #dedede;;
+        border: 1px solid #dedede;
         background-color: #fff;
         color: #333;
         border-radius: 2px;
@@ -242,37 +241,37 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
         color: #000;
       }
     </style>
-  `;
-  const $html = $(html);
-  const $style = $(style);
-  const $body = $('body');
+  `
+  const $html = $(html)
+  const $style = $(style)
+  const $body = $('body')
   if ($('#djaxConfirmStyle').length === 0) {
-    $body.append($style);
+    $body.append($style)
   }
   if ($('#djaxConfirmHtml').length === 0) {
-    $body.append($html);
+    $body.append($html)
   }
   $body.one('click', '.djax-confirm-btn-ok', function (e) {
-    $html.remove();
-    $style.remove();
-    yes && yes();
-  });
+    $html.remove()
+    $style.remove()
+    yes && yes()
+  })
   $body.one('click', '.djax-confirm-btn-cancel', function (e) {
-    $html.remove();
-    $style.remove();
-    cancel && cancel();
-  });
+    $html.remove()
+    $style.remove()
+    cancel && cancel()
+  })
   $body.one('click', '.djax-confirm-btn-close', function (e) {
-    $html.remove();
-    $style.remove();
-  });
+    $html.remove()
+    $style.remove()
+  })
 }
 
 // 提示组件，默认3秒后自动关系
 export function msg ({ content = '', callback = function () {} }) {
   const html = `
     <div class="djax-msg" id="djaxMsgHtml">${content}</div>
-  `;
+  `
   const style = `
     <style id="djaxMsgStyle">
       .djax-msg {
@@ -293,33 +292,33 @@ export function msg ({ content = '', callback = function () {} }) {
         border-radius: 3px;
       }
     </style>
-  `;
-  const $html = $(html);
-  const $style = $(style);
-  const $body = $('body');
+  `
+  const $html = $(html)
+  const $style = $(style)
+  const $body = $('body')
   if ($('#djaxMsgStyle').length === 0) {
-    $body.append($style);
+    $body.append($style)
   }
   if ($('#djaxMsgHtml').length === 0) {
-    $body.append($html);
+    $body.append($html)
   }
   setTimeout(() => {
-    $html.remove();
-    $style.remove();
-    callback && callback();
-  }, 3000);
+    $html.remove()
+    $style.remove()
+    callback && callback()
+  }, 3000)
   $html.click((e) => {
-    e.stopPropagation();
-  });
+    e.stopPropagation()
+  })
   $body.one('click', () => {
-    $html.remove();
-    $style.remove();
-  });
+    $html.remove()
+    $style.remove()
+  })
 }
 
 // 供ajax模块使用
 export function getLoadStatus () {
-  return $('#djaxLoadHtml').length === 1;
+  return $('#djaxLoadHtml').length === 1
 }
 
 // 提示组件，默认3秒后自动关系
@@ -333,7 +332,7 @@ export function load (bool = false) {
             <div class="djax-load-box"></div>
           </div>
         </div>
-      `;
+      `
       const style = `
         <style id="djaxLoadStyle">
           .djax-load {
@@ -407,15 +406,15 @@ export function load (bool = false) {
             }
           }
         </style>
-      `;
-      const $html = $(html);
-      const $style = $(style);
-      const $body = $('body');
-      $body.append($style);
-      $body.append($html);
+      `
+      const $html = $(html)
+      const $style = $(style)
+      const $body = $('body')
+      $body.append($style)
+      $body.append($html)
     }
   } else {
-    $('#djaxLoadHtml').remove();
-    $('#djaxLoadStyle').remove();
+    $('#djaxLoadHtml').remove()
+    $('#djaxLoadStyle').remove()
   }
 }

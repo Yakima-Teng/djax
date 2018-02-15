@@ -1,4 +1,4 @@
-import { typeOf } from './common';
+import { typeOf } from './common'
 
 // 合并对象属性（在原始对象上进行修改）
 export function merge (obj1, obj2) {
@@ -6,12 +6,12 @@ export function merge (obj1, obj2) {
     for (let p in obj2) {
       if (obj2.hasOwnProperty(p)) {
         if (typeOf(obj1[p]) === 'object' && typeOf(obj2[p]) === 'object') {
-          merge(obj1[p], obj2[p]);
+          merge(obj1[p], obj2[p])
         } else {
-          obj1[p] = obj2[p];
+          obj1[p] = obj2[p]
         }
       }
     }
   }
-  return obj1;
+  return obj1
 }

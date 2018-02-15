@@ -1,7 +1,7 @@
 (function (doc, win) {
   function swiper (elem) {
     if (!window.Swiper) {
-      throw new Error('请先引入Swiper插件');
+      throw new Error('请先引入Swiper插件')
     }
     /* eslint-disable no-new */
     new window.Swiper(elem, {
@@ -14,16 +14,16 @@
       pagination: {
         el: '.swiper-pagination'
       }
-    });
+    })
   }
 
   const output = {
     swiper
-  };
+  }
 
   if (win.$utils) {
-    win.$utils.custom = output;
+    win.$utils.custom = output
   } else {
-    win.$utils = { custom: output };
+    win.$utils = { custom: output }
   }
-})(document, window);
+})(document, window)

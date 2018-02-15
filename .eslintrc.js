@@ -26,7 +26,7 @@ module.exports = {
   rules: {
     'no-extra-semi': 2,
     'no-var': 2,
-    'semi': ['error', 'always'],
+    // 'semi': ['error', 'always'],
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
