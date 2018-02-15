@@ -103,8 +103,12 @@ export function alert ({ title = '信息', content = '', callback = function () 
   const $html = $(html);
   const $style = $(style);
   const $body = $('body');
-  $body.append($style);
-  $body.append($html);
+  if ($('#djaxAlertStyle').length === 0) {
+    $body.append($style);
+  }
+  if ($('#djaxAlertHtml').length === 0) {
+    $body.append($html);
+  }
   $body.one('click', '.djax-alert-btn-ok', function (e) {
     $html.remove();
     $style.remove();
@@ -114,7 +118,7 @@ export function alert ({ title = '信息', content = '', callback = function () 
     $html.remove();
     $style.remove();
   });
-};
+}
 
 export function confirm ({ title = '信息', content = '', yes = function () {}, cancel = function () {} }) {
   const html = `
@@ -242,8 +246,12 @@ export function confirm ({ title = '信息', content = '', yes = function () {},
   const $html = $(html);
   const $style = $(style);
   const $body = $('body');
-  $body.append($style);
-  $body.append($html);
+  if ($('#djaxConfirmStyle').length === 0) {
+    $body.append($style);
+  }
+  if ($('#djaxConfirmHtml').length === 0) {
+    $body.append($html);
+  }
   $body.one('click', '.djax-confirm-btn-ok', function (e) {
     $html.remove();
     $style.remove();
@@ -289,8 +297,12 @@ export function msg ({ content = '', callback = function () {} }) {
   const $html = $(html);
   const $style = $(style);
   const $body = $('body');
-  $body.append($style);
-  $body.append($html);
+  if ($('#djaxMsgStyle').length === 0) {
+    $body.append($style);
+  }
+  if ($('#djaxMsgHtml').length === 0) {
+    $body.append($html);
+  }
   setTimeout(() => {
     $html.remove();
     $style.remove();
@@ -343,8 +355,8 @@ export function load (bool = false) {
             -webkit-animation-fill-mode: both;
             animation-fill-mode: both;
             position: absolute;
-            left: 0px;
-            top: 0px;
+            left: 0;
+            top: 0;
             border: 2px solid #fff;
             border-bottom-color: transparent;
             border-top-color: transparent;
