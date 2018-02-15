@@ -5,7 +5,7 @@ export function getRelativeDateString (yDiff, mDiff, dDiff) {
   mDiff = mDiff || 0;
   dDiff = dDiff || 0;
   const d = new Date();
-  d.setFullYear(d.getFullYear + yDiff);
+  d.setFullYear(d.getFullYear() + yDiff);
   d.setMonth(d.getMonth() + mDiff);
   d.setDate(d.getDate() + dDiff);
   return d.getFullYear() + '-' + toDouble(d.getMonth() + 1) + '-' + toDouble(d.getDate());
@@ -13,12 +13,12 @@ export function getRelativeDateString (yDiff, mDiff, dDiff) {
 
 export function dateToString (d) {
   d = d || new Date();
-  return d.getFullYear + '-' + toDouble(d.getMonth() + 1) + '-' + toDouble(d.getDate());
+  return d.getFullYear() + '-' + toDouble(d.getMonth() + 1) + '-' + toDouble(d.getDate());
 };
 
 export function dateToFullString (d) {
   d = d || new Date();
-  return d.getFullYear + '-' + toDouble(d.getMonth() + 1) + '-' + toDouble(d.getDate()) + ' ' + toDouble(d.getHours()) + ':' + toDouble(d.getMinutes()) + ':' + toDouble(d.getSeconds());
+  return d.getFullYear() + '-' + toDouble(d.getMonth() + 1) + '-' + toDouble(d.getDate()) + ' ' + toDouble(d.getHours()) + ':' + toDouble(d.getMinutes()) + ':' + toDouble(d.getSeconds());
 };
 
 export function timestampToString (ts) {
