@@ -9,14 +9,14 @@ mixin mixinHeader(activeMenuAlias)
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="../home/page.html") Djax - 开箱即用的多页应用脚手架
+        a.navbar-brand(href="../../../../index.html") Djax - 开箱即用的多页应用脚手架
       #navbar.navbar-collapse.collapse
         ul.nav.navbar-nav.navbar-right
-          li(class = activeMenuAlias === 'home' ? 'active' : '')
-            a(href="javascript:void(0);") 菜单1
+          li(class = activeMenuAlias === 'menu1' ? 'active' : '')
+            a(href="../page1/page.html") 菜单1
           li(class = activeMenuAlias === 'menu2' ? 'active' : '')
-            a(href="javascript:void(0);") 菜单2
+            a(href="../page2/page.html") 菜单2
           li(class = activeMenuAlias === 'menu3' ? 'active' : '')
-            a(href="javascript:void(0);") 菜单3
+            a(href="../page3/page.html") 菜单3
           li
             a(href="https://github.com/Yakima-Teng/djax", target="_blank") Github

@@ -1,0 +1,23 @@
+extends ../../../templates/post/template.pug
+
+include ../../../components/mixin-head/component.pug
+include ../../../components/mixin-header/component.pug
+
+block site-head
+  -var title = ''
+  -var desc = ''
+  +mixinHead(title, desc)
+  link(rel="stylesheet", href="./page.min.css")
+
+block site-header
+  +mixinHeader('page1')
+
+block site-footer
+  include ../../../components/footer/component.pug
+
+block site-foot
+  script(src="./page.min.js")
+
+block site-content
+  .container.page-page3
+    h2 page3
