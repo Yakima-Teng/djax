@@ -1,1 +1,16 @@
 @import '../../../styles/tools/utils';
+
+.navbar {
+  .navbar-header {
+    .navbar-brand {
+      transition: 300ms all linear 0ms;
+    }
+  }
+  .navbar-collapse {
+    li {
+      a {
+        transition: 300ms all linear 0ms;
+      }
+    }
+  }
+}
