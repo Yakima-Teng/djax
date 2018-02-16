@@ -33,8 +33,20 @@ gulp.task('assets', () => {
     .pipe(gulp.dest('./dist/assets'))
 })
 
-gulp.task('pug:pages', () => {
-  return gulp.src('./src/htmls/pages/**/*.pug')
+gulp.task('pug:pagesRoot', () => {
+  return gulp.src(['./src/htmls/pages/root/**/*.pug'])
+    .pipe(pug({ pretty: true }))
+    .pipe(rename(path => {
+      path.basename = path.dirname
+      path.dirname = ''
+      path.extname = '.html'
+    }))
+    .pipe(gulp.dest('./dist'))
+    .pipe(browserSync.stream())
+})
+
+gulp.task('pug:pagesNotRoot', () => {
+  return gulp.src(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug'])
     .pipe(pug({ pretty: true }))
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream())
@@ -210,7 +222,7 @@ gulp.task('lint', ['lint:gulpfile', 'lint:utils', 'lint:common', 'lint:pages'], 
   console.log('finished task: lint')
 })
 
-gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
+gulp.task('dev', ['assets', 'pug:pagesRoot', 'pug:pagesNotRoot', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
   console.log(`[${new Date()}]: ready to develop!`)
   browserSync.init({
     server: {
@@ -221,15 +233,17 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:com
       }
     },
     port: '18080',
-    startPath: `/${appName}/htmls/pages/root/home/page.html`,
+    // startPath: `/${appName}/htmls/pages/root/home/page.html`,
+    startPath: `/${appName}/index.html`,
     middleware: [
       proxy('/path/api', { target: 'http://111.22.333.4', changeOrigin: true })
     ]
   })
 
   gulp.watch(['./src/assets/**/*.*'], ['assets'])
-  gulp.watch(['./src/htmls/**/*.pug'], ['pug:pages'])
-  gulp.watch(['./gulpfile.js'], ['js:gulpfile'])
+  gulp.watch(['./src/htmls/pages/root/**/*.pug'], ['pug:pagesRoot'])
+  gulp.watch(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug'], ['pug:pagesNotRoot'])
+  gulp.watch(['./gulpfile.js'], ['lint:gulpfile'])
   gulp.watch(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils'])
   gulp.watch(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common'])
   gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady'])
@@ -243,7 +257,7 @@ gulp.task('dev', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:com
   gulp.watch(['./src/styles/tools/**/*.scss'], ['sass'])
 })
 
-gulp.task('build', ['assets', 'pug:pages', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
+gulp.task('build', ['assets', 'pug:pagesRoot', 'pug:pagesNotRoot', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
   console.log(`[${new Date()}]: Finish building!`)
 })
 

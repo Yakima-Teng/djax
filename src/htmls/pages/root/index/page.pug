@@ -1,0 +1,45 @@
+extends ../../../templates/post/template.pug
+
+include ../../../components/mixin-head/component_for_root.pug
+include ../../../components/mixin-header/component_for_root.pug
+
+block site-head
+  -var title = ''
+  -var desc = ''
+  +mixinHead(title, desc)
+  link(rel="stylesheet", href="./htmls/pages/root/index/page.min.css")
+
+block site-header
+  +mixinHeader('home')
+
+block site-footer
+  include ../../../components/footer/component_for_root.pug
+
+block site-foot
+  script(src="./htmls/pages/root/index/page.min.js")
+
+block site-content
+  .container.page-home
+    .jumbotron
+      h1 Djax
+      p
+      p 开箱即用的多页应用脚手架
+      p
+      p
+        a.btn.btn-lg.btn-default#startPlay(href="javascript:void(0);", role="button") 开始你的表演
+
+    .features
+      .row
+        .col-md-6
+          h2 上手容易
+          p 项目架构易于理解，可以直接开干，如果能阅读下gulpfile.js会更好。
+        .col-md-6
+          h2 开发方便
+          p 使用Gulp构建本地开发环境，支持命令行直接部署文件到服务器上。
+      .row
+        .col-md-6
+          h2 节省时间
+          p 使用pug、sass、autoprefixer、bootstrap，减少你的代码手写量。
+        .col-md-6
+          h2 自由灵活
+          p 自带了一个作为项目源代码的utils.js库，而非以第三方js库的方式引入。
