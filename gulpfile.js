@@ -311,6 +311,10 @@ gulp.task('deploy', () => {
       host: config.deploy.hostname,
       username: config.deploy.username,
       password: config.deploy.password,
-      dest: config.deploy.dest
+      dest: config.deploy.dest,
+      readyTimeout: 60000
     }))
+    .on('error', e => {
+      console.log(e)
+    })
 })
