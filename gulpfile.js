@@ -9,6 +9,7 @@ const uglify = require('gulp-uglify')
 const concat = require('gulp-concat')
 const babel = require('gulp-babel')
 const pug = require('gulp-pug')
+const imagemin = require('gulp-imagemin')
 const gulpif = require('gulp-if')
 const scp = require('gulp-scp2')
 const eslint = require('gulp-eslint')
@@ -31,6 +32,24 @@ gulp.task('assets', () => {
   return gulp.src('./src/assets/**/*.*')
     .pipe(changed('./dist/assets', {}))
     .pipe(gulp.dest('./dist/assets'))
+})
+
+gulp.task('cleanImageBackup', () => {
+  return del([
+    'src/assets/image-backup/**/*'
+  ])
+})
+
+gulp.task('imageBackup', ['cleanImageBackup'], () => {
+  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif'])
+    .pipe(gulp.dest('./src/assets/image-backup'))
+})
+
+gulp.task('imagemin', ['imageBackup'], () => {
+  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif'])
+    .pipe(changed('./dist/assets', {}))
+    .pipe(imagemin())
+    .pipe(gulp.dest('./src/assets'))
 })
 
 gulp.task('pug:pagesRoot', () => {
