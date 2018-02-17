@@ -216,6 +216,13 @@ gulp.task('lint:gulpfile', () => {
     .pipe(eslint.failAfterError())
 })
 
+gulp.task('lint:config', () => {
+  return gulp.src(['./config.js', './config-example.js'])
+    .pipe(eslint('.eslintrc.js'))
+    .pipe(eslint.format(friendlyFormatter))
+    .pipe(eslint.failAfterError())
+})
+
 gulp.task('lint:utils', () => {
   return gulp.src(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'])
     .pipe(eslint('.eslintrc.js'))
@@ -237,7 +244,7 @@ gulp.task('lint:pages', () => {
     .pipe(eslint.failAfterError())
 })
 
-gulp.task('lint', ['lint:gulpfile', 'lint:utils', 'lint:common', 'lint:pages'], () => {
+gulp.task('lint', ['lint:gulpfile', 'lint:config', 'lint:utils', 'lint:common', 'lint:pages'], () => {
   console.log('finished task: lint')
 })
 
@@ -263,6 +270,7 @@ gulp.task('dev', ['assets', 'pug:pagesRoot', 'pug:pagesNotRoot', 'sass', 'js:pag
   gulp.watch(['./src/htmls/pages/root/**/*.pug'], ['pug:pagesRoot'])
   gulp.watch(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug'], ['pug:pagesNotRoot'])
   gulp.watch(['./gulpfile.js'], ['lint:gulpfile'])
+  gulp.watch(['./config.js', './config-example.js'], ['lint:config'])
   gulp.watch(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils'])
   gulp.watch(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common'])
   gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady'])
