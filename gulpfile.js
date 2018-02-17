@@ -17,6 +17,7 @@ const friendlyFormatter = require('eslint-friendly-formatter')
 const del = require('del')
 const autoprefixer = require('gulp-autoprefixer')
 const browserify = require('gulp-browserify')
+const gulpSequence = require('gulp-sequence')
 const config = require('./config')
 const appName = config.appName
 
@@ -69,6 +70,10 @@ gulp.task('pug:pagesNotRoot', () => {
     .pipe(pug({ pretty: true }))
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream())
+})
+
+gulp.task('pug', ['pug:pagesRoot', 'pug:pagesNotRoot'], () => {
+  //
 })
 
 gulp.task('sass:global', () => {
@@ -125,7 +130,7 @@ gulp.task('sass:pages', () => {
 })
 
 gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:global'], () => {
-  // do nothing here
+  //
 })
 
 gulp.task('js:pages', () => {
@@ -209,6 +214,10 @@ gulp.task('js:libs', ['js:libs:onHeadReady', 'js:libs:onDocumentReady', 'js:libs
   // need do nothing here
 })
 
+gulp.task('js', ['js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
+  //
+})
+
 gulp.task('lint:gulpfile', () => {
   return gulp.src(['./gulpfile.js'])
     .pipe(eslint('.eslintrc.js'))
@@ -245,10 +254,14 @@ gulp.task('lint:pages', () => {
 })
 
 gulp.task('lint', ['lint:gulpfile', 'lint:config', 'lint:utils', 'lint:common', 'lint:pages'], () => {
-  console.log('finished task: lint')
+  // console.log('finished task: lint')
 })
 
-gulp.task('dev', ['assets', 'pug:pagesRoot', 'pug:pagesNotRoot', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
+gulp.task('dev:before', (cb) => {
+  gulpSequence('lint', ['assets', 'pug', 'sass', 'js'], cb)
+})
+
+gulp.task('dev', ['dev:before'], () => {
   console.log(`[${new Date()}]: ready to develop!`)
   browserSync.init({
     server: {
@@ -284,7 +297,11 @@ gulp.task('dev', ['assets', 'pug:pagesRoot', 'pug:pagesNotRoot', 'sass', 'js:pag
   gulp.watch(['./src/styles/tools/**/*.scss'], ['sass'])
 })
 
-gulp.task('build', ['assets', 'pug:pagesRoot', 'pug:pagesNotRoot', 'sass', 'js:pages', 'js:utils', 'js:common', 'js:libs', 'lint'], () => {
+gulp.task('build:before', (cb) => {
+  gulpSequence('lint', ['assets', 'pug', 'sass', 'js'], cb)
+})
+
+gulp.task('build', ['build:before'], () => {
   console.log(`[${new Date()}]: Finish building!`)
 })
 
