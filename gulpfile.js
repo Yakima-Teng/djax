@@ -314,7 +314,4 @@ gulp.task('deploy', () => {
       dest: config.deploy.dest,
       readyTimeout: 60000
     }))
-    .on('error', e => {
-      console.log(e)
-    })
 })
