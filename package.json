@@ -1,5 +1,5 @@
 {
-  "name": "home",
+  "name": "djax",
   "version": "0.0.0",
   "description": "dom and ajax",
   "main": "gulpfile.js",
