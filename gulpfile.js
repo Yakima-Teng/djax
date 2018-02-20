@@ -280,8 +280,8 @@ gulp.task('dev', ['dev:before'], () => {
   })
 
   gulp.watch(['./src/assets/**/*.*'], ['assets'])
-  gulp.watch(['./src/htmls/pages/root/**/*.pug'], ['pug:pagesRoot'])
-  gulp.watch(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug'], ['pug:pagesNotRoot'])
+  gulp.watch(['./src/htmls/pages/root/**/*.pug', './src/htmls/components/**/*_for_root.pug', './src/htmls/templates/**/*.pug'], ['pug:pagesRoot'])
+  gulp.watch(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug', './src/htmls/components/**/*.pug', '!./src/htmls/components/**/*_for_root.pug', './src/htmls/templates/**/*.pug'], ['pug:pagesNotRoot'])
   gulp.watch(['./gulpfile.js'], ['lint:gulpfile'])
   gulp.watch(['./config.js', './config-example.js'], ['lint:config'])
   gulp.watch(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils'])
