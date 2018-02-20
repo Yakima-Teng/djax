@@ -1,5 +1,7 @@
 # Djax
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
 [Looking for English documentation? Please click here.](./README.md)
 
 在线Demo: [Djax](http://www.verysites.com/)
