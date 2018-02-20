@@ -1,6 +1,6 @@
 # Djax
 
-[Looking for English documentation? Please click here.](./README_EN.md)
+[Looking for English documentation? Please click here.](./README.md)
 
 在线Demo: [Djax](http://www.verysites.com/)
 
