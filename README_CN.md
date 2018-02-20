@@ -31,6 +31,15 @@ $ npm install
 $ npm run dev
 ```
 
+如果你有自己心仪的项目名（比如"demo"这个项目名），你可以按下面这样类似的操作进行开发前的准备工作：
+
+``` bash
+$ git clone https://github.com/Yakima-Teng/djax.git demo
+$ cd demo
+$ npm install
+$ npm run dev
+```
+
 这会将本仓库的master分支代码拉到你本地。
 
 :warning: **本地服务默认会使用18080端口，服务启动成功后会自动打开您的浏览器访问前端页面。**
@@ -51,8 +60,6 @@ $ npm run dev
 
   - 压缩CSS文件.
 
-  - 压缩Images.
-
 - `npm run deploy`: 让发布变得更简单。
 
   - 将config-example.js文件重命名为“config.js”，并根据您的SSH账号进行相应的修改。
@@ -63,7 +70,9 @@ $ npm run dev
 
   - 当你想要先执行`npm run build`，然后等前面这个命令执行结束后再执行`npm run deploy`的时候， 你可以直接用一个`npm run buildAndDeploy`命令替代。它们的作用效果是一样的，后者可以让你不用一直呆在屏幕面前傻等。
 
-- 更多命令详见package.json。
+- `gulp imagemin`: 压缩图片。
+
+- 更多命令详见package.json和gulpfile.js。
 
 ## 许可协议
 

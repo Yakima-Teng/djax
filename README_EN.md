@@ -31,6 +31,15 @@ $ npm install
 $ npm run dev
 ```
 
+If you have your own favorite project name (e.g. demo) in your plan, you can do similar things like below:
+
+``` bash
+$ git clone https://github.com/Yakima-Teng/djax.git demo
+$ cd demo
+$ npm install
+$ npm run dev
+```
+
 This will scaffold the project using the `master` branch.
 
 :warning: **The development server will run on port 18080 by default.**
@@ -51,8 +60,6 @@ This will scaffold the project using the `master` branch.
 
   - CSS minified.
 
-  - Images minified.
-
 - `npm run deploy`: Make deployment more convenient.
 
   - Rename config-example.js as 'config.js' and change content according to your ssh accout.
@@ -62,8 +69,10 @@ This will scaffold the project using the `master` branch.
 - `npm run buildAndDeploy`: A convenient command.
 
   - When you want to run `npm run build`, and run `npm run deploy` after completion of the former command, you can just run `npm run buildAndDeploy` instead. It's just a sugar command.
+  
+- `gulp imagemin`: Minify images.
 
-- For more, please refer to package.json.
+- For more, please refer to package.json and gulpfile.js.
 
 ## License
 
