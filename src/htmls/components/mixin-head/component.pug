@@ -3,13 +3,11 @@ mixin mixinHead(title, desc)
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    - var siteTitle = 'Djax'
-    - var siteDesc = '开箱即用的多页应用脚手架'
     if title
-      title #{title} | #{siteTitle}
+      title #{title} | #{store.defaultSiteTitle}
     else
-      title= siteTitle + ' | ' + siteDesc
-    meta(name="description", content= desc || (siteTitle + ': ' + siteDesc))
+      title= store.defaultSiteTitle + ' | ' + store.defaultSiteDescription
+    meta(name="description", content= desc || (store.defaultSiteTitle + ': ' + store.defaultSiteDescription))
     meta(name="author", content="yakima")
     meta(name="renderer", content="webkit")
     link(rel="icon", href="../../../../assets/images/favicon.ico")
@@ -21,12 +19,12 @@ mixin mixinHead(title, desc)
     //- 第三方css文件结束
 
     //- 网站全局样式
-    link(rel="stylesheet", href="../../../../styles/global/global.min.css" + versionQuery)
+    link(rel="stylesheet", href="../../../../styles/global/global.min.css" + store.versionQuery)
 
     //- script(src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js")
     //- script(src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js")
     //- libs-before.min.js是一些对网站样式可能有较大影响的脚本
-    script(src="../../../../scripts/libs/libs-onheadready.min.js" + versionQuery)
+    script(src="../../../../scripts/libs/libs-onheadready.min.js" + store.versionQuery)
     if block
       block
     else

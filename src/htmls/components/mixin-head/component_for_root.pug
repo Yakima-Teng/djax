@@ -21,12 +21,12 @@ mixin mixinHead(title, desc)
     //- 第三方css文件结束
 
     //- 网站全局样式
-    link(rel="stylesheet", href="./styles/global/global.min.css" + versionQuery)
+    link(rel="stylesheet", href="./styles/global/global.min.css" + store.versionQuery)
 
     //- script(src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js")
     //- script(src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js")
     //- libs-before.min.js是一些对网站样式可能有较大影响的脚本
-    script(src="./scripts/libs/libs-onheadready.min.js" + versionQuery)
+    script(src="./scripts/libs/libs-onheadready.min.js" + store.versionQuery)
     if block
       block
     else

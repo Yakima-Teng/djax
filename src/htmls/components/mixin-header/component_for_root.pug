@@ -1,5 +1,5 @@
 mixin mixinHeader(activeMenuAlias)
-  link(rel="stylesheet", href="./styles/components/mixin-header/component.min.css" + versionQuery)
+  link(rel="stylesheet", href="./styles/components/mixin-header/component.min.css" + store.versionQuery)
   //- Fixed navbar
   nav.navbar.navbar-inverse.navbar-fixed-top
     .container
@@ -9,7 +9,7 @@ mixin mixinHeader(activeMenuAlias)
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="./index.html") Djax - 开箱即用的多页应用脚手架
+        a.navbar-brand(href="./index.html")= store.defaultSiteTitle + ' - ' + store.defaultSiteDescription
       #navbar.navbar-collapse.collapse
         ul.nav.navbar-nav.navbar-right
           li(class = activeMenuAlias === 'menu1' ? 'active' : '')

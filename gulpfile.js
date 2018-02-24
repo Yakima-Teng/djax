@@ -13,6 +13,7 @@ const imagemin = require('gulp-imagemin')
 const gulpif = require('gulp-if')
 const scp = require('gulp-scp2')
 const eslint = require('gulp-eslint')
+const gulpdata = require('gulp-data')
 const friendlyFormatter = require('eslint-friendly-formatter')
 const del = require('del')
 const autoprefixer = require('gulp-autoprefixer')
@@ -22,6 +23,20 @@ const config = require('./config')
 const appName = config.appName
 
 const isDev = process.env.npm_lifecycle_script === 'gulp dev'
+
+const store = {
+  defaultSiteTitle: config.defaultSiteTitle,
+  defaultSiteDescription: config.defaultSiteDescription,
+  versionQuery: (() => {
+    // 这里定义的全局范围可用的version是用来追加到内容比较会变的js和css文件资源路径后面减少缓存影响用的
+    const date = new Date()
+    const yyyy = date.getFullYear()
+    const mm = (1 + date.getMonth()) > 9 ? ('' + (1 + date.getMonth())) : ('0' + (1 + date.getMonth()))
+    const dd = date.getDate() > 9 ? ('' + date.getDate()) : ('0' + date.getDate())
+    const version = yyyy + '-' + mm + '-' + dd + '_' + date.valueOf()
+    return '?v=' + version
+  })()
+}
 
 gulp.task('clean', () => {
   return del([
@@ -55,6 +70,7 @@ gulp.task('imagemin', ['imageBackup'], () => {
 
 gulp.task('pug:pagesRoot', () => {
   return gulp.src(['./src/htmls/pages/root/**/*.pug'])
+    .pipe(gulpdata(file => ({ store })))
     .pipe(pug({ pretty: true }))
     .pipe(rename(path => {
       path.basename = path.dirname
@@ -67,6 +83,7 @@ gulp.task('pug:pagesRoot', () => {
 
 gulp.task('pug:pagesNotRoot', () => {
   return gulp.src(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug'])
+    .pipe(gulpdata(file => ({ store })))
     .pipe(pug({ pretty: true }))
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream())
@@ -306,7 +323,7 @@ gulp.task('build', ['build:before'], () => {
 })
 
 gulp.task('deploy', () => {
-  return gulp.src(['./dist/**/*.*'])
+  return gulp.src(config.deploy.src)
     .pipe(scp({
       host: config.deploy.hostname,
       username: config.deploy.username,
