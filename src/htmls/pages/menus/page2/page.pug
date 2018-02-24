@@ -7,7 +7,7 @@ block site-head
   -var title = ''
   -var desc = ''
   +mixinHead(title, desc)
-  link(rel="stylesheet", href="./page.min.css")
+  link(rel="stylesheet", href="./page.min.css" + versionQuery)
 
 block site-header
   +mixinHeader('page1')
@@ -16,7 +16,7 @@ block site-footer
   include ../../../components/footer/component.pug
 
 block site-foot
-  script(src="./page.min.js")
+  script(src="./page.min.js" + versionQuery)
 
 block site-content
   .container.page-page2

@@ -1,3 +1,11 @@
+// 这里定义的全局范围可用的version是用来追加到内容比较会变的js和css文件资源路径后面减少缓存影响用的
+- var date = new Date()
+- var yyyy = date.getFullYear()
+- var mm = (1 + date.getMonth()) > 9 ? ('' + (1 + date.getMonth())) : ('0' + (1 + date.getMonth()))
+- var dd = date.getDate() > 9 ? ('' + date.getDate()) : ('0' + date.getDate())
+- var version = yyyy + '-' + mm + '-' + dd + '_' + date.valueOf()
+- var versionQuery = "?v=" + version
+
 doctype html
 html(lang="zh-CN")
   block site-head
