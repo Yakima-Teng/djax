@@ -10,6 +10,12 @@ Djax is short for Dom & Ajax. It's a simple boilerplate for scaffolding traditio
 
 Vue is good, Angular is good, React is good, em... but who ever said that all websites should be made by these frontend frames? Anyway, Djax is simple and flexible, with almost no study cost -- what you should know is what you almost already know.
 
+## Notice
+
+Although this repository is maintained by myself and I have taken really some time to improve this project (you can read the commit logs), I must say that Djax is only but also very appropriate for developing simple frontend websites such as some simple enterprise websites, where SEO (Search Engine Optimization) should be taken into consideration.
+
+:warning: **That is to say, if you want to develop websites such as backend management platforms, it would be better to use Vue/React/Angular or other MVWhateveryyoulike javascript frames. Because SEO is often not the factor that should be taken into consideration in these cases, meanwhile forms and lists are very common and quantity of javascript code is usually very large so that some good restriction to code structure is required.**
+
 ## Support
 
 Pug, Sass, ES6 are supported.
@@ -44,7 +50,7 @@ $ npm run dev
 
 This will scaffold the project using the `master` branch.
 
-:warning: **The development server will run on port 18080 by default.**
+**The development server will run on port 18080 by default.**
 
 ## What's Included
 
