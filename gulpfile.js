@@ -18,6 +18,7 @@ const friendlyFormatter = require('eslint-friendly-formatter')
 const del = require('del')
 const autoprefixer = require('gulp-autoprefixer')
 const browserify = require('gulp-browserify')
+const portfinder = require('portfinder')
 const gulpSequence = require('gulp-sequence')
 const config = require('./config')
 const appName = config.appName
@@ -280,21 +281,29 @@ gulp.task('dev:before', (cb) => {
 
 gulp.task('dev', ['dev:before'], () => {
   console.log(`[${new Date()}]: ready to develop!`)
-  browserSync.init({
-    server: {
-      baseDir: './',
-      directory: true,
-      routes: {
-        [`/${appName}`]: 'dist'
-      }
-    },
-    port: '18080',
-    // startPath: `/${appName}/htmls/pages/root/home/page.html`,
-    startPath: `/${appName}/index.html`,
-    middleware: [
-      proxy('/path/api', { target: 'http://111.22.333.4', changeOrigin: true })
-    ]
-  })
+  portfinder.basePort = process.env.PORT || 8080
+  portfinder.getPortPromise()
+    .then(port => {
+      console.log(`[About Port]: port ${port} is employed for development purpose!`)
+      browserSync.init({
+        server: {
+          baseDir: './',
+          directory: true,
+          routes: {
+            [`/${appName}`]: 'dist'
+          }
+        },
+        port,
+        // startPath: `/${appName}/htmls/pages/root/home/page.html`,
+        startPath: `/${appName}/index.html`,
+        middleware: [
+          proxy('/path/api', { target: 'http://111.22.333.4', changeOrigin: true })
+        ]
+      })
+    })
+    .catch(err => {
+      console.log(`[Error]: ${err.message}`)
+    })
 
   gulp.watch(['./src/assets/**/*.*'], ['assets'])
   gulp.watch(['./src/htmls/pages/root/**/*.pug', './src/htmls/components/**/*_for_root.pug', './src/htmls/templates/**/*.pug'], ['pug:pagesRoot'])
