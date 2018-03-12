@@ -58,12 +58,12 @@ gulp.task('cleanImageBackup', () => {
 })
 
 gulp.task('imageBackup', ['cleanImageBackup'], () => {
-  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif', './src/assets/**/*.ico'])
+  return gulp.src(['./src/assets/**/*.{png,jpg,jpeg,gif,ico}'])
     .pipe(gulp.dest('./src/assets/image-backup'))
 })
 
 gulp.task('imagemin', ['imageBackup'], () => {
-  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif', './src/assets/**/*.ico'])
+  return gulp.src(['./src/assets/**/*.{png,jpg,jpeg,gif,ico}'])
     .pipe(changed('./dist/assets', {}))
     .pipe(imagemin())
     .pipe(gulp.dest('./src/assets'))
@@ -95,7 +95,7 @@ gulp.task('pug', ['pug:pagesRoot', 'pug:pagesNotRoot'], () => {
 })
 
 gulp.task('sass:global', () => {
-  return gulp.src(['./src/styles/global/reset.scss', './src/styles/global/global.scss', './src/styles/global/fix.scss'])
+  return gulp.src(['./src/styles/global/{reset,global,fix}.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 20 versions'],
@@ -251,7 +251,7 @@ gulp.task('lint:config', () => {
 })
 
 gulp.task('lint:utils', () => {
-  return gulp.src(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'])
+  return gulp.src(['./src/scripts/{utils/**/*,common/utils-*}.js'])
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
     .pipe(eslint.failAfterError())
@@ -306,11 +306,11 @@ gulp.task('dev', ['dev:before'], () => {
     })
 
   gulp.watch(['./src/assets/**/*.*'], ['assets'])
-  gulp.watch(['./src/htmls/pages/root/**/*.pug', './src/htmls/components/**/*_for_root.pug', './src/htmls/templates/**/*.pug'], ['pug:pagesRoot'])
-  gulp.watch(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug', './src/htmls/components/**/*.pug', '!./src/htmls/components/**/*_for_root.pug', './src/htmls/templates/**/*.pug'], ['pug:pagesNotRoot'])
+  gulp.watch(['./src/htmls/{pages/root/**/*,components/**/*_for_root,templates/**/*}.pug'], ['pug:pagesRoot'])
+  gulp.watch(['./src/htmls/{pages/**/*,components/**/*,templates/**/*}.pug', '!./src/htmls/{pages/root/**/*,components/**/*_for_root}.pug'], ['pug:pagesNotRoot'])
   gulp.watch(['./gulpfile.js'], ['lint:gulpfile'])
   gulp.watch(['./config.js', './config-example.js'], ['lint:config'])
-  gulp.watch(['./src/scripts/utils/**/*.js', './src/scripts/common/utils-*.js'], ['js:utils', 'lint:utils'])
+  gulp.watch(['./src/scripts/{utils/**/*,common/utils-*}.js'], ['js:utils', 'lint:utils'])
   gulp.watch(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common'])
   gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady'])
   gulp.watch(['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady'])
