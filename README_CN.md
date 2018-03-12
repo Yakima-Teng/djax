@@ -80,6 +80,8 @@ $ npm run dev
 
 - `gulp imagemin`: 压缩图片。
 
+  - 考虑到对大部分项目来说，这个操作不是需要经常进行的，而且IO操作比较耗时，所以没有集成到```npm run dev```和```npm run build```命令中，在package.json文件的scripts中也没有给出定义。另外，出于保护源文件的目的，在压缩前，该命令会自行对源文件进行备份操作。
+
 - 更多命令详见package.json和gulpfile.js。
 
 ## 许可协议

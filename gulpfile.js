@@ -58,12 +58,12 @@ gulp.task('cleanImageBackup', () => {
 })
 
 gulp.task('imageBackup', ['cleanImageBackup'], () => {
-  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif'])
+  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif', './src/assets/**/*.ico'])
     .pipe(gulp.dest('./src/assets/image-backup'))
 })
 
 gulp.task('imagemin', ['imageBackup'], () => {
-  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif'])
+  return gulp.src(['./src/assets/**/*.png', './src/assets/**/*.jpg', './src/assets/**/*.jpeg', './src/assets/**/*.gif', './src/assets/**/*.ico'])
     .pipe(changed('./dist/assets', {}))
     .pipe(imagemin())
     .pipe(gulp.dest('./src/assets'))
