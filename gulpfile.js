@@ -199,6 +199,7 @@ function handleJSLibs (srcPath, concatingFileName) {
       return 'hand'
     }
   })()
+  // TODO: 这里直接100可以比IO操作省时间，一般也够用，但是理论上是存在bug的，后期还是处理一下
   for (let i = 0; i < 100; i++) {
     srcPathArr.push(srcPath.replace(prefix, prefix + '.' + (i < 10 ? '0' + i : '' + i)))
   }
