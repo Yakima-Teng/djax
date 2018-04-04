@@ -186,6 +186,7 @@ gulp.task('js:common', () => {
     .pipe(browserSync.stream())
 })
 
+// 文件名排序后再进行合并处理（00-99）
 function handleJSLibs (srcPath, concatingFileName) {
   const srcPathArr = []
   const prefix = (() => {
@@ -199,18 +200,26 @@ function handleJSLibs (srcPath, concatingFileName) {
       return 'hand'
     }
   })()
-  // TODO: 这里直接100可以比IO操作省时间，一般也够用，但是理论上是存在bug的，后期还是处理一下
-  for (let i = 0; i < 100; i++) {
-    srcPathArr.push(srcPath.replace(prefix, prefix + '.' + (i < 10 ? '0' + i : '' + i)))
-  }
-  srcPathArr.push(srcPath)
-  return gulp.src(srcPathArr)
-    .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1, babel({ presets: ['env'] })))
-    .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1 && !isDev, uglify()))
-    .pipe(concat(concatingFileName))
-    .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest('./dist/scripts/libs'))
-    .pipe(browserSync.stream())
+  return gulp.src(srcPath)
+    .on('data', file => {
+      const filePath = file.history[0]
+      const matches = filePath.split(prefix)[1].match(/[0-9]{2}/)
+      const order = (matches && matches.length > 0) ? parseInt(matches[0]) : 0
+      srcPathArr.push({
+        order,
+        filePath
+      })
+    })
+    .on('end', function () {
+      srcPathArr.sort((a, b) => a.order - b.order)
+      return gulp.src(srcPathArr.map(item => item.filePath))
+        .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1, babel({ presets: ['env'] })))
+        .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1 && !isDev, uglify()))
+        .pipe(concat(concatingFileName))
+        .pipe(rename({ extname: '.min.js' }))
+        .pipe(gulp.dest('./dist/scripts/libs'))
+        .pipe(browserSync.stream())
+    })
 }
 
 gulp.task('js:libs:onHeadReady', () => {
