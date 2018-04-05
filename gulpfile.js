@@ -98,7 +98,9 @@ gulp.task('pug', ['pug:pagesRoot', 'pug:pagesNotRoot'], () => {
 
 gulp.task('sass:global', () => {
   return gulp.src(['./src/styles/global/{reset,global,fix}.scss'])
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['.']
+    }).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 20 versions'],
       cascade: false
@@ -112,7 +114,9 @@ gulp.task('sass:global', () => {
 
 gulp.task('sass:templates', () => {
   return gulp.src(['./src/htmls/templates/**/*.scss'])
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['.']
+    }).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 20 versions'],
       cascade: false
@@ -125,7 +129,9 @@ gulp.task('sass:templates', () => {
 
 gulp.task('sass:components', () => {
   return gulp.src(['./src/htmls/components/**/*.scss'])
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['.']
+    }).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 20 versions'],
       cascade: false
@@ -138,7 +144,9 @@ gulp.task('sass:components', () => {
 
 gulp.task('sass:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.scss'])
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['.']
+    }).on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 20 versions'],
       cascade: false
