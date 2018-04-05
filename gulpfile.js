@@ -342,6 +342,12 @@ gulp.task('dev:before', (cb) => {
   gulpSequence('lint', ['assets', 'pug', 'sass', 'js'], cb)
 })
 
+function gulpWatch (arrFilesAndTasks) {
+  arrFilesAndTasks.forEach(item => {
+    gulp.watch(item[0], item[1])
+  })
+}
+
 gulp.task('dev', ['dev:before'], () => {
   console.log(`[${new Date()}]: ready to develop!`)
   portfinder.basePort = process.env.PORT || 8080
@@ -368,22 +374,24 @@ gulp.task('dev', ['dev:before'], () => {
       console.log(`[Error]: ${err.message}`)
     })
 
-  gulp.watch(['./src/assets/**/*.*'], ['assets'])
-  gulp.watch(['./src/htmls/{pages/root/**/*,components/**/*_for_root,templates/**/*}.pug'], ['pug:pagesRoot'])
-  gulp.watch(['./src/htmls/{pages/**/*,components/**/*,templates/**/*}.pug', '!./src/htmls/{pages/root/**/*,components/**/*_for_root}.pug'], ['pug:pagesNotRoot'])
-  gulp.watch(['./gulpfile.js'], ['lint:gulpfile'])
-  gulp.watch(['./config.js', './config-example.js'], ['lint:config'])
-  gulp.watch(['./src/scripts/{utils/**/*,common/utils-*}.js'], ['js:utils', 'lint:utils'])
-  gulp.watch(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common'])
-  gulp.watch(['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady'])
-  gulp.watch(['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady'])
-  gulp.watch(['./src/scripts/libs/auto.lazy.*.js'], ['js:libs:onLazy'])
-  gulp.watch(['./src/htmls/pages/**/*.js'], ['js:pages', 'lint:pages'])
-  gulp.watch(['./src/styles/global/**/*.scss'], ['sass:global'])
-  gulp.watch(['./src/htmls/templates/**/*.scss'], ['sass:templates'])
-  gulp.watch(['./src/htmls/components/**/*.scss'], ['sass:components'])
-  gulp.watch(['./src/htmls/pages/**/*.scss'], ['sass:pages'])
-  gulp.watch(['./src/styles/tools/**/*.scss'], ['sass'])
+  gulpWatch([
+    [['./src/assets/**/*.*'], ['assets']],
+    [['./src/htmls/{pages/root/**/*,components/**/*_for_root,templates/**/*}.pug'], ['pug:pagesRoot']],
+    [['./src/htmls/{pages/**/*,components/**/*,templates/**/*}.pug', '!./src/htmls/{pages/root/**/*,components/**/*_for_root}.pug'], ['pug:pagesNotRoot']],
+    [['./gulpfile.js'], ['lint:gulpfile']],
+    [['./config.js', './config-example.js'], ['lint:config']],
+    [['./src/scripts/{utils/**/*,common/utils-*}.js'], ['js:utils', 'lint:utils']],
+    [['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common']],
+    [['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady']],
+    [['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady']],
+    [['./src/scripts/libs/auto.lazy.*.js'], ['js:libs:onLazy']],
+    [['./src/htmls/pages/**/*.js'], ['js:pages', 'lint:pages']],
+    [['./src/styles/global/**/*.scss'], ['sass:global']],
+    [['./src/htmls/templates/**/*.scss'], ['sass:templates']],
+    [['./src/htmls/components/**/*.scss'], ['sass:components']],
+    [['./src/htmls/pages/**/*.scss'], ['sass:pages']],
+    [['./src/styles/tools/**/*.scss'], ['sass']]
+  ])
 })
 
 gulp.task('build:before', (cb) => {
