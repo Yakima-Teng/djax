@@ -291,7 +291,7 @@ gulp.task('lint:gulpfile', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failAfterError()))
+    .pipe(gulpif(!isDev, eslint.failOnError()))
 })
 
 gulp.task('lint:config', () => {
@@ -301,7 +301,7 @@ gulp.task('lint:config', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failAfterError()))
+    .pipe(gulpif(!isDev, eslint.failOnError()))
 })
 
 gulp.task('lint:utils', () => {
@@ -311,7 +311,7 @@ gulp.task('lint:utils', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failAfterError()))
+    .pipe(gulpif(!isDev, eslint.failOnError()))
 })
 
 gulp.task('lint:common', () => {
@@ -321,7 +321,7 @@ gulp.task('lint:common', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failAfterError()))
+    .pipe(gulpif(!isDev, eslint.failOnError()))
 })
 
 gulp.task('lint:pages', () => {
@@ -331,7 +331,7 @@ gulp.task('lint:pages', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failAfterError()))
+    .pipe(gulpif(!isDev, eslint.failOnError()))
 })
 
 gulp.task('lint', ['lint:gulpfile', 'lint:config', 'lint:utils', 'lint:common', 'lint:pages'], () => {
