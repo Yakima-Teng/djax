@@ -105,7 +105,10 @@ gulp.task('sass:global', () => {
       browsers: ['last 20 versions'],
       cascade: false
     }))
-    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(cleanCSS({
+      compatibility: 'ie8',
+      format: isDev ? 'beautify' : ''
+    }))
     .pipe(concat('global.css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/styles/global'))
@@ -121,7 +124,10 @@ gulp.task('sass:templates', () => {
       browsers: ['last 20 versions'],
       cascade: false
     }))
-    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(cleanCSS({
+      compatibility: 'ie8',
+      format: isDev ? 'beautify' : ''
+    }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/styles/templates'))
     .pipe(browserSync.stream())
@@ -136,7 +142,10 @@ gulp.task('sass:components', () => {
       browsers: ['last 20 versions'],
       cascade: false
     }))
-    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(cleanCSS({
+      compatibility: 'ie8',
+      format: isDev ? 'beautify' : ''
+    }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/styles/components'))
     .pipe(browserSync.stream())
@@ -151,7 +160,10 @@ gulp.task('sass:pages', () => {
       browsers: ['last 20 versions'],
       cascade: false
     }))
-    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(cleanCSS({
+      compatibility: 'ie8',
+      format: isDev ? 'beautify' : ''
+    }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream())
