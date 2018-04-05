@@ -196,7 +196,6 @@ gulp.task('js:utils', () => {
     // utils相关文件会用import, export互相引用，需要用browserify的transform: ['babelify']，故无需再用gulp-babel
     // .pipe(babel())
     .pipe(browserify({ transform: ['babelify'] }))
-    .on('error', console.log)
     .pipe(gulpif(!isDev, uglify()))
     .pipe(rename({
       basename: 'utils',
@@ -292,7 +291,7 @@ gulp.task('lint:gulpfile', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(eslint.failAfterError())
+    .pipe(gulpif(!isDev, eslint.failAfterError()))
 })
 
 gulp.task('lint:config', () => {
@@ -302,7 +301,7 @@ gulp.task('lint:config', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(eslint.failAfterError())
+    .pipe(gulpif(!isDev, eslint.failAfterError()))
 })
 
 gulp.task('lint:utils', () => {
@@ -312,7 +311,7 @@ gulp.task('lint:utils', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(eslint.failAfterError())
+    .pipe(gulpif(!isDev, eslint.failAfterError()))
 })
 
 gulp.task('lint:common', () => {
@@ -322,7 +321,7 @@ gulp.task('lint:common', () => {
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
-    .pipe(eslint.failAfterError())
+    .pipe(gulpif(!isDev, eslint.failAfterError()))
 })
 
 gulp.task('lint:pages', () => {
@@ -330,9 +329,9 @@ gulp.task('lint:pages', () => {
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
+    .pipe(eslint('.eslintrc.js'))
+    .pipe(eslint.format(friendlyFormatter))
+    .pipe(gulpif(!isDev, eslint.failAfterError()))
 })
 
 gulp.task('lint', ['lint:gulpfile', 'lint:config', 'lint:utils', 'lint:common', 'lint:pages'], () => {
