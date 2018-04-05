@@ -20,6 +20,7 @@ const autoprefixer = require('gulp-autoprefixer')
 const browserify = require('gulp-browserify')
 const portfinder = require('portfinder')
 const gulpSequence = require('gulp-sequence')
+const plumber = require('gulp-plumber')
 const config = require('./config')
 const appName = config.appName
 
@@ -153,16 +154,20 @@ gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:glob
 
 gulp.task('js:pages', () => {
   return gulp.src(['./src/htmls/pages/**/*.js'])
+    .pipe(changed('./dist/htmls/pages', { extension: '.min.js' }))
+    .pipe(plumber())
     // 页面文件不要通过import引入外部文件增加文件体积，外部共用的东西都封装到utils里，所以这里用gulp-babel就行
     .pipe(babel())
     .pipe(gulpif(!isDev, uglify()))
     .pipe(rename({ extname: '.min.js' }))
+    .pipe(plumber.stop())
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream())
 })
 
 gulp.task('js:utils', () => {
   return gulp.src(['./src/scripts/utils/index.js'])
+    .pipe(plumber())
     // utils相关文件会用import, export互相引用，需要用browserify的transform: ['babelify']，故无需再用gulp-babel
     // .pipe(babel())
     .pipe(browserify({ transform: ['babelify'] }))
@@ -172,16 +177,19 @@ gulp.task('js:utils', () => {
       basename: 'utils',
       extname: '.min.js'
     }))
+    .pipe(plumber.stop())
     .pipe(gulp.dest('./dist/scripts/utils'))
     .pipe(browserSync.stream())
 })
 
 gulp.task('js:common', () => {
   return gulp.src(['./src/scripts/common/*.js'])
+    .pipe(plumber())
     .pipe(babel())
     .pipe(gulpif(!isDev, uglify()))
     .pipe(concat('common.js'))
     .pipe(rename({ extname: '.min.js' }))
+    .pipe(plumber.stop())
     .pipe(gulp.dest('./dist/scripts/common'))
     .pipe(browserSync.stream())
 })
@@ -213,10 +221,12 @@ function handleJSLibs (srcPath, concatingFileName) {
     .on('end', function () {
       srcPathArr.sort((a, b) => a.order - b.order)
       return gulp.src(srcPathArr.map(item => item.filePath))
+        .pipe(plumber())
         .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1, babel({ presets: ['env'] })))
         .pipe(gulpif(file => file.history[0].indexOf('.min.js') === -1 && !isDev, uglify()))
         .pipe(concat(concatingFileName))
         .pipe(rename({ extname: '.min.js' }))
+        .pipe(plumber.stop())
         .pipe(gulp.dest('./dist/scripts/libs'))
         .pipe(browserSync.stream())
     })
