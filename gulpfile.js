@@ -74,7 +74,7 @@ gulp.task('imagemin', ['imageBackup'], () => {
 gulp.task('pug:pagesRoot', () => {
   return gulp.src(['./src/htmls/pages/root/**/*.pug'])
     .pipe(gulpdata(file => ({ store })))
-    .pipe(pug({ pretty: true }))
+    .pipe(pug({ pretty: isDev }))
     .pipe(rename(path => {
       path.basename = path.dirname
       path.dirname = ''
@@ -87,7 +87,7 @@ gulp.task('pug:pagesRoot', () => {
 gulp.task('pug:pagesNotRoot', () => {
   return gulp.src(['./src/htmls/pages/**/*.pug', '!./src/htmls/pages/root/**/*.pug'])
     .pipe(gulpdata(file => ({ store })))
-    .pipe(pug({ pretty: true }))
+    .pipe(pug({ pretty: isDev }))
     .pipe(gulp.dest('./dist/htmls/pages'))
     .pipe(browserSync.stream())
 })
