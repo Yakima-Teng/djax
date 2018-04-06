@@ -15,7 +15,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "gulp clean",
     "gulpDev": "gulp dev",
-    "gulpBuild": "gulp build"
+    "gulpBuild": "gulp build",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -66,6 +73,8 @@
     "gulp-uglify": "^3.0.0",
     "gulp-zip": "^4.1.0",
     "http-proxy-middleware": "^0.17.4",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
     "npm-run-all": "^4.1.2",
     "portfinder": "^1.0.13",
     "through2": "^2.0.3"
