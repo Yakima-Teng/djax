@@ -370,13 +370,24 @@ gulp.task('build', ['build:before'], () => {
   console.log(`[${new Date()}]: Finish building!`)
 })
 
-gulp.task('deploy', () => {
+gulp.task('deployToTestServer', () => {
   return gulp.src(pathOfFilesToDeploy)
     .pipe(scp({
-      host: config.deploy.hostname,
-      username: config.deploy.username,
-      password: config.deploy.password,
-      dest: config.deploy.dest,
+      host: config.deployConfigurationForTestServer.hostname,
+      username: config.deployConfigurationForTestServer.username,
+      password: config.deployConfigurationForTestServer.password,
+      dest: config.deployConfigurationForTestServer.dest,
+      readyTimeout: 60000
+    }))
+})
+
+gulp.task('deployToProductionServer', () => {
+  return gulp.src(pathOfFilesToDeploy)
+    .pipe(scp({
+      host: config.deployConfigurationForProductionServer.hostname,
+      username: config.deployConfigurationForProductionServer.username,
+      password: config.deployConfigurationForProductionServer.password,
+      dest: config.deployConfigurationForProductionServer.dest,
       readyTimeout: 60000
     }))
 })

@@ -68,15 +68,15 @@ $ npm run dev
 
   - 压缩CSS文件.
 
-- `npm run deploy`: 让发布变得更简单。
+- `npm run deployToTestServer` / `npm run deployToProductionServer`: 让发布变得更简单。
 
   - 将config-example.js文件重命名为“config.js”，并根据您的SSH账号进行相应的修改。
 
-  - 当你想要通过FTP/SFTP工具上传文件到服务器上时，你可以直接敲一个“npm run deploy”命令，然后去泡杯咖啡。
+  - 当你想要通过FTP/SFTP工具上传文件到服务器上时，你可以直接敲一个`npm run deployToTestServer` / `npm run deployToProductionServer`命令，然后去泡杯咖啡。
 
-- `npm run buildAndDeploy`: 一个命令糖。
+- `npm run buildAndDeployToTestServer` / `npm run buildAndDeployToProductionServer`: 一个命令糖。
 
-  - 当你想要先执行`npm run build`，然后等前面这个命令执行结束后再执行`npm run deploy`的时候， 你可以直接用一个`npm run buildAndDeploy`命令替代。它们的作用效果是一样的，后者可以让你不用一直呆在屏幕面前傻等。
+  - 当你想要先执行`npm run build`，然后等前面这个命令执行结束后再执行`npm run deployToTestServer` / `npm run deployToProductionServer`的时候， 你可以直接用一个`npm run buildAndDeployToTestServer` / `npm run buildAndDeployToProductionServer`命令替代。它们的作用效果是一样的，后者可以让你不用一直呆在屏幕面前傻等。
 
 - `gulp imagemin`: 压缩图片。
 

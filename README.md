@@ -68,15 +68,15 @@ This will scaffold the project using the `master` branch.
 
   - CSS minified.
 
-- `npm run deploy`: Make deployment more convenient.
+- `npm run deployToTestServer` / `npm run deployToProductionServer`: Make deployment more convenient.
 
   - Rename config-example.js as 'config.js' and change content according to your ssh accout.
 
-  - Whenever you want to deploy your files under dist folder to the server, just run command `npm run deploy`, and wait. That's all.
+  - Whenever you want to deploy your files under dist folder to the server, just run command `npm run deployToTestServer` / `npm run deployToProductionServer`, and wait. That's all.
 
-- `npm run buildAndDeploy`: A convenient command.
+- `npm run buildAndDeployToTestServer` / `npm run buildAndDeployToProductionServer`: A convenient command.
 
-  - When you want to run `npm run build`, and run `npm run deploy` after completion of the former command, you can just run `npm run buildAndDeploy` instead. It's just a sugar command.
+  - When you want to run `npm run build`, and run `npm run deployToTestServer` / `npm run deployToProductionServer` after completion of the former command, you can just run `npm run buildAndDeployToTestServer` / `npm run buildAndDeployToProductionServer` instead. It's just a sugar command.
   
 - `gulp imagemin`: Minify images.
 
