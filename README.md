@@ -81,6 +81,10 @@ This will scaffold the project using the `master` branch.
 - `gulp imagemin`: Minify images.
 
   - This IO operation is often not a high-frequency operation and is time consuming, so it was not defined in the filed "scripts" in file package.json or integrated in commands such as ```npm run dev``` or ```npm run build``. What's more, in order to keep source images, source images will be backed up before they are compressed.
+  
+- `npm run zip`: Zip files to deploy.
+
+  - If you need to zip your files to a single .zip file, and delivery it to other people, you can run this command, and a .zip file will be generated in `zip` folder in the project root path. All files under `dist` folder (`dist` folder itself is not included) will be included.
 
 - For more, please refer to package.json and gulpfile.js.
 

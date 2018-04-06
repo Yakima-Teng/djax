@@ -26,6 +26,7 @@ const through2 = require('through2')
 const zip = require('gulp-zip')
 const config = require('./config')
 const appName = config.appName
+const pathOfFilesToDeploy = ['./dist/**/*']
 
 const isDev = process.env.npm_lifecycle_script === 'gulp dev'
 
@@ -370,7 +371,7 @@ gulp.task('build', ['build:before'], () => {
 })
 
 gulp.task('deploy', () => {
-  return gulp.src(config.deploy.src)
+  return gulp.src(pathOfFilesToDeploy)
     .pipe(scp({
       host: config.deploy.hostname,
       username: config.deploy.username,
@@ -381,7 +382,7 @@ gulp.task('deploy', () => {
 })
 
 gulp.task('zip', () => {
-  return gulp.src(config.deploy.src)
-    .pipe(zip(`${appName}_${version}.zip`))
+  return gulp.src(pathOfFilesToDeploy)
+    .pipe(zip(`${appName}-dist_${version}.zip`))
     .pipe(gulp.dest('zip'))
 })

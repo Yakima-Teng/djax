@@ -3,7 +3,6 @@ module.exports = {
   defaultSiteTitle: 'Djax',
   defaultSiteDescription: '开箱即用的多页应用脚手架',
   deploy: {
-    src: ['./dist/**/*'],
     hostname: '111.22.33.44',
     username: 'username',
     password: 'password',

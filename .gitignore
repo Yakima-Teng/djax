@@ -62,5 +62,4 @@ typings/
 /dist
 .idea
 # ignore files like dist.zip, dist.tar.gz, and etc.
-dist.*
 /zip
