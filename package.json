@@ -4,6 +4,7 @@
   "description": "dom and ajax",
   "main": "gulpfile.js",
   "scripts": {
+    "zip": "gulp zip",
     "dev": "npm-run-all --serial clean gulpDev",
     "build": "npm-run-all --serial clean gulpBuild",
     "deploy": "gulp deploy",
@@ -60,6 +61,7 @@
     "gulp-scp2": "^0.2.0",
     "gulp-sequence": "^1.0.0",
     "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.1.0",
     "http-proxy-middleware": "^0.17.4",
     "npm-run-all": "^4.1.2",
     "portfinder": "^1.0.13",

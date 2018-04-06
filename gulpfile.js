@@ -23,21 +23,25 @@ const gulpSequence = require('gulp-sequence')
 const plumber = require('gulp-plumber')
 const notify = require('gulp-notify')
 const through2 = require('through2')
+const zip = require('gulp-zip')
 const config = require('./config')
 const appName = config.appName
 
 const isDev = process.env.npm_lifecycle_script === 'gulp dev'
+
+const version = (() => {
+  const date = new Date()
+  const yyyy = date.getFullYear()
+  const mm = (1 + date.getMonth()) > 9 ? ('' + (1 + date.getMonth())) : ('0' + (1 + date.getMonth()))
+  const dd = date.getDate() > 9 ? ('' + date.getDate()) : ('0' + date.getDate())
+  return yyyy + '-' + mm + '-' + dd + '_' + date.valueOf()
+})()
 
 const store = {
   defaultSiteTitle: config.defaultSiteTitle,
   defaultSiteDescription: config.defaultSiteDescription,
   versionQuery: (() => {
     // 这里定义的全局范围可用的version是用来追加到内容比较会变的js和css文件资源路径后面减少缓存影响用的
-    const date = new Date()
-    const yyyy = date.getFullYear()
-    const mm = (1 + date.getMonth()) > 9 ? ('' + (1 + date.getMonth())) : ('0' + (1 + date.getMonth()))
-    const dd = date.getDate() > 9 ? ('' + date.getDate()) : ('0' + date.getDate())
-    const version = yyyy + '-' + mm + '-' + dd + '_' + date.valueOf()
     return '?v=' + version
   })()
 }
@@ -374,4 +378,10 @@ gulp.task('deploy', () => {
       dest: config.deploy.dest,
       readyTimeout: 60000
     }))
+})
+
+gulp.task('zip', () => {
+  return gulp.src(config.deploy.src)
+    .pipe(zip(`${appName}_${version}.zip`))
+    .pipe(gulp.dest('zip'))
 })
