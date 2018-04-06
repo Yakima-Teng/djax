@@ -22,6 +22,7 @@ const portfinder = require('portfinder')
 const gulpSequence = require('gulp-sequence')
 const plumber = require('gulp-plumber')
 const notify = require('gulp-notify')
+const through2 = require('through2')
 const config = require('./config')
 const appName = config.appName
 
@@ -96,8 +97,28 @@ gulp.task('pug', ['pug:pagesRoot', 'pug:pagesNotRoot'], () => {
   //
 })
 
-gulp.task('sass:global', () => {
-  return gulp.src(['./src/styles/global/{reset,global,fix}.scss'])
+/**
+ * gulp-if插件不支持传函数，但是有时候我们并不希望trueChild/falseChild在condition不匹配时也触发，这会带来污染
+ * 比如condition为false，trueChild为test()，则即便我们希望condition为false时不执行test，它都已经执行了
+ * @param condition
+ * @param trueChild
+ * @param falseChild
+ * @param minimatchOptions
+ * @returns {*}
+ */
+function clerverGulpif (condition, trueChild, falseChild, minimatchOptions) {
+  condition = !!condition
+  if (typeof trueChild === 'function') {
+    trueChild = condition ? trueChild() : through2.obj()
+  }
+  if (typeof falseChild === 'function') {
+    falseChild = condition ? through2.obj() : falseChild()
+  }
+  return gulpif(condition, trueChild, falseChild, minimatchOptions)
+}
+
+function doSassTask (arrSrc, strDest, concatFileName) {
+  return gulp.src(arrSrc)
     .pipe(sass({
       includePaths: ['.']
     }).on('error', sass.logError))
@@ -109,64 +130,26 @@ gulp.task('sass:global', () => {
       compatibility: 'ie8',
       format: isDev ? 'beautify' : ''
     }))
-    .pipe(concat('global.css'))
+    .pipe(clerverGulpif(!!concatFileName, concat.bind(this, concatFileName)))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('./dist/styles/global'))
+    .pipe(gulp.dest(strDest))
     .pipe(browserSync.stream())
+}
+
+gulp.task('sass:global', () => {
+  return doSassTask(['./src/styles/global/{reset,global,fix}.scss'], './dist/styles/global', 'global.css')
 })
 
 gulp.task('sass:templates', () => {
-  return gulp.src(['./src/htmls/templates/**/*.scss'])
-    .pipe(sass({
-      includePaths: ['.']
-    }).on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 20 versions'],
-      cascade: false
-    }))
-    .pipe(cleanCSS({
-      compatibility: 'ie8',
-      format: isDev ? 'beautify' : ''
-    }))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('./dist/styles/templates'))
-    .pipe(browserSync.stream())
+  return doSassTask(['./src/htmls/templates/**/*.scss'], './dist/styles/templates')
 })
 
 gulp.task('sass:components', () => {
-  return gulp.src(['./src/htmls/components/**/*.scss'])
-    .pipe(sass({
-      includePaths: ['.']
-    }).on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 20 versions'],
-      cascade: false
-    }))
-    .pipe(cleanCSS({
-      compatibility: 'ie8',
-      format: isDev ? 'beautify' : ''
-    }))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('./dist/styles/components'))
-    .pipe(browserSync.stream())
+  return doSassTask(['./src/htmls/components/**/*.scss'], './dist/styles/components')
 })
 
 gulp.task('sass:pages', () => {
-  return gulp.src(['./src/htmls/pages/**/*.scss'])
-    .pipe(sass({
-      includePaths: ['.']
-    }).on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 20 versions'],
-      cascade: false
-    }))
-    .pipe(cleanCSS({
-      compatibility: 'ie8',
-      format: isDev ? 'beautify' : ''
-    }))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('./dist/htmls/pages'))
-    .pipe(browserSync.stream())
+  return doSassTask(['./src/htmls/pages/**/*.scss'], './dist/htmls/pages')
 })
 
 gulp.task('sass', ['sass:pages', 'sass:components', 'sass:templates', 'sass:global'], () => {
@@ -284,54 +267,34 @@ gulp.task('js', ['js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
   //
 })
 
-gulp.task('lint:gulpfile', () => {
-  return gulp.src(['./gulpfile.js'])
+function doLintTask (arrFileSrc) {
+  return gulp.src(arrFileSrc)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
     .pipe(eslint('.eslintrc.js'))
     .pipe(eslint.format(friendlyFormatter))
     .pipe(gulpif(!isDev, eslint.failOnError()))
+}
+
+gulp.task('lint:gulpfile', () => {
+  return doLintTask(['./gulpfile.js'])
 })
 
 gulp.task('lint:config', () => {
-  return gulp.src(['./config.js', './config-example.js'])
-    .pipe(plumber({
-      errorHandler: notify.onError('Error: <%= error.message %>')
-    }))
-    .pipe(eslint('.eslintrc.js'))
-    .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failOnError()))
+  return doLintTask(['./config.js', './config-example.js'])
 })
 
 gulp.task('lint:utils', () => {
-  return gulp.src(['./src/scripts/{utils/**/*,common/utils-*}.js'])
-    .pipe(plumber({
-      errorHandler: notify.onError('Error: <%= error.message %>')
-    }))
-    .pipe(eslint('.eslintrc.js'))
-    .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failOnError()))
+  return doLintTask(['./src/scripts/{utils/**/*,common/utils-*}.js'])
 })
 
 gulp.task('lint:common', () => {
-  return gulp.src(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
-    .pipe(plumber({
-      errorHandler: notify.onError('Error: <%= error.message %>')
-    }))
-    .pipe(eslint('.eslintrc.js'))
-    .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failOnError()))
+  return doLintTask(['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'])
 })
 
 gulp.task('lint:pages', () => {
-  return gulp.src(['./src/htmls/pages/**/*.js'])
-    .pipe(plumber({
-      errorHandler: notify.onError('Error: <%= error.message %>')
-    }))
-    .pipe(eslint('.eslintrc.js'))
-    .pipe(eslint.format(friendlyFormatter))
-    .pipe(gulpif(!isDev, eslint.failOnError()))
+  return doLintTask(['./src/htmls/pages/**/*.js'])
 })
 
 gulp.task('lint', ['lint:gulpfile', 'lint:config', 'lint:utils', 'lint:common', 'lint:pages'], () => {
