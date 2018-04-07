@@ -7,7 +7,7 @@
 ## Documentation
 
 - [For this template](./template/README.md): common questions specific to this template are answered and each part is described in greater detail
-- [For djax-cli](https://github.com/Yakima-Teng/djax-cli): general information about how to work with Vue, not specific to this template
+- [For djax-cli](https://github.com/Yakima-Teng/djax-cli): general information about how to work with djax-cli, not specific to this template
 
 ## Usage
 
@@ -16,6 +16,8 @@ This is a project template for [djax-cli](https://github.com/Yakima-Teng/djax-cl
 ``` bash
 $ npm install -g djax-cli
 $ djax init default my-project
+# you can also use the below command to replace the above one
+$ djax init djax my-project
 $ cd my-project
 $ npm install
 $ npm run dev
