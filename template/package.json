@@ -1,0 +1,95 @@
+{
+  "name": "{{ name }}",
+  "version": "1.0.0",
+  "description": "{{ description }}",
+  "private": true,
+  "scripts": {
+    "zip": "gulp zip",
+    "dev": "npm-run-all --serial clean gulpDev",
+    "build": "npm-run-all --serial clean gulpBuild",
+    "deployToTestServer": "gulp deployToTestServer",
+    "deployToProductionServer": "gulp deployToProductionServer",
+    "buildAndDeployToTestServer": "npm-run-all --serial build deployToTestServer",
+    "buildAndDeployToProductionServer": "npm-run-all --serial build deployToProductionServer",
+    "buildAndDeployToBothTestServerAndProductionServer": "npm-run-all build --parallel deployToTestServer deployToProductionServer",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "gulp clean",
+    "gulpDev": "gulp dev",
+    "gulpBuild": "gulp build",
+    "precommit": "lint-staged"
+  },
+  {{#lint}}
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  {{/lint}}
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yakima-Teng/djax.git"
+  },
+  "keywords": [
+    "{{ author }}",
+    "djax"
+  ],
+  "author": "{{ author }}",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yakima-Teng/djax/issues"
+  },
+  "homepage": "https://github.com/Yakima-Teng/djax#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    {{#lint}}
+    "babel-eslint": "^8.0.3",
+    {{/lint}}
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
+    {{#lint}}
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    {{/lint}}
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-changed": "^3.1.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-data": "^1.3.1",
+    {{#lint}}
+    "gulp-eslint": "^4.0.0",
+    {{/lint}}
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-scp2": "^0.2.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.1.0",
+    "http-proxy-middleware": "^0.17.4",
+    {{#lint}}
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    {{/lint}}
+    "npm-run-all": "^4.1.2",
+    "portfinder": "^1.0.13",
+    "through2": "^2.0.3"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}
