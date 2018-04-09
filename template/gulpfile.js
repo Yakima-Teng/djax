@@ -142,7 +142,7 @@ function doSassTask (arrSrc, strDest, concatFileName) {
 }
 
 gulp.task('sass:global', () => {
-  return doSassTask(['./src/styles/global/{reset,global,fix}.scss'], './dist/styles/global', 'global.css')
+  return doSassTask(['./src/styles/global/{normalize,global,fix}.scss'], './dist/styles/global', 'global.css')
 })
 
 gulp.task('sass:templates', () => {
