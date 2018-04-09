@@ -56,7 +56,7 @@ module.exports = {
     lint: {
       when: 'isNotTest',
       type: 'confirm',
-      message: 'Use ESLint to lint your code (Standard ESLint preset will be used)?'
+      message: 'Use ESLint to lint your code (ESLint preset "standard" will be used)?'
     },
     autoInstall: {
       when: 'isNotTest',
