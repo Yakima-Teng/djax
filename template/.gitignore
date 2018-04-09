@@ -57,9 +57,17 @@ typings/
 # dotenv environment variables file
 .env
 
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
 /config.js
 .DS_Store
 /dist
-.idea
+
 # ignore files like dist.zip, dist.tar.gz, and etc.
 /zip
