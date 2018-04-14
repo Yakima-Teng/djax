@@ -12,9 +12,11 @@ const pug = require('gulp-pug')
 const imagemin = require('gulp-imagemin')
 const gulpif = require('gulp-if')
 const scp = require('gulp-scp2')
+{{#lint}}
 const eslint = require('gulp-eslint')
-const gulpdata = require('gulp-data')
 const friendlyFormatter = require('eslint-friendly-formatter')
+{{/lint}}
+const gulpdata = require('gulp-data')
 const del = require('del')
 const autoprefixer = require('gulp-autoprefixer')
 const browserify = require('gulp-browserify')
@@ -272,6 +274,7 @@ gulp.task('js', ['js:pages', 'js:utils', 'js:common', 'js:libs'], () => {
   //
 })
 
+{{#lint}}
 function doLintTask (arrFileSrc) {
   return gulp.src(arrFileSrc)
     .pipe(plumber({
@@ -305,9 +308,10 @@ gulp.task('lint:pages', () => {
 gulp.task('lint', ['lint:gulpfile', 'lint:config', 'lint:utils', 'lint:common', 'lint:pages'], () => {
   // console.log('finished task: lint')
 })
+{{/lint}}
 
 gulp.task('dev:before', (cb) => {
-  gulpSequence('lint', ['assets', 'pug', 'sass', 'js'], cb)
+  gulpSequence({{#lint}}'lint', {{/lint}}['assets', 'pug', 'sass', 'js'], cb)
 })
 
 function gulpWatch (arrFilesAndTasks) {
@@ -346,14 +350,14 @@ gulp.task('dev', ['dev:before'], () => {
     [['./src/assets/**/*.*'], ['assets']],
     [['./src/htmls/{pages/root/**/*,components/**/*_for_root,templates/**/*}.pug'], ['pug:pagesRoot']],
     [['./src/htmls/{pages/**/*,components/**/*,templates/**/*}.pug', '!./src/htmls/{pages/root/**/*,components/**/*_for_root}.pug'], ['pug:pagesNotRoot']],
-    [['./gulpfile.js'], ['lint:gulpfile']],
-    [['./config.js', './config-example.js'], ['lint:config']],
-    [['./src/scripts/{utils/**/*,common/utils-*}.js'], ['js:utils', 'lint:utils']],
-    [['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common', 'lint:common']],
+    {{#lint}}[['./gulpfile.js'], ['lint:gulpfile']],{{/lint}}
+    {{#lint}}[['./config.js', './config-example.js'], ['lint:config']],{{/lint}}
+    [['./src/scripts/{utils/**/*,common/utils-*}.js'], ['js:utils'{{#lint}}, 'lint:utils'{{/lint}}]],
+    [['./src/scripts/common/*.js', '!./src/scripts/common/utils-*.js'], ['js:common'{{#lint}}, 'lint:common'{{/lint}}]],
     [['./src/scripts/libs/auto.head.*.js'], ['js:libs:onHeadReady']],
     [['./src/scripts/libs/auto.doc.*.js'], ['js:libs:onDocumentReady']],
     [['./src/scripts/libs/auto.lazy.*.js'], ['js:libs:onLazy']],
-    [['./src/htmls/pages/**/*.js'], ['js:pages', 'lint:pages']],
+    [['./src/htmls/pages/**/*.js'], ['js:pages'{{#lint}}, 'lint:pages'{{/lint}}]],
     [['./src/styles/global/**/*.scss'], ['sass:global']],
     [['./src/htmls/templates/**/*.scss'], ['sass:templates']],
     [['./src/htmls/components/**/*.scss'], ['sass:components']],
@@ -363,7 +367,7 @@ gulp.task('dev', ['dev:before'], () => {
 })
 
 gulp.task('build:before', (cb) => {
-  gulpSequence('lint', ['assets', 'pug', 'sass', 'js'], cb)
+  gulpSequence({{#lint}}'lint', {{/lint}}['assets', 'pug', 'sass', 'js'], cb)
 })
 
 gulp.task('build', ['build:before'], () => {
