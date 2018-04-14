@@ -26,7 +26,18 @@ const plumber = require('gulp-plumber')
 const notify = require('gulp-notify')
 const through2 = require('through2')
 const zip = require('gulp-zip')
-const config = require('./config')
+const config = (() => {
+  try {
+    return require('./config')
+  } catch (e) {
+    if (e.code === 'MODULE_NOT_FOUND') {
+      console.log('[Error]: Please rename config-example.js to config.js and revise the content to yours.')
+    } else {
+      console.log(`[Error]: ${e.message}`)
+    }
+    process.exit(0)
+  }
+})()
 const appName = config.appName
 const pathOfFilesToDeploy = ['./dist/**/*']
 
