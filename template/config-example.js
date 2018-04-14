@@ -1,7 +1,7 @@
 module.exports = {
   appName: '{{ name }}',
-  defaultSiteTitle: '{{ description }}',
-  defaultSiteDescription: '开箱即用的多页应用脚手架',
+  defaultSiteTitle: '{{ name }}',
+  defaultSiteDescription: '{{ description }}',
   deployConfigurationForTestServer: {
     hostname: '111.22.33.44',
     username: 'username',
