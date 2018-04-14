@@ -48,6 +48,7 @@
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
     "browser-sync": "^2.18.13",
+    "chalk": "^2.3.2",
     "del": "^3.0.0",
     {{#lint}}
     "eslint": "^4.12.1",
