@@ -15,8 +15,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "gulp clean",
     "gulpDev": "gulp dev",
-    "gulpBuild": "gulp build",
-    "precommit": "lint-staged"
+    "gulpBuild": "gulp build"{{#lint}},
+    "precommit": "lint-staged"{{/lint}}
   },
   {{#lint}}
   "lint-staged": {
