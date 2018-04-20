@@ -3,6 +3,22 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "A full-featured gulp setup with refresh-on-change, lint-on-save, http proxy, and etc.",
-  "scripts": {},
-  "devDependencies": {}
+  "scripts": {
+    "docs": "cd docs && gitbook serve",
+    "docs:deploy": "bash ./deploy-docs.sh"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yakima-Teng/djax.git"
+  },
+  "keywords": [
+    "Yakima Teng",
+    "djax"
+  ],
+  "author": "Yakima Teng",
+  "bugs": {
+    "url": "https://github.com/Yakima-Teng/djax/issues"
+  },
+  "homepage": "https://github.com/Yakima-Teng/djax#readme"
 }

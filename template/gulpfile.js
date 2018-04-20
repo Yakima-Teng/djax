@@ -1,3 +1,4 @@
+'use strict'
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const cleanCSS = require('gulp-clean-css')
@@ -125,7 +126,7 @@ gulp.task('pug', ['pug:pagesRoot', 'pug:pagesNotRoot'], () => {
  * @param minimatchOptions
  * @returns {*}
  */
-function clerverGulpif (condition, trueChild, falseChild, minimatchOptions) {
+function cleverGulpif (condition, trueChild, falseChild, minimatchOptions) {
   condition = !!condition
   if (typeof trueChild === 'function') {
     trueChild = condition ? trueChild() : through2.obj()
@@ -142,21 +143,20 @@ function doSassTask (arrSrc, strDest, concatFileName) {
       includePaths: ['.']
     }).on('error', sass.logError))
     .pipe(autoprefixer({
-      browsers: ['last 20 versions'],
       cascade: false
     }))
     .pipe(cleanCSS({
       compatibility: 'ie8',
       format: isDev ? 'beautify' : ''
     }))
-    .pipe(clerverGulpif(!!concatFileName, concat.bind(this, concatFileName)))
+    .pipe(cleverGulpif(!!concatFileName, concat.bind(this, concatFileName)))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(strDest))
     .pipe(browserSync.stream())
 }
 
 gulp.task('sass:global', () => {
-  return doSassTask(['./src/styles/global/{normalize,global,fix}.scss'], './dist/styles/global', 'global.css')
+  return doSassTask(['./src/styles/global/{reset,global,fix}.scss'], './dist/styles/global', 'global.css')
 })
 
 gulp.task('sass:templates', () => {

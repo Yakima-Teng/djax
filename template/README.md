@@ -82,7 +82,7 @@ This will scaffold the project using the `master` branch.
 
 - `gulp imagemin`: Minify images.
 
-  - This IO operation is often not a high-frequency operation and is time consuming, so it was not defined in the filed "scripts" in file package.json or integrated in commands such as ```npm run dev``` or ```npm run build``. What's more, in order to keep source images, source images will be backed up before they are compressed.
+  - This IO operation is often not a high-frequency operation and is time consuming, so it was not defined in the filed "scripts" in file package.json or integrated in commands such as `npm run dev` or `npm run build`. What's more, in order to keep source images, source images will be backed up before they are compressed.
 
 - `npm run zip`: Zip files to deploy.
 

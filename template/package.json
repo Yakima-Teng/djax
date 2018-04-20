@@ -2,6 +2,7 @@
   "name": "{{ name }}",
   "version": "1.0.0",
   "description": "{{ description }}",
+  "author": "{{ author }}",
   "private": true,
   "scripts": {
     "zip": "gulp zip",
@@ -26,20 +27,6 @@
     ]
   },
   {{/lint}}
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yakima-Teng/djax.git"
-  },
-  "keywords": [
-    "{{ author }}",
-    "djax"
-  ],
-  "author": "{{ author }}",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Yakima-Teng/djax/issues"
-  },
-  "homepage": "https://github.com/Yakima-Teng/djax#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     {{#lint}}
@@ -92,5 +79,14 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0"
-  }
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 20 versions",
+    "not ie < 8"
+  ]
 }
