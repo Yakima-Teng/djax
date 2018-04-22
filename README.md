@@ -18,27 +18,23 @@ This is a project template for [djax-cli](https://github.com/Yakima-Teng/djax-cl
 ``` bash
 $ npm install -g djax-cli
 $ djax init default my-project
-# you can also use the below command to replace the above one
-$ djax init djax my-project
 $ cd my-project
 $ npm install
 $ npm run dev
 ```
 
-This will scaffold the project using the `master` branch. If you wish to use the latest version of the template, do the following instead:
-
-``` bash
-$ djax init default#dev my-project
-```
-
-:warning: **The develop branch is not considered stable and can contain bugs or not build at all, so use at your own risk.**
+This will scaffold the project using the template files in `master` branch.
 
 The development server will run on port 8080 by default. If that port is already in use on your machine, the next free port will be used.
 
-### Fork It And Make Your Own
+## Fork It And Make Your Own
 
-You can fork this repo to create your own boilerplate, and use it with `djax-cli`:
+This project can not satisfy anyone. You can fork this repo to create your own boilerplate, and use it with `djax-cli`:
 
 ``` bash
 djax init username/repo my-project
 ```
+
+## Issues/Suggestions
+
+Issues/suggestions are welcome. [You can click here to submit issues](https://github.com/Yakima-Teng/djax/issues).
