@@ -1,4 +1,6 @@
-# djax-gulp-boilerplate
+# djax
+
+Just a gulp boilerplate. Issues are welcome!
 
 > A full-featured gulp setup with refresh-on-change, lint-on-save, http proxy, and etc.
 
@@ -6,7 +8,7 @@
 
 ## Documentation
 
-- [For this template](./template/README.md): common questions specific to this template are answered and each part is described in greater detail
+- [For this template](https://yakima-teng.github.io/djax/): common questions specific to this template are answered and each part is described in greater detail
 - [For djax-cli](https://github.com/Yakima-Teng/djax-cli): general information about how to work with djax-cli, not specific to this template
 
 ## Usage
