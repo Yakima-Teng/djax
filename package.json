@@ -1,5 +1,5 @@
 {
-  "name": "djax-cli-template-default",
+  "name": "djax",
   "version": "1.0.0",
   "license": "MIT",
   "description": "A full-featured gulp setup with refresh-on-change, lint-on-save, http proxy, and etc.",
