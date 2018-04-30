@@ -1,6 +1,6 @@
 # djax
 
-Just a gulp boilerplate. Issues are welcome!
+Just a (gulp + es6 + pug + sass + auto-refresh + http proxy) template. Issues are welcome!
 
 > A full-featured gulp setup with refresh-on-change, lint-on-save, http proxy, and etc.
 
