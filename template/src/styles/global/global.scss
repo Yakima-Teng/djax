@@ -1,3 +1,6 @@
 @import 'src/styles/tools/utils';
 
 html {}
+body > .container {
+  padding-top: 70px;
+}
