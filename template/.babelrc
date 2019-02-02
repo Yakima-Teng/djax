@@ -1,8 +1,3 @@
 {
-  "presets": ["env"],
-  "browserslist": [
-    "> 1%",
-    "last 20 versions",
-    "not ie < 8"
-  ]
+  "presets": ["env"]
 }
