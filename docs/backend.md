@@ -45,7 +45,7 @@ For each element in the server.routes array:
 
 - The key is the url to match;
 
-- The value if which folder to serve (relative to your current working directory).
+- The value is which folder to serve (relative to your current working directory).
 
 ## `port`
 
